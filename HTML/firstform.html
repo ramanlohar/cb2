@@ -6,7 +6,7 @@
         var firstformsubmited = localStorage.getItem("firstformsubmited")
 
         if (firstformsubmited == "true" || firstformsubmited === 'true') {
-            window.location.href = "../home.html";
+            // window.location.href = "../home.html";
         }
     </script>
     <meta charset="UTF-8">
@@ -21,17 +21,19 @@
 <body>
 
     <header>
-        <h2>Cashbook</h2>
-        <button type="submit" id="savebtn">Save</button>
+        <h2>Select The Mad</h2>
+        <button type="submit" id="savebtnh" onclick="savebtnh();">Save All</button>
     </header>
-
+    
     <form id="karyalayForm">
-        <!-- <h1>कार्यालय</h1> -->
+
+        <h1>कार्यालय</h1>
         <div class="f-div">
             <label for="panchayat-name">पंचायत का नाम</label>
             <input type="text" id="panchayat-name" placeholder="पंचायत का नाम">
         </div>
         <div class="flexdiv">
+
             <div class="f-div">
                 <label for="rokadDate">Date</label>
                 <input type="date" id="rokadDate">
@@ -55,8 +57,8 @@
                 <option value="other">other</option>
             </select>
             <label for="madName" class="madText-label" style="display:none;">Enter the mad name</label>
-            <input type="text" id="madName" class="madText" style="display:none;">
             <div class="rashi-cantainer">
+                <input type="text" id="madName" class="madText" style="display:none;">
                 <label for="nagadRashi">Nagad Rashi</label>
                 <input type="number" id="nagadRashi" class="madNumber">
                 <label for="bankRashi">Bank Rashi</label>
@@ -69,9 +71,23 @@
         <input type="text" id="Ntotal" readonly>
         <label for="">bank Total</label>
         <input type="text" id="Btotal" readonly>
+        <button type="submit" id="savebtn" style="display: none;">Save All</button>
     </form>
 
     <script>
+
+function savebtnh(){
+    const savebtn=document.getElementById("savebtn")
+    savebtn.click();
+
+}
+        
+
+        // var firstformsubmited = localStorage.getItem("firstformsubmited")
+
+        // if (firstformsubmited == "true" || firstformsubmited === 'true') {
+        //     window.location.href = "../home.html";
+        // }
 
         var a = 0, a2 = 0;
         const mad_form = document.getElementById("mad_form");
@@ -156,11 +172,6 @@
             localStorage.setItem('Btotalf', a2);
         }
 
-        document.getElementById("savebtn").addEventListener("click", function () {
-            // Submit the form
-            mad_form.submit();
-        });
-
         mad_form.addEventListener('submit', function (event) {
             event.preventDefault();
 
@@ -186,6 +197,9 @@
 
             saveData();
         });
+
+
+        //////////////////////
 
         // Function to save data to local storage
         function saveData() {
@@ -259,8 +273,9 @@
 
             saveData3();
         }
-
         function saveData3() {
+
+
             var rbFormCount = localStorage.getItem("rbFormCount") || 0;
             rbFormCount = ++rbFormCount;
 
@@ -304,9 +319,12 @@
             window.location.href = "../home.html";
         }
 
+        ////////////
+        // localStorage.clear();
+
+
+
         bindEventListeners();
         localStorage.setItem("reloadhome3", 0);
     </script>
 </body>
-
-</html>
