@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhonePe QR Code Generator</title>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #qrcode {
+            margin-top: 20px;
+        }
+
+        input, button {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <label for="upiString">UPI String:</label>
+        <input type="text" id="upiString">
+        <br>
+        <button onclick="generateQRCode()">Generate QR Code</button>
+    </div>
+
+    <div id="qrcode"></div>
+
+    <script>
+        function generateQRCode() {
+            var upiString = document.getElementById("upiString").value;
+
+            // Generate QR code
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: upiString,
+                width: 256,
+                height: 256,
+            });
+        }
+
+        //upi://pay?pa=9977195660@mobile.npci&am=10&tn=hello&cu=INR
+    </script>
+</body>
+</html>

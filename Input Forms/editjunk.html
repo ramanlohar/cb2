@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #edit_form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .mads {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .madText {
+            display: none;
+        }
+
+        #updatebtn {
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #updatebtn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Edit Form Data</h1>
+    <form id="edit_form">
+        <!-- Dynamic content will be added here using JavaScript -->
+        <button type="button" id="updatebtn">Update</button>
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const editForm = document.getElementById("edit_form");
+            const updateBtn = document.getElementById("updatebtn");
+
+            // Retrieve saved data from local storage
+            const savedFormData = JSON.parse(localStorage.getItem('madFormData'));
+
+            if (savedFormData) {
+                // Create form fields dynamically based on saved data
+                savedFormData.forEach(data => {
+                    const mads = document.createElement('div');
+                    mads.classList.add('mads');
+                    mads.innerHTML = `<label for="madSelect">Select a mad</label>
+                        <select name="mad" class="madSelect" data-original-value="${data.textValue}">
+                            <option value="option1" ${data.textValue === 'option1' ? 'selected' : ''}>option 1</option>
+                            <option value="option2" ${data.textValue === 'option2' ? 'selected' : ''}>option 2</option>
+                            <option value="other" ${data.textValue === 'other' ? 'selected' : ''}>other</option>
+                        </select>
+                        <label for="madName" class="madText-label" style="display:none;">Enter the mad name</label>
+                        <input type="text" class="madText" style="display:none;" value="${data.textValue}">
+                        <label for="nagadRashi">Nagad Rashi</label>
+                        <input type="number" class="madNumber" value="${data.numberValue}">
+                        <label for="bankRashi">Bank Rashi</label>
+                        <input type="number" class="madNumber2" value="${data.numberValue2}">`;
+
+                    editForm.insertBefore(mads, updateBtn);
+                });
+            }
+
+            // Add event listener for the update button
+            // updateBtn.addEventListener("click", function () {
+            //     const updatedFormData = [];
+
+            //     document.querySelectorAll('.mads').forEach((mad) => {
+            //         const select = mad.querySelector('.madSelect');
+            //         const textInput = mad.querySelector('.madText');
+            //         const numberInput = mad.querySelector('.madNumber');
+            //         const numberInput2 = mad.querySelector('.madNumber2');
+
+            //         updatedFormData.push({
+            //             textValue: select.value,
+            //             numberValue: numberInput.value,
+            //             numberValue2: numberInput2.value,
+            //         });
+            //     });
+
+            //     // Update local storage with the edited data
+            //     localStorage.setItem('madFormData', JSON.stringify(updatedFormData));
+            //     alert("Data updated successfully!");
+            // });
+        });
+    </script>
+</body>
+
+</html>

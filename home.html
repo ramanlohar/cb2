@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="https://kit.fontawesome.com/8d4098fe32.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="CSS/sidebar.css">
+    <link rel="stylesheet" href="CSS/home.css">
+</head>
+
+<body>
+
+    <header>
+        <div id="menu-icon">&#9776;</div>
+        <div id="heading">Cashbook</div>
+        <div>
+            <img id="logo" src="images/logo.jpg" alt="Logo">
+        </div>
+    </header>
+
+    <div id="sidebar">
+        <div class="sidebar-head">
+            <div id="close-btn">&times;</div>
+            <div class="side-heading">Cashbook</div>
+            <div class="topheading2">
+                <div class="sidebar-info-div">
+                    <label for="">कार्यालय:&nbsp;&nbsp;</label>
+                    <p id="panchaya_name">Dhamniya Diwan</p>
+                </div>
+                <div class="sidebar-info-div">
+                    <label for="">वित्तीय वर्ष -&nbsp;&nbsp;</label>
+                    <p id="panchaya_year">2023-24</p>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-body">
+            <div class="sidebar-info-div-body1">
+                <div>
+                    <label for="">Zoom :</label>
+                    <p id="zoom_value">100%</p>
+                </div>
+                <div>
+                    <button class="zoom-btn" type="button" id="zoomp-btn">+</button>
+                    <button class="zoom-btn" type="button" id="zoomm-btn">-</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <section>
+        <table id="combinedTable">
+            <tr id="ttrth">
+                <th rowspan="2">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;दिनांक&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </th>
+                <th rowspan="2"><span>प्रा क्र</span></th>
+                <th rowspan="2">खाता पन्ना</th>
+                <th rowspan="2" id="Praptiya" style="width: 20%">
+                    प्राप्तियों के ब्यौरे
+                </th>
+                <th colspan="3">प्राप्तियां</th>
+                <th class="eightth" rowspan="2">हस्ताक्षर</th>
+                <th rowspan="2">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;दिनांक&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </th>
+                <th rowspan="2"><span>व्हाउचर क्र</span></th>
+                <th rowspan="2"><span>E.P.O क्र.</span></th>
+                <th rowspan="2">खाता पन्ना</th>
+                <th rowspan="2" style="width: 20%">व्यय के ब्यौरे</th>
+                <th colspan="3">व्यय का विवरण</th>
+                <th rowspan="2">हस्ताक्षर</th>
+                <th rowspan="2">
+                    &nbsp;&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;&nbsp;
+                </th>
+            </tr>
+            <tr>
+                <th style="width: 30px">नकद राशि</th>
+                <th>बैंक राशि</th>
+                <th>बजट का लेखा शीर्ष</th>
+                <th>नकद राशि</th>
+                <th>बैंक राशि</th>
+                <th>बजट का लेखा शीर्ष</th>
+            </tr>
+            <tr>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th class="eightth">8</th>
+                <th>9</th>
+                <th>10</th>
+                <th>11</th>
+                <th>12</th>
+                <th>13</th>
+                <th>14</th>
+                <th>15</th>
+                <th>16</th>
+                <th>17</th>
+                <th>18</th>
+            </tr>
+        </table>
+    </section>
+
+    <div id="floating-button" onclick="addbtn()">Add</div>
+    <script src="JavaScript/home.js"></script>
+
+    <script src="JavaScript/twohome.js"></script>
+    <script src="JavaScript/sidebar.js"></script>
+</body>
+
+</html>

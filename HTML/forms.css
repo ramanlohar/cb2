@@ -1,0 +1,125 @@
+/* forms.css */
+
+/* Global styles */
+:root {
+  --header-background: #333; /* Default header background color */
+  --button-background: #3498db; /* Default button background color */
+  --theme-background: #567fca; /* Default background color */
+  --theme-background2: rgb(117, 153, 220); /* Default background color */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.hidden {
+  display: none;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: var(--theme-background2);
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header button {
+  background: transparent;
+  font-size: 30px;
+  padding: 0 0 0 0px;
+  outline: none;
+  border: none;
+  color: white;
+}
+
+form {
+  max-width: 100%;
+  margin: 20px 7px;
+  background-color: #fff;
+  padding: 20px;
+  padding-top: 1px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+input {
+  border: 1px solid #ccc;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+h1 {
+  font-size: 27px;
+}
+h2 {
+  width: 100%;
+  text-align: center;
+  color: var(--theme-background2);
+}
+
+.flexc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.byore input {
+  width: 100%;
+  padding: 7px;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+.f-div{
+    margin-bottom: 10px;
+}
+
+input[type="date"] {
+  padding: 7px;
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+
+.rashi-cantainer {
+  display: flex;
+  text-align: center;
+  margin-top: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rashi-cantainer label {
+  font-size: 16px;
+  width: auto;
+  padding: 10px;
+  /* background-color: var(--theme-background2); */
+}
+.rashi-cantainer input {
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.rashi-cantainer div:last-child {
+    margin-left: 5%;
+  }

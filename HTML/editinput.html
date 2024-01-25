@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rokad Form</title>
+    <link rel="stylesheet" href="forms.css">
+    <script src="https://kit.fontawesome.com/8d4098fe32.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <button type="button" id="cancel-btn" onclick="back()"><i class="fa-regular fa-circle-left"></i></button>
+        <h1>Cashbook</h1>
+        <button type="button" id="submit-btn" onclick="saveData()"><i class="fa-solid fa-check"></i></button>
+    </header>
+    <form id="rokadForm">
+        <h2>आय पक्ष</h2>
+        <div class="rashi-cantainer">
+            <div class="f-div flexc">
+                <label for="rokadDate">दिनांक:</label>
+                <input type="date" id="rokadDate">
+            </div>
+            <div class="f-div flexc">
+                <label for="AKMMKP">खाता पन्ना</label>
+                <input type="number" id="AKMMKP">
+            </div>
+        </div>
+        <div class="f-div hidden">
+            <label for="selectOptions1">Select an option:</label>
+            <select id="selectOptions1">
+                <option value="rfo1">Option 1</option>
+                <option value="rfo2">Option 2</option>
+                <option value="rfo3">Option 3</option>
+            </select>
+        </div>
+        <div class="f-div flexc byore">
+            <label for="rokadParticular">आय के ब्यौरे</label>
+            <input type="text" id="rokadParticular">
+        </div>
+        <div class="f-div hidden">
+            <label for="selectOptions2">Select an option:</label>
+            <select id="selectOptions2">
+                <option value="rfs1">Option 1</option>
+                <option value="rfs2">Option 2</option>
+                <option value="rfs3">Option 3</option>
+            </select>
+        </div>
+        <div class="rashi-cantainer">
+
+            <div class="f-div">
+                <label for="rokadNagadRashi">नगद राशि</label>
+                <input type="text" id="rokadNagadRashi">
+            </div>
+            <div class="f-div">
+                <label for="rokadBankRashi">बैंक राशि</label>
+                <input type="text" id="rokadBankRashi">
+            </div>
+        </div>
+        <div class="f-div flexc byore">
+            <label for="rokadBajtLs">बजट लेखा शीर्ष</label>
+            <input type="text" id="rokadBajtLs">
+        </div>
+        <div class="f-div flexc byore">
+            <label for="rokadSignature">हस्ताक्षर या टिप्पणी</label>
+            <input type="text" id="rokadSignature">
+        </div>
+
+        <h2>भुगतान पक्ष</h2>
+        <div class="rashi-cantainer">
+
+            <div class="f-div">
+                <label for="bahiAKMMKP">खाता पन्ना</label>
+                <input type="number" id="bahiAKMMKP">
+            </div>
+            <div class="f-div">
+                <label for="epono">E.P.O No.</label>
+                <input type="number" id="epono">
+            </div>
+        </div>
+        <div class="f-div hidden">
+            <label for="bselectOptions1">Select an option:</label>
+            <select id="bselectOptions1">
+                <option value="bfo1">Option 1</option>
+                <option value="bfo2">Option 2</option>
+                <option value="bfo3">Option 3</option>
+            </select>
+        </div>
+        <div class="f-div flexc byore">
+            <label for="bahiParticular">व्याय के ब्यौरे</label>
+            <input type="text" id="bahiParticular" >
+        </div>
+        <div class="f-div hidden">
+            <label for="bselectOptions2">Select an option:</label>
+            <select id="bselectOptions2">
+                <option value="bfs1">Option 1</option>
+                <option value="bfs2">Option 2</option>
+                <option value="bfs3">Option 3</option>
+            </select>
+        </div>
+        <div class="rashi-cantainer">
+            <div class="f-div">
+                <label for="bahiNagadRashi">नगद राशि</label>
+                <input type="text" id="bahiNagadRashi">
+            </div>
+            <div class="f-div">
+                <label for="bahiBankRashi">बैंक राशि</label>
+                <input type="text" id="bahiBankRashi">
+            </div>
+        </div>
+        <div class="f-div flexc byore">
+            <label for="bahiBajtLs">बजट लेखा शीर्ष</label>
+            <input type="text" id="bahiBajtLs">
+        </div>
+
+        
+    </form>
+
+    <script>
+        function loadEditData() {
+            // Get the edit form id from localStorage
+            var editFormId = localStorage.getItem("Edit_Form_Id");
+
+            // Retrieve data from localStorage using the edit form id
+            var rbDataKey = editFormId;
+            var rbFormDataJSON = localStorage.getItem(rbDataKey);
+
+            // console.log(rbFormDataJSON);
+
+            if (rbFormDataJSON) {
+                // Parse the JSON string to get the form data
+                var rbFormData = JSON.parse(rbFormDataJSON);
+
+                // Populate the form fields with the retrieved data
+                document.getElementById('rokadDate').value = rbFormData['Date'];
+                document.getElementById('AKMMKP').value = rbFormData['r_AKMMKP'];
+                document.getElementById('rokadParticular').value = rbFormData['r_Particular'];
+                document.getElementById('rokadNagadRashi').value = rbFormData['r_Nagad Rashi'];
+                document.getElementById('rokadBankRashi').value = rbFormData['r_Bank Rashi'];
+                document.getElementById('rokadBajtLs').value = rbFormData['r_Bajt LS'];
+                document.getElementById('rokadSignature').value = rbFormData['r_Signature'];
+                document.getElementById('bahiAKMMKP').value = rbFormData['b_AKMMKP'];
+                document.getElementById('epono').value = rbFormData['b_E.P.N No.'];
+                document.getElementById('bahiParticular').value = rbFormData['b_Particular'];
+                document.getElementById('bahiNagadRashi').value = rbFormData['b_Nagad Rashi'];
+                document.getElementById('bahiBankRashi').value = rbFormData['b_Bank Rashi'];
+                document.getElementById('bahiBajtLs').value = rbFormData['b_Bajt LS'];
+
+                document.getElementById('selectOptions1').value = rbFormData['r_fo'];
+                document.getElementById('selectOptions2').value = rbFormData['r_so'];
+                document.getElementById('bselectOptions1').value = rbFormData['b_fo'];
+                document.getElementById('bselectOptions2').value = rbFormData['b_so'];
+
+                // console.log(rbFormData['Date']);
+
+                // alert('Data loaded from local storage for Edit Form Id: ' + editFormId);
+            } else {
+                alert('No data found for Edit Form Id: ' + editFormId);
+            }
+        }
+
+        function saveData() {
+            // Get Rokad form values
+            var rokadDate = document.getElementById('rokadDate').value;
+            var AKMMKP = document.getElementById("AKMMKP").value;
+            var rokadParticular = document.getElementById('rokadParticular').value;
+            var rokadNagadRashi = document.getElementById('rokadNagadRashi').value;
+            var rokadBankRashi = document.getElementById('rokadBankRashi').value;
+            var rokadBajtLs = document.getElementById('rokadBajtLs').value;
+            var rokadSignature = document.getElementById('rokadSignature').value;
+            var selectElement1 = document.getElementById('selectOptions1').value;
+            var selectElement2 = document.getElementById('selectOptions2').value;
+            // Get Bahi form values
+            var bahiAKMMKP = document.getElementById("bahiAKMMKP").value;
+            var epono = document.getElementById("epono").value;
+            var bahiParticular = document.getElementById('bahiParticular').value;
+            var bahiNagadRashi = document.getElementById('bahiNagadRashi').value;
+            var bahiBankRashi = document.getElementById('bahiBankRashi').value;
+            var bahiBajtLs = document.getElementById('bahiBajtLs').value;
+            var bselectElement1 = document.getElementById('bselectOptions1').value;
+            var bselectElement2 = document.getElementById('bselectOptions2').value;
+            // Get the edit form id from localStorage
+            var editFormId = localStorage.getItem("Edit_Form_Id");
+
+            // Retrieve data from localStorage using the edit form id
+            var rbDataKey = editFormId;
+            var rbFormDataJSON = localStorage.getItem(rbDataKey);
+
+            // Parse the JSON string to get the form data
+            var rbFormData = JSON.parse(rbFormDataJSON);
+
+            // Update the form data with the new values
+            // rbFormData['Date'] = rokadDate;
+            // rbFormData['r_AKMMKP'] = AKMMKP;
+            // rbFormData['r_Particular'] = rokadParticular;
+            // rbFormData['r_Nagad Rashi'] = rokadNagadRashi;
+            // rbFormData['r_Bank Rashi'] = rokadBankRashi;
+            // rbFormData['r_Bajt LS'] = rokadBajtLs;
+            // rbFormData['r_Signature'] = rokadSignature;
+            // rbFormData['b_AKMMKP'] = bahiAKMMKP;
+            // rbFormData['b_E.P.N No.'] = epono;
+            // rbFormData['b_Particular'] = bahiParticular;
+            // rbFormData['b_Nagad Rashi'] = bahiNagadRashi;
+            // rbFormData['b_Bank Rashi'] = bahiBankRashi;
+            // rbFormData['b_Bajt LS'] = bahiBajtLs;
+
+            var rbFormData = {
+                'Date': rokadDate,
+                // 'r_S.no': rokadSNo,
+                'r_AKMMKP': AKMMKP,
+                'r_Particular': rokadParticular,
+                'r_Nagad Rashi': rokadNagadRashi,
+                'r_Bank Rashi': rokadBankRashi,
+                'r_Bajt LS': rokadBajtLs,
+                'r_Signature': rokadSignature,
+                'r_fo': selectElement1,
+                'r_so': selectElement2,
+                // 'b_S.no': bahiSNo,
+                'b_AKMMKP': bahiAKMMKP,
+                'b_E.P.N No.': epono,
+                'b_Particular': bahiParticular,
+                'b_Nagad Rashi': bahiNagadRashi,
+                'b_Bank Rashi': bahiBankRashi,
+                'b_Bajt LS': bahiBajtLs,
+                'b_fo': bselectElement1,
+                'b_so': bselectElement2,
+                // 'b_Signature': bahiSignature
+                'Form_Id': editFormId,
+            };
+
+            // Convert the updated object to JSON string
+            rbFormDataJSON = JSON.stringify(rbFormData);
+
+            // Save the modified data back to localStorage under the edit form id
+            localStorage.setItem(rbDataKey, rbFormDataJSON);
+
+            alert('Data saved to local storage for Edit Form Id: ' + editFormId);
+
+            localStorage.setItem("reloadhome3",0);
+            back()
+        }
+
+        function back(){
+
+            window.location.href = "../home.html";
+        }
+
+        loadEditData()
+
+    </script>
+</body>
+
+</html>

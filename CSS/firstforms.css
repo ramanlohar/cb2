@@ -1,0 +1,178 @@
+/* firstforms.css */
+:root {
+  --header-background: #333; /* Default header background color */
+  --button-background: #3498db; /* Default button background color */
+  --theme-background: #567fca; /* Default background color */
+  --theme-background2: rgb(117, 153, 220); /* Default background color */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+}
+
+header {
+  background-color: var(--theme-background2);
+  color: white;
+  padding: 10px 10px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h2 {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+#mad_form {
+  max-width: 90%;
+  margin: 20px 7px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.mads {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  width: auto;
+  text-align: center;
+}
+
+#madlabel {
+  display: inline-block;
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+#this-del {
+  padding: 1px 5px;
+  font-size: 20px;
+  background-color: transparent;
+
+  color: var(--theme-background2);
+}
+
+input[type="number"] {
+  width: 100px;
+  padding: 5px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 18px;
+  text-align: center;
+}
+.rashi-cantainer {
+  display: flex;
+}
+
+.rashi-cantainer label {
+  font-size: 16px;
+  width: 60px;
+}
+
+input[type="text"],
+select {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 17px;
+}
+
+button[type="button"] {
+  width: auto;
+  padding: 10px;
+  background-color: var(--theme-background2);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button[type="submit"] {
+  width: auto;
+  padding: 10px;
+  background-color: white;
+  color: var(--theme-background2);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--theme-background2);
+  outline: 2px solid white;
+  color: white;
+  /* box-sizing: border-box; */
+}
+button[type="button"]:hover {
+  background-color: white;
+  outline: 2px solid var(--theme-background2);
+  color: var(--theme-background2);
+  /* box-sizing: border-box; */
+}
+
+#cancel-btn {
+  background: transparent;
+  font-size: 30px;
+  padding: 0 0 0 0px;
+}
+
+#Addbtn {
+  width: 90%;
+  font-size: 17px;
+  margin: 10px;
+}
+
+#Btotal,
+#Ntotal {
+  text-align: right;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* /////////////// */
+
+#karyalayForm {
+  max-width: 90%;
+  margin: 20px 7px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.flexdiv {
+  display: flex;
+}
+.flexdiv .f-div {
+  margin: 10px;
+  width: 50%;
+}
+
+input[type="date"] {
+  padding: 8px;
+  font-size: 17px;
+  margin-bottom: 2px;
+  border: 1px solid #ccc;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 5px;
+}

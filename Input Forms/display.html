@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Mad Data</title>
+</head>
+
+<body>
+    <h1>Display Mad Data</h1>
+    <div id="displayMadData"></div>
+    
+    <script>
+        localStorage.setItem("nagadrashitotal",0);
+        var a=0, b = 0 ,a2 =0,b2=0;
+        document.addEventListener("DOMContentLoaded", function () {
+            const displayMadDataContainer = document.getElementById("displayMadData");
+            
+            // Retrieve data from local storage
+            const madFormData = JSON.parse(localStorage.getItem('madFormData'));
+            
+            if (madFormData && madFormData.length > 0) {
+                // Display the retrieved data
+                displayMadDataContainer.innerHTML = "<h2>Mad Form Data</h2>";
+                
+                madFormData.forEach((data, index) => {
+                    var b = data.numberValue;
+                    var b2 = data.numberValue2;
+                    
+                    a=a+parseFloat(b);
+                    a2=a2+parseFloat(b2);
+                    localStorage.setItem("nagadrashitotal",a);
+                    localStorage.setItem("bankrashitotal",a2);
+                    console.log(a);
+                    console.log(a2);
+
+                
+                    displayMadDataContainer.innerHTML += `
+                    <div class="mad-data">
+                        <p><strong>Form ${index + 1}:</strong></p>
+                            <p>Selected Mad: ${data.textValue}</p>
+                            <p>nagad Value: ${data.numberValue}</p>
+                            <p>bank Value: ${data.numberValue2}</p>
+                        </div>
+                    `;
+                });
+            } else {
+                displayMadDataContainer.innerHTML = "<p>No Mad Form Data available.</p>";
+            }
+
+        });
+
+        function avrokadbahidisplayData(
+            aayN,
+            aayB,
+            aayNPurvShesh,
+            aayBPurvShesh,
+            aayNyog,
+            aayByog,
+            vyayN,
+            vyayB,
+            vyayNPurvShesh,
+            vyayBPurvShesh,
+            vyayNyog,
+            vyayByog,
+            firstid
+        ) {
+            var table = document.getElementById("combinedTable");
+            var row = table.insertRow(-1);
+            var row2 = table.insertRow(-1);
+            var row3 = table.insertRow(-1);
+            if (firstid == 1) {
+                var date = "first_1";
+            } else {
+                var date = "";
+            }
+
+            // var changeddateformate =convertDateFormat(date)
+
+            var cell = row.insertCell(0);
+            cell.innerHTML = date;
+
+            var cell = row.insertCell(1);
+            cell.innerHTML = "";
+
+            var cell = row.insertCell(2);
+            cell.innerHTML = "";
+
+            var cell = row.insertCell(3);
+            cell.innerHTML = "आय";
+
+            var cell = row.insertCell(4);
+            cell.innerHTML = aayN;
+
+            var cell = row.insertCell(5);
+            cell.innerHTML = aayB;
+
+            var cell = row.insertCell(6);
+            cell.innerHTML = "";
+
+            var cell = row.insertCell(7);
+            cell.innerHTML = "";
+
+            var cell = row.insertCell(8);
+            cell.innerHTML = "";
+
+            var cell = row.insertCell(9);
+            cell.innerHTML = "";
+
+            var cell = row.insertCell(10);
+            cell.innerHTML = "";
+
+            var cell = row.insertCell(11);
+            cell.innerHTML = "";
+
+            var cell = row.insertCell(12);
+            cell.innerHTML = "व्यय";
+
+            var cell = row.insertCell(13);
+            cell.innerHTML = vyayN;
+
+            var cell = row.insertCell(14);
+            cell.innerHTML = vyayB;
+
+            var cell = row.insertCell(15);
+            cell.innerHTML = "";
+
+            var cell = row.insertCell(16);
+            cell.innerHTML = "";
+
+            var cell = row.insertCell(17);
+            cell.innerHTML = "";
+
+            //row 2
+
+            if (firstid == 1) {
+                var date = "first_2";
+            } else {
+                var date = "";
+            }
+
+            var cell = row2.insertCell(0);
+            cell.innerHTML = date;
+
+            var cell = row2.insertCell(1);
+            cell.innerHTML = "";
+
+            var cell = row2.insertCell(2);
+            cell.innerHTML = "";
+
+            var cell = row2.insertCell(3);
+            cell.innerHTML = "पूर्व शेष";
+
+            var cell = row2.insertCell(4);
+            cell.innerHTML = aayNPurvShesh;
+
+            var cell = row2.insertCell(5);
+            cell.innerHTML = aayBPurvShesh;
+
+            var cell = row2.insertCell(6);
+            cell.innerHTML = "";
+
+            var cell = row2.insertCell(7);
+            cell.innerHTML = "";
+
+            var cell = row2.insertCell(8);
+            cell.innerHTML = "";
+
+            var cell = row2.insertCell(9);
+            cell.innerHTML = "";
+
+            var cell = row2.insertCell(10);
+            cell.innerHTML = "";
+
+            var cell = row2.insertCell(11);
+            cell.innerHTML = "";
+
+            var cell = row2.insertCell(12);
+            cell.innerHTML = "शेष";
+
+            var cell = row2.insertCell(13);
+            cell.innerHTML = vyayNPurvShesh;
+
+            var cell = row2.insertCell(14);
+            cell.innerHTML = vyayBPurvShesh;
+
+            var cell = row2.insertCell(15);
+            cell.innerHTML = "";
+
+            var cell = row2.insertCell(16);
+            cell.innerHTML = "";
+
+            var cell = row2.insertCell(17);
+            cell.innerHTML = "";
+
+            // row 3
+            if (firstid == 1) {
+                var date = "first_3";
+            } else {
+                var date = "";
+            }
+
+            var cell = row3.insertCell(0);
+            cell.innerHTML = date;
+
+            var cell = row3.insertCell(1);
+            cell.innerHTML = "";
+
+            var cell = row3.insertCell(2);
+            cell.innerHTML = "";
+
+            var cell = row3.insertCell(3);
+            cell.innerHTML = "योग";
+
+            var cell = row3.insertCell(4);
+            cell.innerHTML = aayNyog;
+
+            var cell = row3.insertCell(5);
+            cell.innerHTML = aayByog;
+
+            var cell = row3.insertCell(6);
+            cell.innerHTML = "";
+
+            var cell = row3.insertCell(7);
+            cell.innerHTML = "";
+
+            var cell = row3.insertCell(8);
+            cell.innerHTML = "";
+
+            var cell = row3.insertCell(9);
+            cell.innerHTML = "";
+
+            var cell = row3.insertCell(10);
+            cell.innerHTML = "";
+
+            var cell = row3.insertCell(11);
+            cell.innerHTML = "";
+
+            var cell = row3.insertCell(12);
+            cell.innerHTML = "योग";
+
+            var cell = row3.insertCell(13);
+            cell.innerHTML = vyayNyog;
+
+            var cell = row3.insertCell(14);
+            cell.innerHTML = vyayByog;
+
+            var cell = row3.insertCell(15);
+            cell.innerHTML = "";
+
+            var cell = row3.insertCell(16);
+            cell.innerHTML = "";
+
+            var cell = row3.insertCell(17);
+            cell.innerHTML = "";
+        }
+    </script>
+</body>
+
+</html>

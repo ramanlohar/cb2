@@ -1,0 +1,145 @@
+.layout {
+    padding: 0;
+    width: auto;
+}
+
+.rokad-layout {
+    overflow: scroll;
+    margin-top: 100px;
+    background-color: #e0ffee;
+    padding: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: auto;
+    margin-bottom: 80px;
+    /* width: 1800px; Consider using max-width or media queries for responsiveness */
+}
+
+
+.table-container {
+    overflow-x: auto;
+    margin-top: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #000000;
+    width: 1800px;
+    
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #000000;
+    text-align: center;
+}
+
+th {
+    background-color: #c0ffee;
+}
+
+
+.btn_edit_del {
+    background-color: transparent;
+    width: auto;
+    border: none;
+    outline: none;
+    color: red;
+    font-size: medium;
+}
+
+#Edit_button {
+    color: black;
+    margin-right: 20px;
+    padding: 5px;
+    background-color: aqua;
+}
+th:nth-child(4),
+th:nth-child(13),
+td:nth-child(4),
+td:nth-child(13) {
+    width: 300px;
+}
+
+
+td:nth-child(3),
+td:nth-child(12),
+th:nth-child(17) {
+    max-width: 30px;
+}
+
+td:nth-child(18){
+    min-width: 100px;
+}
+
+.eightth,
+td:nth-child(8) {
+    border-right: 6px double black;
+}
+
+#combinedTable td:nth-child(3) {
+    width: 50px;
+}
+
+.rowblack {
+    background-color: #9af299;
+}
+
+.highlight {
+    background-color: rgb(210, 202, 218);
+    font-style: italic;
+}
+
+th span {
+    display: inline-block;
+    transform: rotate(-90deg);
+    transform-origin: center;
+    white-space: nowrap;
+}
+
+/* Add any additional styles as needed */
+#Praptiya {
+    width: 1000px;
+}
+
+/* Add styles for responsive design if needed */
+@media screen and (max-width: 600px) {
+    /* Example media query for screens less than 600px wide */
+    .rokad-layout {
+        width: 100%;
+    }
+}
+#confirmation-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px; /* Adjust the width as needed */
+    background-color: #fff2f2;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    text-align: center;
+    z-index: 10;
+  }
+  
+  #confirmation-box h2 {
+    margin-bottom: 20px;
+  }
+  
+  #confirmation-box button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  #confirmation-box button.yes {
+      background-color: #f44336;
+      color: #fff;
+    }
+    
+    #confirmation-box button.no {
+      background-color: #4CAF50;
+    color: #fff;
+  }

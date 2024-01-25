@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="https://kit.fontawesome.com/8d4098fe32.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../CSS/sidebar.css">
+    <link rel="stylesheet" href="../CSS/home.css">
+</head>
+
+<body>
+
+    <header>
+        <div id="menu-icon">&#9776;</div>
+        <div id="heading">Cashbook</div>
+        <div>
+            <img id="logo" src="images/logo.jpg" alt="Logo">
+        </div>
+    </header>
+
+    <div id="sidebar">
+        <div class="sidebar-head">
+            <div id="close-btn">&times;</div>
+            <div class="side-heading">Cashbook</div>
+            <div class="topheading2">
+                <div class="sidebar-info-div">
+                    <label for="">कार्यालय:&nbsp;&nbsp;</label>
+                    <p id="panchaya_name">Dhamniya Diwan</p>
+                </div>
+                <div class="sidebar-info-div">
+                    <label for="">वित्तीय वर्ष -&nbsp;&nbsp;</label>
+                    <p id="panchaya_year">2023-24</p>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-body">
+            <div class="sidebar-info-div-body1">
+                <div>
+                    <label for="">Zoom :</label>
+                    <p id="zoom_value">100%</p>
+                </div>
+                <div>
+                    <button class="zoom-btn" type="button" id="zoomp-btn">+</button>
+                    <button class="zoom-btn" type="button" id="zoomm-btn">-</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <section>
+        <table id="combinedTable">
+            <tr id="ttrth">
+                <th rowspan="2">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;दिनांक&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </th>
+                <th rowspan="2"><span>प्रा क्र</span></th>
+                <th rowspan="2">खाता पन्ना</th>
+                <th rowspan="2" id="Praptiya" style="width: 20%">
+                    प्राप्तियों के ब्यौरे
+                </th>
+                <th colspan="3">प्राप्तियां</th>
+                <th class="eightth" rowspan="2">हस्ताक्षर</th>
+                <th rowspan="2">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;दिनांक&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </th>
+                <th rowspan="2"><span>व्हाउचर क्र</span></th>
+                <th rowspan="2"><span>E.P.O क्र.</span></th>
+                <th rowspan="2">खाता पन्ना</th>
+                <th rowspan="2" style="width: 20%">व्यय के ब्यौरे</th>
+                <th colspan="3">व्यय का विवरण</th>
+                <th rowspan="2">हस्ताक्षर</th>
+                <th rowspan="2">
+                    &nbsp;&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;&nbsp;
+                </th>
+            </tr>
+            <tr>
+                <th style="width: 30px">नकद राशि</th>
+                <th>बैंक राशि</th>
+                <th>बजट का लेखा शीर्ष</th>
+                <th>नकद राशि</th>
+                <th>बैंक राशि</th>
+                <th>बजट का लेखा शीर्ष</th>
+            </tr>
+            <tr>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th class="eightth">8</th>
+                <th>9</th>
+                <th>10</th>
+                <th>11</th>
+                <th>12</th>
+                <th>13</th>
+                <th>14</th>
+                <th>15</th>
+                <th>16</th>
+                <th>17</th>
+                <th>18</th>
+            </tr>
+        </table>
+    </section>
+
+    <div id="floating-button" onclick="addbtn()">Add</div>
+
+
+    <script>
+        localStorage.setItem("nagadrashitotal", 0);
+        var a = 0, b = 0, a2 = 0, b2 = 0;
+        document.addEventListener("DOMContentLoaded", function () {
+            // const displayMadDataContainer = document.getElementById("displayMadData");
+
+            // Retrieve data from local storage
+            const madFormData = JSON.parse(localStorage.getItem('madFormData'));
+
+            if (madFormData && madFormData.length > 0) {
+                // Display the retrieved data
+
+
+                madFormData.forEach((data, index) => {
+                    var b = data.numberValue;
+                    var b2 = data.numberValue2;
+
+                    a = a + parseFloat(b);
+                    a2 = a2 + parseFloat(b2);
+                    localStorage.setItem("nagadrashitotal", a);
+                    localStorage.setItem("bankrashitotal", a2);
+                    console.log(a);
+                    console.log(a2);
+
+
+                    var partiaay = data.textValue;
+                    var aayN = data.numberValue;
+                    var aayB = data.numberValue2;
+                    var vyayN = 0;
+                    var vyayB = 0;
+
+
+                    purvrokadbahidisplayData(partiaay,
+                        aayN,
+                        aayB,
+                        vyayN,
+                        vyayB,
+                    );
+                });
+            } else {
+
+            }
+
+        });
+
+        function purvrokadbahidisplayData(partiaay,
+            aayN,
+            aayB,
+            vyayN,
+            vyayB,
+        ) {
+            var table = document.getElementById("combinedTable");
+            var row = table.insertRow(-1);
+
+            // var changeddateformate =convertDateFormat(date)
+
+            var cell = row.insertCell(0);
+            cell.innerHTML = '';
+
+            var cell = row.insertCell(1);
+            cell.innerHTML = "";
+
+            var cell = row.insertCell(2);
+            cell.innerHTML = "";
+
+            var cell = row.insertCell(3);
+            cell.innerHTML = partiaay;
+
+            var cell = row.insertCell(4);
+            cell.innerHTML = aayN;
+
+            var cell = row.insertCell(5);
+            cell.innerHTML = aayB;
+
+            var cell = row.insertCell(6);
+            cell.innerHTML = "";
+
+            var cell = row.insertCell(7);
+            cell.innerHTML = "";
+
+            var cell = row.insertCell(8);
+            cell.innerHTML = "";
+
+            var cell = row.insertCell(9);
+            cell.innerHTML = "";
+
+            var cell = row.insertCell(10);
+            cell.innerHTML = "";
+
+            var cell = row.insertCell(11);
+            cell.innerHTML = "";
+
+            var cell = row.insertCell(12);
+            cell.innerHTML = "व्यय";
+
+            var cell = row.insertCell(13);
+            cell.innerHTML = vyayN;
+
+            var cell = row.insertCell(14);
+            cell.innerHTML = vyayB;
+
+            var cell = row.insertCell(15);
+            cell.innerHTML = "";
+
+            var cell = row.insertCell(16);
+            cell.innerHTML = "";
+
+            var cell = row.insertCell(17);
+            cell.innerHTML = "";
+
+        }
+
+        function savedata() {
+            var rbDataKey = 'rbData1';
+            var rbFormDataJSON = localStorage.getItem(rbDataKey);
+
+            // Parse the JSON string to get the form data
+            var rbFormData = JSON.parse(rbFormDataJSON);
+
+            var date = rbFormData['Date'];
+
+            var rokadNagadRashi = localStorage.setItem("nagadrashitotal", a);
+            var rokadBankRashi = localStorage.setItem("bankrashitotal", a2);
+
+
+            var rbFormData = {
+                'Date': date,
+                // 'r_S.no': rokadSNo,
+                'r_AKMMKP': '',
+                'r_Particular': "पूर्व शेष",
+                'r_Nagad Rashi': rokadNagadRashi,
+                'r_Bank Rashi': rokadBankRashi,
+                'r_Bajt LS': '',
+                'r_Signature': '',
+                'r_fo': '',
+                'r_so': '',
+                // 'b_S.no': bahiSNo,
+                'b_AKMMKP': '',
+                'b_E.P.N No.': '',
+                'b_Particular': '',
+                'b_Nagad Rashi': '',
+                'b_Bank Rashi': '',
+                'b_Bajt LS': '',
+                'b_fo': '',
+                'b_so': '',
+                // 'b_Signature': bahiSignature
+                'Form_Id': '',
+            };
+
+            // Convert the updated object to JSON string
+            rbFormDataJSON = JSON.stringify(rbFormData);
+
+            // Save the modified data back to localStorage under the edit form id
+            localStorage.setItem(rbDataKey, rbFormDataJSON);
+
+            alert('Data saved to local storage for Edit Form Id: ' + editFormId);
+        }
+
+
+        // //////////////////////////////////
+
+
+       
+
+    </script>
+    <!-- <script src="../JavaScript/home.js"></script>
+
+    <script src="../JavaScript/twohome.js"></script>
+    <script src="../JavaScript/sidebar.js"></script> -->
+</body>
+
+</html>
