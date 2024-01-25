@@ -96,6 +96,7 @@ input[type="date"] {
   padding: 7px;
   font-size: 16px;
   margin-bottom: 2px;
+  min-width: 100px;
 }
 
 .rashi-cantainer {
