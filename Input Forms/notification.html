@@ -1,40 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="no-referrer">
-    <title>Notification Example</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notification Sender</title>
 </head>
-
 <body>
-    <a href="https://www.google.com/" target="_blank">click</a>
-    <button onclick="openInBrowser()">Open in Chrome</button>
-    <hr>
-    <a href="https://ramanlohar.github.io/Apps/PCashbook.apk">App D</a>
-    <hr>
-    <a href="https://ramanlohar.github.io/Apps/PCashbook.apk" download="Panchayat Cashbook">App Download</a>
-    <hr>
-    <br>
-    <hr>
-    <a href="../Apps/PCashbook.apk">App D</a>
-    <hr>
-    <a href="../Apps/PCashbook.apk" download="Panchayat Cashbook">App Download</a>
+<button onclick="sendNotification()">Send Notification</button>
 
-    <script>
-        function openInBrowser() {
-            var userAgent = navigator.userAgent.toLowerCase();
-            if (userAgent.indexOf('chrome') > -1) {
-                // If user agent contains 'chrome', open in Chrome
-                window.location.href = 'https://www.google.com/';
-            } else {
-                // Otherwise, open in default browser
-                alert('Please open this website in Chrome for the best experience.');
+<script>
+function sendNotification() {
+    // Check if the browser supports notifications
+    if (!("Notification" in window)) {
+        alert("This browser does not support desktop notification");
+    }
+
+    // Check if permission is already granted
+    else if (Notification.permission === "granted") {
+        // If it's okay let's create a notification
+        var notification = new Notification("Hello, World!");
+    }
+
+    // Otherwise, we need to ask the user for permission
+    else if (Notification.permission !== 'denied') {
+        Notification.requestPermission().then(function (permission) {
+            // If the user accepts, create a notification
+            if (permission === "granted") {
+                var notification = new Notification("Hello, World!");
             }
-        }
-    </script>
-
+        });
+    }
+}
+</script>
 </body>
-
 </html>
