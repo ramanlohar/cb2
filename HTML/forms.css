@@ -81,7 +81,7 @@ h2 {
   align-items: center;
 }
 
-.byore input {
+.byore input,select {
   width: 100%;
   padding: 7px;
   border-radius: 5px;
@@ -99,6 +99,18 @@ input[type="date"] {
   min-width: 100px;
 }
 
+select{
+  font-size: 16px;
+}
+
+.select-byore {
+  text-align: center;
+}
+._17px{
+  font-size: 19px;
+  
+  color: var(--theme-background2);
+}
 .rashi-cantainer {
   display: flex;
   text-align: center;
