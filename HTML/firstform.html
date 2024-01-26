@@ -24,7 +24,7 @@
         <h2>Cashbook</h2>
         <button type="submit" id="savebtnh" onclick="savebtnh();">Save All</button>
     </header>
-    
+
     <form id="karyalayForm">
 
         <h1>कार्यालय</h1>
@@ -50,11 +50,19 @@
     <form id="mad_form">
         <div class="mads">
             <label id="madlabel" for="madSelect">Select a mad</label>
-            <button id="this-del" type="button" onclick="deleteMadField(this);"><i class="fa-solid fa-delete-left"></i></button>
+            <button id="this-del" type="button" onclick="deleteMadField(this);"><i
+                    class="fa-solid fa-delete-left"></i></button>
             <select name="mad" id="madSelect" class="madSelect">
-                <option value="option1">option 1</option>
-                <option value="option2">option 2</option>
-                <option value="other">other</option>
+                <option value="15 वा वित्त">15 वा वित्त</option>
+                <option value="14 वा वित्त">14 वा वित्त</option>
+                <option value="विधायक निधि">विधायक निधि</option>
+                <option value="सांसद निधि">सांसद निधि</option>
+                <option value="संबंल योजना">संबंल योजना</option>
+                <option value="बैंक ब्याज">बैंक ब्याज</option>
+                <option value="ग्राम पंचायत निधि टेक्स">ग्राम पंचायत निधि टेक्स</option>
+                <option value="other">अन्य मद</option>
+
+                <!-- <option value="other">other</option> -->
             </select>
             <label for="madName" class="madText-label" style="display:none;">Enter the mad name</label>
             <div class="rashi-cantainer">
@@ -76,18 +84,14 @@
 
     <script>
 
-function savebtnh(){
-    const savebtn=document.getElementById("savebtn")
-    savebtn.click();
+        function savebtnh() {
+            const savebtn = document.getElementById("savebtn")
+            savebtn.click();
 
-}
-        
+        }
 
-        // var firstformsubmited = localStorage.getItem("firstformsubmited")
 
-        // if (firstformsubmited == "true" || firstformsubmited === 'true') {
-        //     window.location.href = "../home.html";
-        // }
+
 
         var a = 0, a2 = 0;
         const mad_form = document.getElementById("mad_form");
@@ -113,9 +117,14 @@ function savebtnh(){
             mads.innerHTML = `<label for="madSelect" id="madlabel">Select a mad</label>
             <button id="this-del" type="button" onclick="deleteMadField(this);"><i class="fa-solid fa-delete-left"></i></button>
                 <select name="mad" class="madSelect">
-                    <option value="option1">option 1</option>
-                    <option value="option2">option 2</option>
-                    <option value="other">other</option>
+                    <option value="15 वा वित्त">15 वा वित्त</option>
+                <option value="14 वा वित्त">14 वा वित्त</option>
+                <option value="विधायक निधि">विधायक निधि</option>
+                <option value="सांसद निधि">सांसद निधि</option>
+                <option value="संबंल योजना">संबंल योजना</option>
+                <option value="बैंक ब्याज">बैंक ब्याज</option>
+                <option value="ग्राम पंचायत निधि टेक्स">ग्राम पंचायत निधि टेक्स</option>
+                <option value="other">अन्य मद</option>
                 </select>
                 <label for="madName" class="madText-label" style="display:none;">Enter the mad name</label>
                 <input type="text" class="madText" style="display:none;">
