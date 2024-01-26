@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Notification Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>Notification Example</title>
 </head>
+
 <body>
     <a href="https://www.google.com/" target="_blank">click</a>
+    <button onclick="openInBrowser()">Open in Chrome</button>
+
+    <script>
+        function openInBrowser() {
+            var userAgent = navigator.userAgent.toLowerCase();
+            if (userAgent.indexOf('chrome') > -1) {
+                // If user agent contains 'chrome', open in Chrome
+                window.location.href = 'https://www.google.com/';
+            } else {
+                // Otherwise, open in default browser
+                alert('Please open this website in Chrome for the best experience.');
+            }
+        }
+    </script>
+
 </body>
+
 </html>
