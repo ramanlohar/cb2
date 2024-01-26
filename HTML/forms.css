@@ -4,8 +4,8 @@
 :root {
   --header-background: #333; /* Default header background color */
   --button-background: #3498db; /* Default button background color */
-  --theme-background: #567fca; /* Default background color */
-  --theme-background2: rgb(117, 153, 220); /* Default background color */
+  --theme-background2: #567fca; /* Default background color */
+  --theme-background: rgb(117, 153, 220); /* Default background color */
 }
 
 * {
