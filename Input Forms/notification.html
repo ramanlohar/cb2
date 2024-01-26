@@ -6,26 +6,6 @@
 <title>Notification Example</title>
 </head>
 <body>
-    <button onclick="sendNotification()">Send Notification</button>
-
-    <script>
-        function sendNotification() {
-            // Check if the browser supports notifications
-            if (!("Notification" in window)) {
-                alert("This browser does not support desktop notification");
-            } else if (Notification.permission === "granted") {
-                // If notification permission is already granted, send the notification
-                new Notification("Hello World!");
-            } else if (Notification.permission !== 'denied') {
-                // Request permission from the user to send notifications
-                Notification.requestPermission().then(function (permission) {
-                    if (permission === "granted") {
-                        // If the user accepts, send the notification
-                        new Notification("Hello World!");
-                    }
-                });
-            }
-        }
-    </script>
+    <a href="google.com">click</a>
 </body>
 </html>
