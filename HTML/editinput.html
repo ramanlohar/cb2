@@ -10,6 +10,15 @@
 </head>
 
 <body>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <span>
+                <span><i class="fas fa-info-circle"></i></span>
+                <p id="popupmsg">This is a popup message!</p>
+            </span>
+        </div>
+    </div>
     <header>
         <button type="button" id="cancel-btn" onclick="back()"><i class="fa-regular fa-circle-left"></i></button>
         <h1>Cashbook</h1>
@@ -32,19 +41,28 @@
 
             <div class="select-byore">
                 <hr>
-                <label for="" class="_17px">Aay Ke Byore</label>
+                <label for="" class="_17px">आय के ब्योरे</label>
 
                 <div class="f-div flexc">
-                    <label for="selectOptions1">Select an option:</label>
+                    <label for="selectOptions1">किससे राशि प्राप्त</label>
                     <select id="selectOptions1" class="selectbyore">
-                        <option value="AFO1">Option 1</option>
-                        <option value="AFO2">Option 2</option>
-                        <option value="other" id="other">Other</option>
+                        <option value=" ">विकल्प चुनें</option>
+
+                        <option value="श्रीमान् मुख्य कार्यपालन अधिकारी महोदय">श्रीमान् मुख्य कार्यपालन अधिकारी महोदय
+                        </option>
+                        <option value="श्रम विभाग">श्रम विभाग</option>
+
+                        <option value="पंचायतराज संचालनालय">पंचायतराज संचालनालय</option>
+
+                        <option value="ग्राम पंचायत">ग्राम पंचायत</option>
+
+                        <option value="other" id="other">अन्य</option>
                     </select>
                 </div>
                 <div class="f-div flexc">
-                    <label for="selectOptions2">Select an option:</label>
+                    <label for="selectOptions2">किस मद से</label>
                     <select id="selectOptions2" class="selectbyore">
+                        <option value=" ">विकल्प चुनें</option>
                         <option value="15 वा वित्त">15 वा वित्त</option>
                         <option value="14 वा वित्त">14 वा वित्त</option>
                         <option value="विधायक निधि">विधायक निधि</option>
@@ -61,11 +79,10 @@
             <input type="text" id="rokadParticular">
         </div> -->
                 <div class="f-div flexc">
-                    <label for="selectOptions3">Select an option:</label>
+                    <label for="selectOptions3">किस प्रयोजन हेतु</label>
                     <select id="selectOptions3" class="selectbyore">
-                        <option value="ATO1">Option 1</option>
-                        <option value="ATO2">Option 2</option>
-                        <option value="other">Other</option>
+                        <option value=" ">विकल्प चुनें</option>
+                        <option value="other">अन्य</option>
                     </select>
                 </div>
                 <hr>
@@ -109,26 +126,40 @@
                     <input type="number" id="epono">
                 </div>
             </div>
-            <div class="f-div hidden">
-                <label for="bselectOptions1">Select an option:</label>
-                <select id="bselectOptions1">
-                    <option value="bfo1">Option 1</option>
-                    <option value="bfo2">Option 2</option>
-                    <option value="bfo3">Option 3</option>
-                </select>
+
+            <div class="select-byore">
+
+                <label for="" class="_17px">व्यय के ब्योरे</label>
+
+                <div class="f-div">
+                    <label for="bselectOptions1">वेंडर का नाम</label>
+                    <select id="bselectOptions1">
+                        <option value=" ">विकल्प चुनें</option>
+                        <option value="other">अन्य</option>
+                    </select>
+                </div>
+                <div class="f-div flexc byore">
+                    <label for="bahibillno">बिल क्रमांक</label>
+                    <input type="text" id="bahibillno">
+                </div>
+                <div class="f-div">
+                    <label for="bselectOptions2">कार्य का नाम</label>
+                    <select id="bselectOptions2">
+                        <option value=" ">विकल्प चुनें</option>
+                        <option value="other">अन्य</option>
+                    </select>
+                </div>
+
+                <div class="f-div">
+                    <label for="bselectOptions3">भुगतान प्रकार</label>
+                    <select id="bselectOptions3">
+                        <option value="पीआरडी पोर्टल">पीआरडी पोर्टल</option>
+                        <option value="ई ग्रामस्वराज पोर्टल">ई ग्रामस्वराज पोर्टल</option>
+                        <option value="नगद">नगद राशि</option>
+                    </select>
+                </div>
             </div>
-            <div class="f-div flexc byore">
-                <label for="bahiParticular">व्याय के ब्यौरे</label>
-                <input type="text" id="bahiParticular">
-            </div>
-            <div class="f-div hidden">
-                <label for="bselectOptions2">Select an option:</label>
-                <select id="bselectOptions2">
-                    <option value="bfs1">Option 1</option>
-                    <option value="bfs2">Option 2</option>
-                    <option value="bfs3">Option 3</option>
-                </select>
-            </div>
+
             <div class="rashi-cantainer">
 
                 <div class="f-div">
@@ -140,10 +171,25 @@
                     <input type="text" id="bahiBankRashi">
                 </div>
             </div>
-            <div class="f-div flexc byore">
+            <!-- <div class="f-div flexc byore">
                 <label for="bahiBajtLs">बजट लेखा शीर्ष</label>
                 <input type="text" id="bahiBajtLs">
+            </div> -->
+
+            <div class="f-div">
+                <label for="bahiBajtLs">बजट लेखा शीर्ष</label>
+                <select id="bahiBajtLs">
+                    <option value="15 वा वित्त">15 वा वित्त</option>
+                    <option value="14 वा वित्त">14 वा वित्त</option>
+                    <option value="विधायक निधि">विधायक निधि</option>
+                    <option value="सांसद निधि">सांसद निधि</option>
+                    <option value="संबंल योजना">संबंल योजना</option>
+                    <option value="बैंक ब्याज">बैंक ब्याज</option>
+                    <option value="ग्राम पंचायत निधि टेक्स">ग्राम पंचायत निधि टेक्स</option>
+                    <!-- <option value="other">अन्य मद</option>                     -->
+                </select>
             </div>
+
         </div>
 
 
@@ -152,11 +198,11 @@
     <script>
         // document.addEventListener("DOMContentLoaded", function () {
         //     loadoptions();
-            
+
         // });
 
         loadoptions();
-        
+
         function addChangeListener(selectElementId, id) {
             var selectElement = document.getElementById(selectElementId);
             selectElement.addEventListener("change", function () {
@@ -182,6 +228,10 @@
         addChangeListener("selectOptions2", "AS");
         addChangeListener("selectOptions3", "AT");
 
+        addChangeListener("bselectOptions1", "VF");
+        addChangeListener("bselectOptions2", "VS");
+        addChangeListener("bselectOptions3", "VT");
+
 
 
 
@@ -193,6 +243,17 @@
             loadOptionsForSelect("selectOptions1", "AF", formCount1);
             loadOptionsForSelect("selectOptions2", "AS", formCount2);
             loadOptionsForSelect("selectOptions3", "AT", formCount3);
+
+            var VformCount1 = localStorage.getItem("VFCount");
+            var VformCount2 = localStorage.getItem("VSCount");
+            var VformCount3 = localStorage.getItem("VTCount");
+
+            loadOptionsForSelect("bselectOptions1", "VF", VformCount1);
+            loadOptionsForSelect("bselectOptions2", "VS", VformCount2);
+            loadOptionsForSelect("bselectOptions3", "VT", VformCount3);
+
+            loadOptionsForSelect("bahiBajtLs", "AS", formCount2);
+
         }
 
         function loadOptionsForSelect(selectId, optionPrefix, formCount) {
@@ -246,7 +307,7 @@
                 document.getElementById('rokadSignature').value = rbFormData['r_Signature'];
                 document.getElementById('bahiAKMMKP').value = rbFormData['b_AKMMKP'];
                 document.getElementById('epono').value = rbFormData['b_E.P.N No.'];
-                document.getElementById('bahiParticular').value = rbFormData['b_Particular'];
+                //document.getElementById('bahiParticular').value = rbFormData['b_Particular'];
                 document.getElementById('bahiNagadRashi').value = rbFormData['b_Nagad Rashi'];
                 document.getElementById('bahiBankRashi').value = rbFormData['b_Bank Rashi'];
                 document.getElementById('bahiBajtLs').value = rbFormData['b_Bajt LS'];
@@ -255,6 +316,9 @@
                 // document.getElementById('selectOptions2').value = rbFormData['r_so'];
                 document.getElementById('bselectOptions1').value = rbFormData['b_fo'];
                 document.getElementById('bselectOptions2').value = rbFormData['b_so'];
+                document.getElementById('bselectOptions3').value = rbFormData['b_to'];
+
+                document.getElementById('bahibillno').value = rbFormData['bahibillno'];
 
                 // console.log(rbFormData['Date']);
 
@@ -264,9 +328,55 @@
             }
         }
 
+
+
+
         function saveData() {
-            // Get Rokad form values
+
+            var formDate = document.getElementById('rokadDate');
+
+            var formselectElement1 = document.getElementById('selectOptions1');
+
+            var formbselectElement1 = document.getElementById('bselectOptions1');
+
+            popupmsg = document.getElementById("popupmsg");
+
+            if (formDate.value === "") {
+                formDate.style.background = "red";
+                formDate.focus();
+
+                popupmsg.innerText = "Please Choose Date!"
+                openPopup();
+
+                // alert("please choose Date");
+            }
+            else if (formselectElement1.value === " " && formbselectElement1.value === " ") {
+                openPopup();
+
+                popupmsg.innerText = "Please choose aay ke byore ya vyay ke brore!"
+                // alert("please choose aay ke byore ya vyay ke brore");
+
+
+            } else {
+                alert(" you choose options");
+                saveData1();
+            }
+
+            setInterval(() => {
+                formDate.style.background = "white";
+
+            }, 1000);
+
+        }
+
+
+
+
+        function saveData1() {
+
             var valueselectElement1, valueselectElement2, valueselectElement3;
+
+            var bvalueselectElement1, bvalueselectElement2, bvalueselectElement3;
 
             function handleSelectValue(selectElement, prefix) {
                 if (selectElement.value === "other") {
@@ -294,6 +404,18 @@
                         valueselectElement3 = input;
                     }
 
+                    if (prefix === "VF") {
+                        bvalueselectElement1 = input;
+                    }
+                    else if (prefix === "VS") {
+
+                        bvalueselectElement2 = input;
+                    }
+                    else if (prefix === "VT") {
+
+                        bvalueselectElement3 = input;
+                    }
+
                     alert("if");
 
                 } else {
@@ -314,6 +436,19 @@
                         console.log(valueselectElement3);
                     }
 
+                    if (prefix === "VF") {
+                        bvalueselectElement1 = valueOf;
+                        console.log(bvalueselectElement1);
+                    }
+                    else if (prefix === "VS") {
+                        bvalueselectElement2 = valueOf;
+                        console.log(bvalueselectElement2);
+                    }
+                    else if (prefix === "VT") {
+                        bvalueselectElement3 = valueOf;
+                        console.log(bvalueselectElement3);
+                    }
+
                 }
             }
 
@@ -325,6 +460,16 @@
 
             var selectElement3 = document.getElementById('selectOptions3');
             handleSelectValue(selectElement3, "AT");
+
+
+            var bselectElement1 = document.getElementById('bselectOptions1');
+            handleSelectValue(bselectElement1, "VF");
+
+            var bselectElement2 = document.getElementById('bselectOptions2');
+            handleSelectValue(bselectElement2, "VS");
+
+            var bselectElement3 = document.getElementById('bselectOptions3');
+            handleSelectValue(bselectElement3, "VT");
 
 
 
@@ -346,14 +491,22 @@
             // var bahiSNo = document.getElementById('bahiSNo').value;
             var bahiAKMMKP = document.getElementById("bahiAKMMKP").value;
             var epono = document.getElementById("epono").value;
-            var bahiParticular = document.getElementById('bahiParticular').value;
+            // var bahiParticular = document.getElementById('bahiParticular').value;
             var bahiNagadRashi = document.getElementById('bahiNagadRashi').value;
             var bahiBankRashi = document.getElementById('bahiBankRashi').value;
             var bahiBajtLs = document.getElementById('bahiBajtLs').value;
-            var bselectElement1 = document.getElementById('bselectOptions1').value;
-            var bselectElement2 = document.getElementById('bselectOptions2').value;
-            // var bahiSignature = document.getElementById('bahiSignature').value;
-            // Get the edit form id from localStorage
+
+            var bahibillno = document.getElementById('bahibillno').value;
+
+
+
+
+
+
+
+
+
+
             var editFormId = localStorage.getItem("Edit_Form_Id");
 
             // Retrieve data from localStorage using the edit form id
@@ -378,14 +531,30 @@
             // rbFormData['b_Bank Rashi'] = bahiBankRashi;
             // rbFormData['b_Bajt LS'] = bahiBajtLs;
 
+
+            if (valueselectElement1 === " ") {
+                var rokadParticular = "";
+            } else {
+                var rokadParticular = valueselectElement1 + " se " + valueselectElement2 + " mad se " + valueselectElement3 + " ki rashi prapt"
+            }
+
+            if (bvalueselectElement1 === " ") {
+                var bahiParticular = "";
+            } else {
+                var bahiParticular = bvalueselectElement1 + " se " + bahibillno + "_" + bvalueselectElement2 + " mad se " + bvalueselectElement3 + " ki rashi prapt";
+            }
+
+
+
             var rbFormData = {
                 'Date': rokadDate,
                 // 'r_S.no': rokadSNo,
                 'r_AKMMKP': AKMMKP,
-                'r_Particular': valueselectElement1 + " se " + valueselectElement2 + " mad se " + valueselectElement3 + " ki rashi prapt" ,
+                'r_Particular': rokadParticular,
                 'r_Nagad Rashi': rokadNagadRashi,
                 'r_Bank Rashi': rokadBankRashi,
-                'r_Bajt LS': rokadBajtLs,
+                // 'r_Bajt LS': rokadBajtLs,
+                'r_Bajt LS': valueselectElement2,
                 'r_Signature': rokadSignature,
                 'r_AFO': valueselectElement1,
                 'r_ASO': valueselectElement2,
@@ -397,8 +566,10 @@
                 'b_Nagad Rashi': bahiNagadRashi,
                 'b_Bank Rashi': bahiBankRashi,
                 'b_Bajt LS': bahiBajtLs,
-                'b_fo': bselectElement1,
-                'b_so': bselectElement2,
+                'bahibillno': bahibillno,
+                'b_fo': bvalueselectElement1,
+                'b_so': bvalueselectElement2,
+                'b_to': bvalueselectElement3,
                 // 'b_Signature': bahiSignature
                 'Form_Id': editFormId,
             };
@@ -424,5 +595,17 @@
 
     </script>
 </body>
+<script>
+    function openPopup() {
+        var popup = document.getElementById("popup");
+        popup.style.display = "block";
+    }
+
+    function closePopup() {
+        var popup = document.getElementById("popup");
+        popup.style.display = "none";
+    }
+
+</script>
 
 </html>
