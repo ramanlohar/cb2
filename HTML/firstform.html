@@ -13,12 +13,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../CSS/firstforms.css">
+    <link rel="stylesheet" href="../CSS/popup.css">
 
     <script src="https://kit.fontawesome.com/8d4098fe32.js" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <span>
+                <span><i class="fas fa-info-circle"></i></span>
+                <p id="popupmsg">This is a popup message!</p>
+            </span>
+        </div>
+    </div>
 
     <header>
         <h2>Cashbook</h2>
@@ -35,12 +45,17 @@
         <div class="flexdiv">
 
             <div class="f-div">
-                <label for="rokadDate">Date</label>
+                <label for="rokadDate">दिनांक</label>
                 <input type="date" id="rokadDate">
             </div>
             <div class="f-div">
-                <label for="Year">Year</label>
-                <input type="text" id="year" placeholder="2023-24" required>
+                <label for="Year">वित्तीय वर्ष</label>
+                <!-- <input type="text" id="year" placeholder="2023-24" required> -->
+                <select id="year">
+                    <option value="2023-24">2023-24</option>
+                    <option value="2022-23">2022-23</option>
+                    <option value="2021-22">2021-22</option>
+                </select>
             </div>
         </div>
     </form>
@@ -49,7 +64,7 @@
 
     <form id="mad_form">
         <div class="mads">
-            <label id="madlabel" for="madSelect">Select a mad</label>
+            <label id="madlabel" for="madSelect">मद का चयन करें</label>
             <button id="this-del" type="button" onclick="deleteMadField(this);"><i
                     class="fa-solid fa-delete-left"></i></button>
             <select name="mad" id="madSelect" class="madSelect">
@@ -64,20 +79,20 @@
 
                 <!-- <option value="other">other</option> -->
             </select>
-            <label for="madName" class="madText-label" style="display:none;">Enter the mad name</label>
+            <label for="madName" class="madText-label" style="display:none;">नवीन मद का नाम लिखे</label>
             <div class="rashi-cantainer">
                 <input type="text" id="madName" class="madText" style="display:none;">
-                <label for="nagadRashi">Nagad Rashi</label>
+                <label for="nagadRashi">नगद राशि</label>
                 <input type="number" id="nagadRashi" class="madNumber">
-                <label for="bankRashi">Bank Rashi</label>
+                <label for="bankRashi">बैंक राशि</label>
                 <input type="number" id="bankRashi" class="madNumber2">
             </div>
         </div>
 
         <button type="button" id="Addbtn">Add</button>
-        <label for="">Nagad Total</label>
+        <label for="">कुल योग नगद</label>
         <input type="text" id="Ntotal" readonly>
-        <label for="">bank Total</label>
+        <label for="">कुल योग बैंक</label>
         <input type="text" id="Btotal" readonly>
         <button type="submit" id="savebtn" style="display: none;">Save All</button>
     </form>
@@ -85,8 +100,30 @@
     <script>
 
         function savebtnh() {
-            const savebtn = document.getElementById("savebtn")
-            savebtn.click();
+
+            var validatepanchayatName = document.getElementById('panchayat-name').value;
+
+            
+            var validaterokadDate = document.getElementById("rokadDate").value;
+
+            popupmsg = document.getElementById("popupmsg");
+
+            if(validatepanchayatName === ""){
+                popupmsg.innerText = "कृपया ग्राम पंचायत का नाम लीखे!"
+                openPopup();
+
+            }else if(validaterokadDate === ""){
+
+                popupmsg.innerText = "कृपया दिनांक चुनें!"
+                openPopup();
+                
+            }
+            else{
+                
+                const savebtn = document.getElementById("savebtn")
+                savebtn.click();
+
+            }
 
         }
 
@@ -114,7 +151,7 @@
         Addbtn.addEventListener("click", () => {
             const mads = document.createElement('div');
             mads.classList.add('mads');
-            mads.innerHTML = `<label for="madSelect" id="madlabel">Select a mad</label>
+            mads.innerHTML = `<label for="madSelect" id="madlabel">मद का चयन करें</label>
             <button id="this-del" type="button" onclick="deleteMadField(this);"><i class="fa-solid fa-delete-left"></i></button>
                 <select name="mad" class="madSelect">
                     <option value="15 वा वित्त">15 वा वित्त</option>
@@ -126,12 +163,12 @@
                 <option value="ग्राम पंचायत निधि टेक्स">ग्राम पंचायत निधि टेक्स</option>
                 <option value="other">अन्य मद</option>
                 </select>
-                <label for="madName" class="madText-label" style="display:none;">Enter the mad name</label>
+                <label for="madName" class="madText-label" style="display:none;">नवीन मद का नाम लिखे</label>
                 <input type="text" class="madText" style="display:none;">
                 <div class="rashi-cantainer">
-                <label for="nagadRashi">Nagad Rashi</label>
+                <label for="nagadRashi">नगद राशि</label>
                 <input type="number" class="madNumber">
-                <label for="bankRashi">Bank Rashi</label>
+                <label for="bankRashi">बैंक राशि</label>
                 <input type="number" class="madNumber2">
                 </div>`;
 
@@ -336,4 +373,8 @@
         bindEventListeners();
         localStorage.setItem("reloadhome3", 0);
     </script>
+
+    <script src="../JavaScript/popup.js"></script>
+
 </body>
+</html>

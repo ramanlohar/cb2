@@ -1,0 +1,103 @@
+  /* pop up */
+
+  .popup {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(86, 127, 202, 0.671);
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 999;
+  }
+  
+  .popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+  }
+
+  .fa-info-circle{
+    color: var(--theme-background2);
+    font-size: 20px;
+  }
+  
+  .close {
+    color: #ff0000;
+    float: right;
+    font-size: 26px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+
+  .popup {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 999;
+  }
+  
+  .popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  @keyframes flyIn {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -300%);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+  
+  @keyframes flyOut {
+    from {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+    to {
+      opacity: 0;
+      transform: translate(-50%, 300%);
+    }
+  }
+  
+  .flyIn {
+    animation: flyIn 0.5s ease forwards;
+  }
+  
+  .flyOut {
+    animation: flyOut 0.5s ease forwards;
+  }

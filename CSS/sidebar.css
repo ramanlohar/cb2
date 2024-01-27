@@ -23,6 +23,8 @@ header {
     justify-content: space-between;
     align-items: center;
     z-index: 2;
+    border-bottom: 2px solid #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #menu-icon {
@@ -130,7 +132,7 @@ section {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: var(--theme-background);
+    background-color: var(--theme-background2);
     color: white;
     padding: 10px 10px;
     border-radius: 25px;
@@ -139,4 +141,5 @@ section {
     width: 40px;
     display: grid;
     place-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add box shadow */
 }
