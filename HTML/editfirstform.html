@@ -20,16 +20,16 @@
     <form id="mad_form">
         <!-- Dynamic content will be added here using JavaScript -->
         <button type="button" id="Addbtn"><i class="fa-solid fa-plus"></i></button>
-        <label for="">Nagad Total</label>
+        <label for="">कुल योग नगद</label>
         <input type="text" id="Ntotal" readonly>
-        <label for="">bank Total</label>
+        <label for="">कुल योग बैंक</label>
         <input type="text" id="Btotal" readonly>
     </form>
 
     <script>
         const addBtn = document.getElementById("Addbtn");
         const saveBtn = document.getElementById("savebtn");
-        
+
         document.addEventListener("DOMContentLoaded", function () {
             const editForm = document.getElementById("mad_form");
 
@@ -62,7 +62,7 @@
                 // Redirect to home page
                 loadWindow();
             });
-            
+
             // Event listener for save button
             saveBtn.addEventListener('click', function () {
                 // Save form data to local storage
@@ -155,7 +155,7 @@
         function createMadField(data = null) {
             const mads = document.createElement('div');
             mads.classList.add('mads');
-            mads.innerHTML = `<label for="madSelect" id="madlabel">Select a mad</label>
+            mads.innerHTML = `<label for="madSelect" id="madlabel">मद का चयन करें</label>
                 <button id="this-del" type="button" onclick="deleteMadField(this);"><i class="fa-solid fa-delete-left"></i></button>
                 <select name="mad" class="madSelect">
                     <option value="15 वा वित्त">15 वा वित्त</option>
@@ -164,15 +164,28 @@
                 <option value="सांसद निधि">सांसद निधि</option>
                 <option value="संबंल योजना">संबंल योजना</option>
                 <option value="बैंक ब्याज">बैंक ब्याज</option>
-                <option value="ग्राम पंचायत निधि टेक्स">ग्राम पंचायत निधि टेक्स</option>
+                <option value="ग्राम पंचायत निधि">ग्राम पंचायत निधि</option>
+
+
+                <option value="जिला पंचायत निधि">जिला पंचायत निधि</option>
+
+                <option value="जनपद पंचायत निधि">जनपद पंचायत निधि</option>
+                <option value="एस.बी.एम">एस.बी.एम</option>
+                <option value="जल कर">जल कर</option>
+                <option value="प्रकाश कर">प्रकाश कर</option>
+                <option value="भवन कर">भवन कर</option>
+                <option value="सफ़ाई कर">सफ़ाई कर</option>
+                <option value="बाज़ार शुल्क">बाज़ार शुल्क</option>
+                <option value="पशुहाट नीलामी">पशुहाट नीलामी</option>
+                
                 <option value="other">अन्य मद</option>
                 </select>
-                <label for="madName" class="madText-label" style="display:none;">Enter the mad name</label>
+                <label for="madName" class="madText-label" style="display:none;">नवीन मद का नाम लिखे</label>
                 <input type="text" class="madText" style="display:none;">
                 <div class="rashi-cantainer">
-                <label for="nagadRashi">Nagad Rashi</label>
+                <label for="nagadRashi">नगद राशि</label>
                 <input type="number" class="madNumber">
-                <label for="bankRashi">Bank Rashi</label>
+                <label for="bankRashi">बैंक राशि</label>
                 <input type="number" class="madNumber2">
                 </div>`;
 
@@ -262,7 +275,7 @@
             alert('Data saved to local storage!');
         }
 
-        function onloadfunction(){
+        function onloadfunction() {
             var NpurvRashi = localStorage.getItem('Ntotalf');
             var purvRashi = localStorage.getItem('Btotalf');
 
@@ -270,7 +283,7 @@
             document.getElementById("Btotal").value = purvRashi;
         }
 
-        function back(){
+        function back() {
             window.location.href = "../home.html";
         }
 
