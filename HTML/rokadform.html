@@ -329,10 +329,10 @@
             popupmsg = document.getElementById("popupmsg");
 
             if (formDate.value === "") {
-                formDate.style.background = "red";
+                formDate.style.background = "rgba(86, 127, 202, 0.271)";
                 formDate.focus();
 
-                popupmsg.innerText = "Please Choose Date!"
+                popupmsg.innerText = "कृपया दिनांक चुनें!"
                 openPopup();
 
                 // alert("please choose Date");
@@ -340,7 +340,7 @@
             else if (formselectElement1.value === " " && formbselectElement1.value === " ") {
                 openPopup();
 
-                popupmsg.innerText = "Please choose aay ke byore ya vyay ke brore!"
+                popupmsg.innerText = "कृपया आय या व्याय के ब्योरे चुनें!"
                 // alert("please choose aay ke byore ya vyay ke brore");
 
 
@@ -495,13 +495,13 @@
             if (valueselectElement1 === " ") {
                 var rokadParticular = "";
             } else {
-                var rokadParticular = valueselectElement1 + " se " + valueselectElement2 + " mad se " + valueselectElement3 + " ki rashi prapt"
+                var rokadParticular = valueselectElement1 + " से " + valueselectElement2 + " मद " + valueselectElement3 + " की राशि प्राप्त"
             }
 
             if (bvalueselectElement1 === " ") {
                 var bahiParticular = "";
             } else {
-                var bahiParticular = bvalueselectElement1 + " se " + bahibillno + "_" + bvalueselectElement2 + " mad se " + bvalueselectElement3 + " ki rashi prapt";
+                var bahiParticular = bvalueselectElement1 + " से बिल क्रमांक " + bahibillno + " के अनुसार " + bvalueselectElement2 + " हेतु बिल अनुसार " + bvalueselectElement3 + " से राशि का भुगतान किया गया";
             }
 
 
@@ -555,17 +555,7 @@
         }
     </script>
 </body>
-<script>
-    function openPopup() {
-        var popup = document.getElementById("popup");
-        popup.style.display = "block";
-    }
-
-    function closePopup() {
-        var popup = document.getElementById("popup");
-        popup.style.display = "none";
-    }
-
+<script src="../JavaScript/popup.js">
 </script>
 
 </html>

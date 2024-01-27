@@ -78,7 +78,7 @@ function purvrokadbahidisplayData(partiaay,
     cell.innerHTML = "";
 
     var cell = row.insertCell(12);
-    cell.innerHTML = "व्यय";
+    cell.innerHTML = "";
 
     var cell = row.insertCell(13);
     cell.innerHTML = vyayN;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,6 @@
 
         #splash-screen {
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -22,6 +22,13 @@
             font-size: 24px;
             position: fixed;
             width: 100%;
+            animation: fadeIn 2s ease forwards;
+        }
+
+        #content_wrapper {
+            opacity: 0;
+            animation: slideFromBottom 1s ease forwards;
+            text-align: center;
         }
 
         #logo {
@@ -31,26 +38,101 @@
             height: 170px;
             width: 170px;
         }
-        p{
+
+        p {
             font-size: 30px;
             font-weight: bold;
         }
+
+        #loading-spinner {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(100%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUpward {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            to {
+                opacity: 0;
+                transform: translateY(-100%);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
+
 <body>
     <div id="splash-screen">
-        <div>
+        <div id="content_wrapper">
             <img id="logo" src="images/logo.jpg" alt="Logo">
+            <p>Cashbook</p>
         </div>
-        <p>Cashbook</p>
     </div>
+
+    <div id="loading-spinner"></div>
 
     <script>
         // Add a delay of 3 seconds (3000 milliseconds)
-        setTimeout(function() {
-            // Redirect to home.html
-            window.location.href = "HTML/firstform.html";
-        }, 1000);
+        setTimeout(function () {
+            setTimeout(() => {                
+                var loadingSpinner = document.getElementById("loading-spinner");
+                loadingSpinner.style.display = "block";
+            }, 1600);
+                
+            // Redirect to home.html after showing loading spinner for 1 second
+            setTimeout(function () {
+                var contentWrapper = document.getElementById("content_wrapper");
+                contentWrapper.style.animation = "slideUpward 0.5s ease forwards";
+            }, 500);
+
+            setTimeout(function () {
+                window.location.href = "HTML/firstform.html";
+            }, 1000);
+        }, 3000); // Changed the delay to 3000 milliseconds (3 seconds)
     </script>
 </body>
+
 </html>
