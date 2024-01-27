@@ -20,6 +20,16 @@ alltd.forEach((td) => {
     td.parentElement.classList.add("rowblack");
   }
 
+  if (
+    tdValue === "पूर्व शेष" ||
+    tdValue === "शेष"
+  ) {
+  
+    td.style.color = "red";
+    // Apply CSS class to the entire row
+    td.parentElement.classList.add("colorred");
+  }
+
   var panchaya_name1 = localStorage.getItem("karyalayData");
 
   // Parse the retrieved data as JSON

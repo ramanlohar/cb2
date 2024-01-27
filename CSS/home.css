@@ -1,3 +1,9 @@
+:root {
+    --header-background: #333; /* Default header background color */
+    --button-background: #3498db; /* Default button background color */
+    --theme-background2: #567FCA; /* Default background color */
+    --theme-background:rgb(117, 153, 220); /* Default background color */
+}
 .layout {
     padding: 0;
     width: auto;
@@ -37,6 +43,12 @@ th, td {
 
 th {
     background-color: #c0ffee;
+    background-color: #538fff7f;
+    /* background-color: #567fcaa9; */
+}
+
+.colorred{
+    color: red;
 }
 
 
@@ -50,10 +62,11 @@ th {
 }
 
 #Edit_button {
-    color: black;
+    color: rgb(0, 0, 0);
     margin-right: 20px;
     padding: 5px;
-    background-color: aqua;
+    background-color: var(--theme-background);
+    border-radius: 5px;
 }
 th:nth-child(4),
 th:nth-child(13),
@@ -73,6 +86,14 @@ td:nth-child(18){
     min-width: 100px;
 }
 
+
+
+
+td:nth-child(7),
+td:nth-child(16){
+    min-width: 70px;
+}
+
 .eightth,
 td:nth-child(8) {
     border-right: 6px double black;
@@ -83,11 +104,11 @@ td:nth-child(8) {
 }
 
 .rowblack {
-    background-color: #9af299;
+    background-color: #538fff49;
 }
 
 .highlight {
-    background-color: rgb(210, 202, 218);
+    background-color: rgba(241, 255, 170, 0.755);
     font-style: italic;
 }
 
