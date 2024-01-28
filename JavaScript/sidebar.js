@@ -31,10 +31,12 @@ var closeBtn = document.getElementById('close-btn');
 
 menuIcon.addEventListener('click', function () {
     sidebar.style.left = '0';
+    sidebar.style.transition = '0.3s';
 });
 
 closeBtn.addEventListener('click', function () {
     // sidebar.style.left = '-250px';
+    sidebar.style.transition = '1s';
     sidebar.style.left = '-100vw';
 });
 

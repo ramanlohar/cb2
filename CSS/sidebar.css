@@ -64,6 +64,8 @@ img {
     background-color: #ffffff;
     /* padding-top: 60px; */
     transition: 0.3s;
+
+    /* transition: left 10s; */
     border-right: 1px  solid black ;
     z-index: 3;
 }
