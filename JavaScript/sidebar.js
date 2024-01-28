@@ -35,7 +35,7 @@ menuIcon.addEventListener('click', function () {
 
 closeBtn.addEventListener('click', function () {
     // sidebar.style.left = '-250px';
-    sidebar.style.left = '-50vw';
+    sidebar.style.left = '-100vw';
 });
 
 var startTouchX, startTime;
@@ -57,7 +57,7 @@ document.body.addEventListener('touchend', function (event) {
     if (touchX < startTouchX && speed > 0.2) {
         // sidebar.style.left = '-250px';
         // sidebar.style.left = '-250px';
-        sidebar.style.left = '-50vw';
+        sidebar.style.left = '-100vw';
     }
 });
 
@@ -65,6 +65,6 @@ document.body.addEventListener('click', function (event) {
     // Check if the clicked element is not inside the sidebar or menu icon
     if (!sidebar.contains(event.target) && event.target.id !== 'menu-icon') {
         // sidebar.style.left = '-250px';
-        sidebar.style.left = '-50vw';
+        sidebar.style.left = '-100vw';
     }
 });
