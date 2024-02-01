@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Paper Flower with Dropping Flowers</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .paper-flower {
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        .flower-petal {
+            width: 20px;
+            height: 20px;
+            background-color: #ff69b4;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: drop 2s ease-in-out infinite;
+        }
+
+        @keyframes drop {
+            0% {
+                bottom: 100%;
+                transform: translateX(-50%) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+            }
+
+            100% {
+                bottom: 0%;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="paper-flower"></div>
+
+    <script>
+        var currentSecond = 0;
+        var intervalId;
+
+        function createFlower() {
+            const flowerContainer = document.querySelector('.paper-flower');
+            const flowerPetal = document.createElement('div');
+            flowerPetal.classList.add('flower-petal');
+            flowerPetal.style.left = `${Math.random() * 100}vw`; // Random left position
+            flowerPetal.style.transform = `translateX(-50%) rotateX(${Math.random() * 360}deg) rotateY(${Math.random() * 360}deg) rotateZ(${Math.random() * 360}deg)`;
+            flowerPetal.style.backgroundColor = getRandomColor();
+
+            // Randomize animation duration between 1s and 3s
+            flowerPetal.style.animationDuration = `${Math.random() * 2 + 1}s`;
+
+            flowerContainer.appendChild(flowerPetal);
+
+            currentSecond += 300;
+
+            if (currentSecond >= 10000) {
+                clearInterval(intervalId);
+                // window.location.href = "home.html";
+            }
+        }
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        intervalId = setInterval(createFlower, 300);
+
+    </script>
+</body>
+
+</html>

@@ -87,6 +87,7 @@ function highlightRow(td) {
   const clickedRow = td.parentElement;
   const isHighlighted = clickedRow.classList.contains("highlight");
 
+
   // Remove highlight class from all rows
   document.querySelectorAll(".highlight").forEach((row) => {
     row.classList.remove("highlight");
