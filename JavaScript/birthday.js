@@ -1,7 +1,8 @@
 function wishbirthday() {
   const balloon = document.createElement("img");
   balloon.classList.add("balloon");
-  balloon.src = "../images/balloons.png";
+  balloon.src = "https://drive.google.com/file/d/1UwbR-4G04F4b8cAMUMsYvVjWRXIZKphS/view?usp=sharing";
+//   balloon.src = "../images/balloons.png";
   document.body.appendChild(balloon);
 
   const balloonStyle = balloon.style;

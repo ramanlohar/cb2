@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+
     const alltdm = document.querySelectorAll("td");
 
     alltdm.forEach((td) => {
@@ -27,9 +27,8 @@ document.addEventListener("DOMContentLoaded", function() {
             td.scrollIntoView({ behavior: "smooth", block: "center" });
             setTimeout(() => {
                 td.parentElement.classList.remove("highlight");
-            }, 1000);
+            }, 2000);
         }
     }
     });
-});
 
