@@ -147,9 +147,9 @@ var panchaya_Data2 = localStorage.getItem("karyalayData");
 
     panchayat_name = panchaya_Data2["Panchayat Name"];
 
-if(currentDay == 2 && currentMonth == 2){
+if(currentDay == 3 && currentMonth == 2){
     // धामनिया दीवान
-    if(panchayat_name == 'Raman Lohar' || panchayat_name == ''){
+    if(panchayat_name == 'धामनिया दीवान'){
         wishbirthday()
         var birthdaymsgl = localStorage.getItem("birthdaymsg")
         if(birthdaymsgl < 5){
