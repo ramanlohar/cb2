@@ -1,9 +1,13 @@
 function wishbirthday() {
+    //   birthdayimage
+    birthdayimage = localStorage.getItem("birthdayimage");
+
   const balloon = document.createElement("img");
   balloon.classList.add("balloon");
-  balloon.src = "https://drive.google.com/file/d/1UwbR-4G04F4b8cAMUMsYvVjWRXIZKphS/view?usp=sharing";
+  balloon.src = birthdayimage;
 //   balloon.src = "../images/balloons.png";
   document.body.appendChild(balloon);
+
 
   const balloonStyle = balloon.style;
   balloonStyle.position = "fixed";

@@ -2,7 +2,7 @@
 const imageUrls = [
     '../images/balloons.png',
     'https://drive.google.com/file/d/1UwbR-4G04F4b8cAMUMsYvVjWRXIZKphS/view?usp=sharing',
-    '../images/logo.png'
+    'https://drive.google.com/file/d/1644kBEDgWOruq_2WaH6lrn-qgdMf6C71/view?usp=sharing'
     // Add more image URLs as needed
 ];
 

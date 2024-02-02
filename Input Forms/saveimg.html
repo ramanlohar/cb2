@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Input and LocalStorage</title>
+</head>
+<body>
+    <input type="file" id="imageInput">
+    <button onclick="saveImage()">Save Image</button>
+    <div id="imageContainer"></div>
+
+    <script>
+        const imageInput = document.getElementById('imageInput');
+        const imageContainer = document.getElementById('imageContainer');
+
+        // Function to handle when an image is selected
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                const imageUrl = event.target.result;
+                displayImage(imageUrl);
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        // Function to display the image on the page
+        function displayImage(imageUrl) {
+            const imgElement = document.createElement('img');
+            imgElement.src = imageUrl;
+            imgElement.style.maxWidth = '200px'; // Set maximum width for display
+            imageContainer.innerHTML = ''; // Clear previous image
+            imageContainer.appendChild(imgElement);
+        }
+
+        // Function to save the image to localStorage
+        function saveImage() {
+            const imageUrl = imageContainer.querySelector('img').src;
+            localStorage.setItem('savedImage', imageUrl);
+            alert('Image saved to localStorage.');
+        }
+
+        // Function to load the image from localStorage
+        function loadImageFromLocalStorage() {
+            const savedImageUrl = localStorage.getItem('savedImage');
+            if (savedImageUrl) {
+                displayImage(savedImageUrl);
+            } else {
+                alert('No image found in localStorage.');
+            }
+        }
+
+        // Event listener for when an image is selected
+        imageInput.addEventListener('change', handleImageUpload);
+
+        // Load image from localStorage when the page is loaded
+        loadImageFromLocalStorage();
+    </script>
+</body>
+</html>
