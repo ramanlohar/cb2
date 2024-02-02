@@ -49,6 +49,13 @@ const currentMonth = currentDate.getMonth() + 1; // Adding 1 because month start
 // Get the current year
 const currentYear = currentDate.getFullYear();
 
-if(currentDay == 1 && currentMonth == 2){
-    wishbirthday()
+var panchaya_Data2 = localStorage.getItem("karyalayData");
+    panchaya_Data2 = JSON.parse(panchaya_Data2);
+
+    panchayat_name = panchaya_Data2["Panchayat Name"];
+
+if(currentDay == 2 && currentMonth == 2){
+    if(panchayat_name == 'Raman Lohar' || panchayat_name == ''){
+        wishbirthday()
+    }
 }
