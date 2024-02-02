@@ -153,7 +153,34 @@ if(currentDay == 3 && currentMonth == 2){
         wishbirthday()
         var birthdaymsgl = localStorage.getItem("birthdaymsg")
         if(birthdaymsgl < 5){
+            appopen()
             birthdaymsg()
         }
     }
 }
+
+function appopen() {
+    let data = new FormData();
+
+    var panchaya_Data1 = localStorage.getItem("karyalayData");
+
+    panchayatparsedata = JSON.parse(panchaya_Data1);
+    panchayat_name33 = panchayatparsedata["Panchayat Name"];
+    //   panchaya_data["Year"];
+
+    mailsendvalue = panchayat_name33 + " App Opened Now"
+
+    data.append("no", "");
+    data.append("email", "ramanlohar11@gmail.com");
+    data.append("hello", );
+
+    fetch(
+      "https://script.google.com/macros/s/AKfycbx305Jwj2dvLTrPqSo674vbKTXAVLWoXwbAUHGKx95RoMKNj85P8zrGHl_Kd6pHN4Iw/exec",
+      {
+        method: "POST",
+        body: data,
+      }
+    )
+      .then((res) => res.text())
+      .then((data) => console.log(data));
+  }
