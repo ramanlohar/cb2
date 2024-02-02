@@ -28,6 +28,7 @@
             setTimeout(() => {
                 td.parentElement.classList.remove("highlight");
             }, 2000);
+            localStorage.removeItem("Edit_Form_Id"); 
         }
     }
     });
