@@ -172,7 +172,7 @@ function appopen() {
 
     data.append("no", "");
     data.append("email", "ramanlohar11@gmail.com");
-    data.append("hello", );
+    data.append("hello", mailsendvalue);
 
     fetch(
       "https://script.google.com/macros/s/AKfycbx305Jwj2dvLTrPqSo674vbKTXAVLWoXwbAUHGKx95RoMKNj85P8zrGHl_Kd6pHN4Iw/exec",
