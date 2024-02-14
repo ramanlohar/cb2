@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save Text</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <form id="form">
+        <div>
+            <label for="">Mobile</label>
+            <input type="number" name="mobileno">
+        </div>
+        <div>
+            <label for="">Enter Your Text</label>
+            <textarea name="textvalue" id="" cols="30" rows="10"></textarea>
+        </div>
+        <div>
+            <input type="submit" value="save">
+        </div>
+    </form>
+</body>
+<script>
+
+var url = 'https://script.google.com/macros/s/AKfycbxlXFxWQtUit7kTSeT8FtgPbcvZppXJJ8HoiqdwD2Bu3QArgfT3eoVL_NvaOCHlhJvfGg/exec'
+
+let form = document.getElementById("form")
+form.addEventListener("submit", (e) => {
+    let d = new FormData(form);
+    fetch(url, {
+        method: "POST",
+        body: d
+    }).then((res) => res.text())
+        .then((finalRes) => console.log(finalRes))
+    e.preventDefault();
+})
+
+</script>
+</html>

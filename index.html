@@ -132,7 +132,12 @@
             }, 500);
 
             setTimeout(function () {
-                window.location.href = "HTML/firstform.html";
+                var gsigndata = localStorage.getItem("gsigndata");
+                if(gsigndata == "true"){
+                    window.location.href = "HTML/firstform.html";
+                }else{
+                    window.location.href = "GHTML/createa.html";
+                }
             }, 1000);
         }, 1700); // Changed the delay to 3000 milliseconds (3 seconds)
         

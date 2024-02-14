@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" href="../CSS/sidebar.css">
+    <link rel="stylesheet" href="CSS/form.css">
+</head>
+
+<body>
+    <header>        
+        <div id="heading">Cashbook Sign In</div>        
+    </header>
+<section>
+    <form id="form">
+        <div>
+            <label for="name">Name :</label>
+            <input type="text" name="name" id="name" placeholder="Enter Your Name" required>
+        </div>
+        <div>
+            <label for="email">Email :</label>
+            <input type="email" name="email" id="email" placeholder="Enter Your Email" required>
+        </div>
+        <div>
+            <label for="mobileno">Mobile No. :</label>
+            <input type="number" name="mobileno" id="mobileno" placeholder="Enter Your Mobile No." required>
+        </div>
+        <div>
+            <label for="password">Password :</label>
+            <input type="password" name="password" id="password" placeholder="Create Your Password" required minlength="6">
+        </div>
+        <div>
+            <input type="submit" value="Save">
+        </div>
+    </form>
+</section>
+    
+</body>
+<script>
+    let url = 'https://script.google.com/macros/s/AKfycbzLtrHbvatZDCrqlqfZSD7ktW7h6eL3LALh5rajhCKPfZyw711kh_r7cRceJUjnh8nc/exec'
+
+    let form = document.getElementById("form")
+    form.addEventListener("submit", (e) => {
+        let d = new FormData(form);
+        fetch(url, {
+            method: "POST",
+            body: d
+        }).then((res) => res.text())
+            .then((finalRes) => console.log(finalRes))
+        e.preventDefault();
+
+        // Save form data to localStorage
+        localStorage.setItem("signin_form_data", JSON.stringify(Object.fromEntries(d.entries())));
+ 
+
+        localStorage.setItem("gsigndata","true");
+        setTimeout(() => {
+            window.location.href = "../HTML/firstform.html";            
+        }, 2000);
+    })
+
+</script>
+
+</html>
