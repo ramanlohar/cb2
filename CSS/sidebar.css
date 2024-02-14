@@ -92,6 +92,21 @@ img {
     color: white;
 }
 
+.ledger-div{
+    width: 100%;
+    /* background-color: #333; */
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.ledger-div button{
+    background-color: aquamarine;
+    /* padding: 10px; */
+    padding: 10px 40px;
+    border-radius: 10px;
+}
+
 .sidebar-info-div{
     padding: 0 10px;
     display: flex;

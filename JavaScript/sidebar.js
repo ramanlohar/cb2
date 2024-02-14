@@ -70,3 +70,8 @@ document.body.addEventListener('click', function (event) {
         sidebar.style.left = '-100vw';
     }
 });
+
+
+function redledger(){
+    window.location.href  = "HTML/ledger.html"
+}

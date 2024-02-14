@@ -1,0 +1,101 @@
+/* Styling for the ladger-box 
+.ladger-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: aquamarine;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+/* Styling for the labels 
+.ladger-box label {
+    font-weight: bold;
+    margin-bottom: 5px; /* Add space between labels 
+}
+
+/* Styling for the inner div 
+.in-div {
+    display: flex;
+    flex-direction: row;
+    /* margin-bottom: 10px;  */
+    /* Add space between inner divs 
+    margin-top: 10px; /* Add space between inner divs 
+}
+
+.in-div label{
+    font-size: 14px;
+}
+
+/* Styling for input fields 
+.in-div input {
+    width: 100px; /* Adjust as needed 
+    padding: 5px; /* Add padding for input fields 
+}
+
+/* Styling for the mad-name-display 
+.in-div .mad-name-display {
+    width: auto;
+    font-size: 16px; /* Larger font size for mad-name-display 
+}
+
+/* Styling for amounts 
+.in-div .tvb-rashi,
+.in-div .tab-rashi,
+.in-div .tvn-rashi,
+.in-div .tan-rashi,
+.in-div .total-rashi {
+    font-size: 12px; /* Small font size for amounts 
+    margin-left: 10px; /* Add space between label and amount 
+    margin-right: 10px; /* Add space between label and amount 
+}
+
+input[type="text"]{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}*/
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+#contant_box {
+    background-color: rgba(0, 255, 255, 0.372);
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid rgb(36, 36, 36); /* Add border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+    margin-bottom: 10px;
+}
+
+#mad_name_d {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+    font-size: 15px;
+}
+
+th {
+    font-size: 14px;
+    background-color: #f2f2f2;
+}

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/sidebar.css">
+    <link rel="stylesheet" href="../CSS/ledgerh.css">
+</head>
+
+<body>
+    <header>
+        <div id="menu-icon" onclick="backtohome();">&#9664;</div>
+        <div id="heading">Ledger</div>
+        <div>
+            <img id="logo" src="../images/logo.jpg" alt="Logo">
+        </div>
+    </header>
+    <!-- sidebar -->
+    <section id="content_box">
+        <!-- This will be populated dynamically -->
+    </section>
+
+    <script>
+
+        var indexnumber = 0;
+
+        function splitmadvalues() {
+            var totalData = {};
+
+
+
+            const madFormData = JSON.parse(localStorage.getItem("madFormData"));
+
+            if (madFormData && madFormData.length > 0) {
+                // Display the retrieved data
+
+                madFormData.forEach((data, index) => {
+                    var partiaay = data.textValue;
+                    var aayN = data.numberValue;
+                    var aayB = data.numberValue2;
+
+
+                    var data1 = {
+                        aayB: aayB,
+                        aayN: aayN
+                    };
+
+                    console.log(partiaay, aayN, aayB);
+                    localStorage.setItem(partiaay, JSON.stringify(data1));
+
+
+                });
+            }
+        }
+
+
+        function calculateAndStoreTotal() {
+            var formTypes = ["rb"];
+
+            var totalData = {};
+
+            formTypes.forEach(function (formType) {
+                var formCount = localStorage.getItem(formType + "FormCount");
+
+
+                for (var i = 1; i <= formCount; i++) {
+                    var formData = localStorage.getItem(formType + "Data" + i);
+
+                    if (formData) {
+                        formData = JSON.parse(formData);
+                        var currentDateR = formData["r_Bajt LS"];
+                        var currentDateB = formData["b_Bajt LS"];
+
+                        // For r_Bajt LS
+                        if (currentDateR) {
+                            if (!totalData[currentDateR]) {
+                                totalData[currentDateR] = {
+                                    r_nagadTotal: 0,
+                                    r_bankTotal: 0,
+                                    b_nagadTotal: 0,
+                                    b_bankTotal: 0
+                                };
+                            }
+
+                            var r_nagadAmount = parseFloat(formData["r_Nagad Rashi"]) || 0;
+                            var r_bankAmount = parseFloat(formData["r_Bank Rashi"]) || 0;
+
+                            var madnamevalue = localStorage.getItem(currentDateR);
+
+                            if (madnamevalue) {
+                                madnamevalue = JSON.parse(madnamevalue);
+                                var savedmadvaluesB = madnamevalue.aayB;
+                                var savedmadvaluesN = madnamevalue.aayN;
+
+                                // Add values only if they haven't been added before
+                                if (!totalData[currentDateR].hasAddedValues) {
+                                    totalData[currentDateR].hasAddedValues = true; // Mark that values have been added
+
+                                    totalData[currentDateR].r_nagadTotal += r_nagadAmount + parseFloat(savedmadvaluesN);
+                                    totalData[currentDateR].r_bankTotal += r_bankAmount + parseFloat(savedmadvaluesB);
+                                } else {
+                                    // If values have already been added, only add current amounts without additional parsing
+                                    totalData[currentDateR].r_nagadTotal += r_nagadAmount;
+                                    totalData[currentDateR].r_bankTotal += r_bankAmount;
+                                }
+                            } else {
+                                totalData[currentDateR].r_nagadTotal += r_nagadAmount;
+                                totalData[currentDateR].r_bankTotal += r_bankAmount;
+                            }
+
+
+
+                        }
+
+                        // For b_Bajt LS
+                        if (currentDateB) {
+                            if (!totalData[currentDateB]) {
+                                totalData[currentDateB] = {
+                                    r_nagadTotal: 0,
+                                    r_bankTotal: 0,
+                                    b_nagadTotal: 0,
+                                    b_bankTotal: 0
+                                };
+                            }
+
+                            var b_nagadAmount = parseFloat(formData["b_Nagad Rashi"]) || 0;
+                            var b_bankAmount = parseFloat(formData["b_Bank Rashi"]) || 0;
+
+                            totalData[currentDateB].b_nagadTotal += b_nagadAmount;
+                            totalData[currentDateB].b_bankTotal += b_bankAmount;
+                        }
+                    }
+                }
+            });
+
+            displayValues(totalData);
+        }
+
+        function displayValues(totalData) {
+            const contentBox = document.getElementById("content_box");
+
+            Object.keys(totalData).forEach(currentDate => {
+                const total = totalData[currentDate];
+                const newDiv = document.createElement('div');
+                newDiv.innerHTML = `
+                <div id="contant_box">
+                    <div>
+                        <input type="text" id="mad_name_d" value="${currentDate}" readonly>
+                    </div>
+                    <div>
+                        <table id="ledger_table">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Nagad</th>
+                                    <th>Bank</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>aay</td>
+                                    <td>${total.r_nagadTotal || 0}</td>
+                                    <td>${total.r_bankTotal || 0}</td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>Vyay</td>
+                                    <td>${total.b_nagadTotal || 0}</td>
+                                    <td>${total.b_bankTotal || 0}</td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>ToTal</td>
+                                    <td>${(total.r_nagadTotal || 0) - (total.b_nagadTotal || 0)}</td>
+                                    <td>${(total.r_bankTotal || 0) - (total.b_bankTotal || 0)}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>`;
+                contentBox.appendChild(newDiv);
+            });
+        }
+
+        function backtohome(){
+
+            window.location.href = "../home.html"
+            
+        }
+
+        splitmadvalues();
+        calculateAndStoreTotal();
+    </script>
+    <script src="../JavaScript/sidebar.js"></script>
+
+</body>
+
+</html>

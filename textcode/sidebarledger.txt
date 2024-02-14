@@ -1,0 +1,28 @@
+<div id="sidebar">
+        <div class="sidebar-head">
+            <div id="close-btn">&times;</div>
+            <div class="side-heading">Cashbook</div>
+            <div class="topheading2">
+                <div class="sidebar-info-div">
+                    <label for="">कार्यालय:&nbsp;&nbsp;</label>
+                    <p id="panchaya_name">Dhamniya Diwan</p>
+                </div>
+                <div class="sidebar-info-div">
+                    <label for="">वित्तीय वर्ष -&nbsp;&nbsp;</label>
+                    <p id="panchaya_year">2023-24</p>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-body">
+            <!-- <div class="sidebar-info-div-body1">
+                <div>
+                    <label for="">Zoom :</label>
+                    <p id="zoom_value">100%</p>
+                </div>
+                <div>
+                    <button class="zoom-btn" type="button" id="zoomp-btn">+</button>
+                    <button class="zoom-btn" type="button" id="zoomm-btn">-</button>
+                </div>
+            </div> -->
+        </div>
+    </div>

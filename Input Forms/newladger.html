@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #contant_box {
+            background-color: rgba(0, 255, 255, 0.372);
+            display: flex;
+            flex-direction: column;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 2px solid rgb(36, 36, 36); /* Add border */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+        }
+
+        #mad_name_d {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+            background-color: transparent;
+            outline: none;
+            border: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+            font-size: 15px;
+        }
+
+        th {
+            font-size: 14px;
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section>
+
+        <div id="contant_box">
+            <div>
+                <input type="text" id="mad_name_d" value="15 va vitta" readonly>
+            </div>
+            <div>
+                <table id="ledger_table">
+                    <thead>
+                        <tr>
+                            <th>value</th>
+                            <th>Nagad</th>
+                            <th>Bank</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>aay</td>
+                            <td id="td_rashi_A_N">100</td>
+                            <td id="td_rashi_A_B">200</td>
+                            <td id="td_rashi_A_T">300</td>
+                        </tr>
+                        <tr>
+                            <td>Vyay</td>
+                            <td id="td_rashi_A_N">100</td>
+                            <td id="td_rashi_A_B">200</td>
+                            <td id="td_rashi_A_T">300</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </section>
+
+    <script>
+        // JavaScript to dynamically update table content
+        // Example: Assuming new values are received from an API or user input
+        const newData = [
+            { description: 'aay', nagad: 150, bank: 250 },
+            { description: 'Vyay', nagad: 200, bank: 300 }
+        ];
+
+        // Function to update the table content dynamically
+        function updateTable(data) {
+            const tableBody = document.querySelector('#ledger_table tbody');
+            tableBody.innerHTML = ''; // Clear existing rows
+
+            data.forEach((item, index) => {
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${item.nagad}</td>
+                    <td>${item.bank}</td>
+                    <td>${item.nagad + item.bank}</td>
+                `;
+                tableBody.appendChild(newRow);
+            });
+        }
+
+        // Initial table update
+        updateTable(newData);
+    </script>
+
+</body>
+
+</html>
