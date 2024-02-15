@@ -21,6 +21,7 @@ label {
 input[type="text"],
 input[type="email"],
 input[type="number"],
+input[type="tel"],
 input[type="password"] {
     width: 100%;
     padding: 10px;
@@ -40,4 +41,36 @@ input[type="submit"] {
 }
 input[type="submit"]:hover {
     background-color: #5e6cbe;
+}
+
+.c-red{
+    color: red;
+}
+
+.next-btn{
+    background-color: #0e218d;
+    color: white;
+    padding: 7px 14px;
+    border-radius: 5px;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #333;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+#resendOTPBtn{
+    background-color: #0e218d;
+    padding: 7px 14px;
+    color: white;
+    border-radius: 10px;
+    margin-top: 10px;
 }

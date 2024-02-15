@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" href="../CSS/sidebar.css">
+    <link rel="stylesheet" href="CSS/form.css">
+</head>
+
+<body>
+    <header>
+        <div id="heading">Cashbook Sign In</div>
+    </header>
+    <section>
+        <form id="form">
+            <div id="step1">
+                <label for="name">Name :</label>
+                <input type="text" name="name" id="name" placeholder="Enter Your Name" required>
+                <br>
+                <br>
+                <label for="email">Email :</label>
+                <input type="email" name="email" id="email" placeholder="Enter Your Email" required>
+                <br>
+                <p id="Info_message1" class="c-red"></p>
+                <button id="next_btn" class="next-btn" type="button" onclick="validateStep1()">Next</button>
+            </div>
+            <div id="step2" style="display: none;">
+                <p id="timer_value">Time Left: 2:00</p>
+                <label for="otp">Enter OTP :</label>
+                <input type="text" name="otp" id="otp" pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}"
+                    title="Please enter the OTP in the format: XX-XX-XX" placeholder="XXXXXX" required />
+                <button id="resendOTPBtn" style="display: none;" onclick="resendOTP()">Resend OTP</button>
+                <br>
+            </div>
+            <div id="step3" style="display: none;">
+                <label for="mobileno">Mobile No. :</label>
+                <input type="tel" name="mobileno" id="mobileno" pattern="[0-9]{10}" placeholder="XXXXXXXXXX"
+                    minlength="10" maxlength="10" required>
+
+                <br>
+                <br>
+                <label for="password">Password :</label>
+                <input type="password" name="password" id="password" placeholder="Create Your Password" required
+                    minlength="6">
+                <br>
+                <br>
+                <input type="submit" value="Save" id="createbtn">
+                <div class="spinner" id="spinner" style="display: none;"></div>
+            </div>
+        </form>
+    </section>
+
+</body>
+<script>
+    let currentStep = 1;
+    let otpvalueis = 0;
+    // let otpvalueis = 123456;
+    let timerInterval;
+    var responcevalue;
+
+    function nextStep(step) {
+        document.getElementById("step" + currentStep).style.display = "none";
+
+        if (step === 2) {
+            document.getElementById("step" + step).style.display = "block";
+            sendotp(); // Call the sendotp function when moving to step 2
+            startTimer();
+        } else if (step === 3) {
+            document.getElementById("step" + 1).style.display = "block";
+            document.getElementById("step" + 3).style.display = "block";
+            document.getElementById("otp").style.display = "none";
+            document.getElementById("next_btn").style.display = "none";
+            document.getElementById("resendOTPBtn").style.display = "none";
+            document.getElementById("timer_value").textContent = "";
+            document.getElementById("Info_message1").style.display = "none";
+            document.getElementById("name").readOnly = true;
+            document.getElementById("email").readOnly = true;
+        }
+
+        currentStep = step;
+    }
+
+    function validateStep1() {
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (name === "" || email === "") {
+        document.getElementById("Info_message1").textContent = "Please fill in both name and email.";
+    } else if (!emailPattern.test(email)) {
+        document.getElementById("Info_message1").textContent = "Please enter a valid email address.";
+    } else {
+        document.getElementById("Info_message1").textContent = "";
+        nextStep(2);
+    }
+}
+
+
+    function startTimer() {
+        let timeLeft = 120; // 2 minutes
+        timerInterval = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                document.getElementById("otp").style.display = "none";
+                document.getElementById("resendOTPBtn").style.display = "block";
+                document.getElementById("timer_value").textContent = "";
+            } else {
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                document.getElementById("timer_value").textContent = `Time Left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                timeLeft--;
+            }
+        }, 1000);
+    }
+
+    function resendOTP() {
+        clearInterval(timerInterval);
+        document.getElementById("otp").style.display = "block";
+        document.getElementById("resendOTPBtn").style.display = "none";
+        document.getElementById("timer_value").textContent = "";
+        sendotp();
+        startTimer();
+    }
+
+    let url = 'https://script.google.com/macros/s/AKfycbzLtrHbvatZDCrqlqfZSD7ktW7h6eL3LALh5rajhCKPfZyw711kh_r7cRceJUjnh8nc/exec';
+
+    let btn = document.getElementById("createbtn");
+    let form = document.getElementById("form");
+    btn.addEventListener("click", (e) => {
+        spinner.style.display = "inline-block";
+        alert("run")
+        let d = new FormData(form);
+        fetch(url, {
+            method: "POST",
+            body: d
+        })
+            .then((res) => res.text())
+            .then((finalRes) => {
+                console.log(finalRes);
+                responcevalue = finalRes;
+                displaymessage(finalRes);
+
+            });
+
+        e.preventDefault();
+
+        // Save form data to localStorage
+        localStorage.setItem("signin_form_data", JSON.stringify(Object.fromEntries(d.entries())));
+
+       
+
+        document.getElementById("Info_message1").style.display = "block";
+
+        console.log(responcevalue);
+        // if (responcevalue == 'Success') {
+        //     document.getElementById("Info_message1").textContent = "Account Create Successfuly";
+        //     setTimeout(() => {
+        //         window.location.href = "../HTML/firstform.html";
+        //     }, 1000);
+        // } else  if (responcevalue == "Success Exist"){
+        //     document.getElementById("Info_message1").textContent = "The User Is Already Exist.";
+        // }
+    });
+
+    function displaymessage(finalRes){
+        if (finalRes == 'Success') {
+            localStorage.setItem("gsigndatas", "true");
+            document.getElementById("Info_message1").textContent = "Account Create Successfuly";
+            setTimeout(() => {
+                window.location.href = "../HTML/firstform.html";
+            }, 1000);
+        } else  if (finalRes == "Success Exist"){
+            document.getElementById("Info_message1").textContent = "The User Is Already Exist.";
+            spinner.style.display = "none";
+            setTimeout(() => {
+                location.reload();                
+            }, 2000);
+        }
+    }
+
+
+    // Automatically move to the next step if OTP is correct
+    document.getElementById("otp").addEventListener("input", function () {
+        let enteredOTP = this.value;
+        if (enteredOTP.length === 6) {
+            if (enteredOTP == otpvalueis) {
+                nextStep(3); // Move to the next step automatically if OTP is correct
+            }
+        }
+    });
+
+    function sendotp() {
+        let otpname = document.getElementById("name").value;
+        let otpemail = document.getElementById("email").value;
+
+        // Generate a random 6-digit OTP (for demonstration purposes)
+        let otpotp = Math.floor(100000 + Math.random() * 900000);
+
+        otpvalueis = otpotp;
+        // console.log(otpvalueis)
+
+        let data = new FormData();
+        data.append("name", otpname);
+        data.append("email", otpemail);
+        data.append("otp", otpotp);
+
+        fetch("https://script.google.com/macros/s/AKfycbwhOdW5TJ_5uB9mNOCI-hNzQWFOnIhDNdZY5KTUfpRKitnC9DwS61_rr04Z36yNdvPe/exec", {
+            method: "POST",
+            body: data,
+        })
+            .then((res) => res.text())
+            .then((data) => console.log(data));
+    }
+
+</script>
+
+</html>
