@@ -198,7 +198,7 @@ function rokadbahidisplayData(formType) {
       insertBlankRow(table, 7, 17, prevDate, Formid, R_BANK_RASHI); // Adjust cell count accordingly
     }
 
-    console.log(formType + "Data" + i);
+    // console.log(formType + "Data" + i);
 
     var row = table.insertRow(-1);
 
@@ -740,7 +740,7 @@ function caluculatingvalues(date, Formid, R_BANK_RASHI) {
       var panchaya_data23 = panchaya_data2["Purv_Rashi"];
       var Npanchaya_data23 = panchaya_data2["NPurv_Rashi"];
 
-      console.log(panchaya_data23 + "panchaya_data203");
+      // console.log(panchaya_data23 + "panchaya_data203");
 
       var treecounttwo = localStorage.getItem("treecounttwo");
       var firstid = 0;
