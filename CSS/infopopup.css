@@ -1,0 +1,64 @@
+/* Styling for the popup container */
+.popup {
+    width: 80%;
+    /* background-color: rgba(0, 0, 0, 0.5); Semi-transparent black background */
+    z-index: 9999; /* Ensure the popup is on top of other content */
+    overflow: auto; /* Enable scrolling if content exceeds viewport */
+    background-color: transparent;
+    border: 2px solid black;
+    padding: 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Styling for the popup content */
+.popup-content {
+    background-color: #f9f9f9; /* Light gray background */
+    /* margin: 0 auto; Center the popup vertically and horizontally */
+    padding: 20px;
+    /* border-radius: 10px; */
+    /* width: 70%; Set the width of the popup */
+    max-width: 500px; /* Maximum width for larger screens */
+}
+
+/* Styling for the close button */
+
+
+.close:hover {
+    color: black;
+}
+
+/* Styling for the icons */
+.popup-content .fas {
+    margin-right: 5px;
+}
+
+/* Styling for the input fields and labels */
+.popup-content label {
+    margin-bottom: 10px;
+    display: block;
+}
+
+.popup-content input[type="text"] {
+    width: calc(100% - 20px); /* Adjust width to fit within the popup */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    outline: none;
+}
+
+/* Styling for the buttons */
+.popup-content input[type="button"] {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.popup-content input[type="button"]:hover {
+    background-color: #45a049; /* Darker green on hover */
+}

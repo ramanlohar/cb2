@@ -5,14 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account</title>
-    <link rel="stylesheet" href="form.css">
     <link rel="stylesheet" href="../CSS/sidebar.css">
+    <link rel="stylesheet" href="form.css">
     <link rel="stylesheet" href="CSS/form.css">
 </head>
 
 <body>
     <header>
         <div id="heading">Cashbook Sign In</div>
+        <div>
+            <img id="logo" src="../images/logo.jpg" alt="Logo">
+        </div>
     </header>
     <section>
         <form id="form">
@@ -49,6 +52,10 @@
                 <br>
                 <input type="submit" value="Save" id="createbtn">
                 <div class="spinner" id="spinner" style="display: none;"></div>
+
+            </div>
+            <div class="btn-div">
+                <p>Already have an account? <a href="LSpage.html">Login</a></p>
             </div>
         </form>
     </section>
@@ -84,19 +91,19 @@
     }
 
     function validateStep1() {
-    let name = document.getElementById("name").value.trim();
-    let email = document.getElementById("email").value.trim();
-    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        let name = document.getElementById("name").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (name === "" || email === "") {
-        document.getElementById("Info_message1").textContent = "Please fill in both name and email.";
-    } else if (!emailPattern.test(email)) {
-        document.getElementById("Info_message1").textContent = "Please enter a valid email address.";
-    } else {
-        document.getElementById("Info_message1").textContent = "";
-        nextStep(2);
+        if (name === "" || email === "") {
+            document.getElementById("Info_message1").textContent = "Please fill in both name and email.";
+        } else if (!emailPattern.test(email)) {
+            document.getElementById("Info_message1").textContent = "Please enter a valid email address.";
+        } else {
+            document.getElementById("Info_message1").textContent = "";
+            nextStep(2);
+        }
     }
-}
 
 
     function startTimer() {
@@ -150,7 +157,7 @@
         // Save form data to localStorage
         localStorage.setItem("signin_form_data", JSON.stringify(Object.fromEntries(d.entries())));
 
-       
+
 
         document.getElementById("Info_message1").style.display = "block";
 
@@ -165,18 +172,18 @@
         // }
     });
 
-    function displaymessage(finalRes){
+    function displaymessage(finalRes) {
         if (finalRes == 'Success') {
             localStorage.setItem("gsigndatas", "true");
             document.getElementById("Info_message1").textContent = "Account Create Successfuly";
             setTimeout(() => {
                 window.location.href = "../HTML/firstform.html";
             }, 1000);
-        } else  if (finalRes == "Success Exist"){
+        } else if (finalRes == "Success Exist") {
             document.getElementById("Info_message1").textContent = "The User Is Already Exist.";
             spinner.style.display = "none";
             setTimeout(() => {
-                location.reload();                
+                location.reload();
             }, 2000);
         }
     }

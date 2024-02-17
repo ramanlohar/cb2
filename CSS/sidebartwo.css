@@ -1,0 +1,23 @@
+
+#sidebar_footer {
+    background-color: rgba(117, 153, 220, 0.613);
+    width: 90%;
+    padding: 10px;
+    /* color: white; */
+    border-top: 1px solid rgb(182, 182, 182);
+    
+}
+#sidebar_footer p {
+    /* background-color: aliceblue; */
+    font-size: 14px;
+}
+
+#sidebar_footer button{
+    /* color: white; */
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    margin: auto;
+    width: 100%;
+}

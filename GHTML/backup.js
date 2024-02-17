@@ -45,5 +45,4 @@ function backupdataongsheets() {
     backuptime = localStorage.setItem("backuptimeday", dayOfWeek);
   }
 }
-
 backupdataongsheets();

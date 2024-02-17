@@ -68,12 +68,19 @@ img {
     /* transition: left 10s; */
     border-right: 1px  solid black ;
     z-index: 3;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    /* align-items: stretch; */
+    justify-content: space-between;
 }
 
 .sidebar-head{
     background-color: var(--theme-background);
     min-height: 280px;
     height: 40%;
+   
 }
 
 .side-heading{
@@ -82,6 +89,8 @@ img {
     color: white;
     padding: 22px;
     background-color: var(--theme-background2);
+    position: sticky;
+    top: 0;
 }
 #close-btn {
     position: absolute;
@@ -90,6 +99,7 @@ img {
     cursor: pointer;
     font-size: 40px;
     color: white;
+    z-index: 50;
 }
 
 .ledger-div{
@@ -101,7 +111,7 @@ img {
     box-sizing: border-box;
 }
 .ledger-div button{
-    background-color: aquamarine;
+    background-color: rgba(19, 231, 255, 0.47);
     /* padding: 10px; */
     padding: 10px 40px;
     border-radius: 10px;
@@ -161,3 +171,4 @@ section {
     place-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add box shadow */
 }
+

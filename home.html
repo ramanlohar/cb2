@@ -9,9 +9,41 @@
     <script src="https://kit.fontawesome.com/8d4098fe32.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="CSS/sidebar.css">
     <link rel="stylesheet" href="CSS/home.css">
+    <link rel="stylesheet" href="CSS/sidebartwo.css">
+    <link rel="stylesheet" href="CSS/popup.css">
+    <link rel="stylesheet" href="CSS/infopopup.css">
 </head>
 
 <body>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <span>
+                <span><i class="fas fa-info-circle"></i></span>
+                <div id="account_info_div_popup">
+                    <div>
+                        <label for="">Name:</label>
+                        <input type="text" id="Name_info_popup" readonly>
+                    </div>
+                    <div>
+                        <label for="">Email:</label>
+                        <input type="text" id="Email_info_popup" readonly>
+                    </div>
+                    <div>
+                        <label for="">Mobile No:</label>
+                        <input type="text" id="Mobile_info_popup" readonly>
+                    </div>
+                    <div>
+                        <input type="button" value="Back Up">
+                    </div>
+                    <div>
+                        <input type="button" value="Logout">
+                    </div>
+                </div>
+            </span>
+        </div>
+    </div>
 
     <header>
         <div id="menu-icon">&#9776;</div>
@@ -49,11 +81,16 @@
                     <button class="zoom-btn" type="button" id="zoomp-btn">+</button>
                     <button class="zoom-btn" type="button" id="zoomm-btn">-</button>
                 </div>
-                
-<!--                 <div>
+
+                <!--                 <div>
                     <a href="Input Forms/notification.html">click</a>
                 </div> -->
             </div>
+            
+        </div>
+        <div id="sidebar_footer">
+            <button id="settingbtn">Account <i class="fa-solid fa-gear"></i></button>
+            <p id="accountemailid">ramanlohar8@gmail.com</p>
         </div>
 
     </div>
@@ -79,7 +116,7 @@
                 <th rowspan="2">खाता पन्ना</th>
                 <th rowspan="2" style="width: 20%">व्यय के ब्यौरे</th>
                 <th colspan="3">व्यय का विवरण</th>
-                <th rowspan="2" id="hasta" >हस्ता.</th>
+                <th rowspan="2" id="hasta">हस्ता.</th>
                 <th rowspan="2">
                     &nbsp;&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;&nbsp;
                 </th>
@@ -115,28 +152,31 @@
         </table>
     </section>
     <div class="paper-flower"></div>
-    
+
     <div id="floating-button" onclick="addbtn()">Add</div>
 
     <script>
         localStorage.removeItem("birthdayimage");
     </script>
-    
+
     <script src="JavaScript/home.js"></script>
-    
+
     <script src="JavaScript/focas.js"></script>
-    
+
     <script src="JavaScript/twohome.js"></script>
-    
+
     <script src="JavaScript/sidebar.js"></script>
     <script src="GHTML/backup.js"></script>
     <!-- <script src="JavaScript/tablezoom.js"></script> -->
     <script src="JavaScript/preloadimg.js"></script>
-    
+
     <script src="JavaScript/birthday.js"></script>
-    
+
     <script src="JavaScript/sendmail.js"></script>
-    
+
+    <script src="JavaScript/account.js"></script>
+    <script src="JavaScript/popup.js"></script>
+
     <!-- <script src="JavaScript/search.js"></script> -->
     <!-- <script src="JavaScript/flowerdrop.js"></script> -->
 </body>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cashbook App</title>
+    <link rel="stylesheet" href="../CSS/sidebar.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #heading {
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        #logo {
+            max-width: 50px;
+            border-radius: 50%;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 400px;
+        }
+
+        .logo {
+            max-width: 100px;
+            margin-bottom: 20px;
+            border-radius: 50%;
+        }
+
+        .btn-div {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            text-transform: capitalize;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            display: flex;
+            margin: auto;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        form div {
+            margin-bottom: 15px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        #spinner {
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-top: 4px solid rgba(255, 255, 255, 0.9);
+            transform-origin: center;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+            /* Keep this if you need margin on the left */
+            display: none;
+            text-transform: lowercase;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+                /* Start rotation from 0 degrees */
+            }
+
+            100% {
+                transform: rotate(360deg);
+                /* End rotation at 360 degrees */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="heading">Cashbook</div>
+        <div>
+            <img id="logo" src="../images/logo.jpg" alt="Logo">
+        </div>
+    </header>
+    <div class="container">
+        <img class="logo" src="https://ramanlohar.github.io/Demo/logo.png" alt="Cashbook App Logo">
+
+        <form id="form">
+            <div>
+                <input type="email" name="email" placeholder="Enter Your Username" id="emaillogin" required>
+            </div>
+            <div>
+                <input type="password" name="password" placeholder="Enter Your Password" required>
+            </div>
+            <div>
+                <p id="Info_message"></p>
+            </div>
+            <div>
+                <button class="btn submit-btn" type="submit">Login <i id="spinner"></i></button>
+            </div>
+        </form>
+
+        <div class="btn-div">
+            <p>Don't have an account? <a href="create.html">Signin</a></p>
+        </div>
+    </div>
+</body>
+<script>
+    var url = 'https://script.google.com/macros/s/AKfycbwe9Bko7UFY3Exa1OEEs-KmD0WdB1Zfs5N-7ybsygvqKhjOh6mSVrLLY7JzVirZrHBFHQ/exec';
+
+    let form = document.getElementById("form");
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let formData = new FormData(form);
+
+        var submit_btn = document.querySelector(".submit-btn");
+        submit_btn.innerHTML = `Verifying.. <i id="spinner"></i>`;
+        let spinner = document.getElementById("spinner");
+        spinner.style.display = "block"; // Show spinner during fetch
+
+
+        fetch(url, {
+            method: "POST",
+            body: formData
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(finalRes => {
+                spinner.style.display = "none"; // Hide spinner after fetch completes
+                submit_btn.innerHTML = `Login`;
+                console.log(finalRes);
+
+                // let str = "Found_login-Raman Lohar-6264338077";
+                let str = finalRes;
+                let parts = str.split('-');
+                let part1 = parts[0];
+                let part2 = parts[1];
+                let part3 = parts[2];
+
+                console.log(part1); // Output: "Found_login"
+
+
+                if (part1 === "Found_login") {
+                    localStorage.setItem("gsigndatas", "true");
+
+                    var emaillogin = document.getElementById("emaillogin").value;
+
+                    var d = {
+                        "email": emaillogin,
+                        "mobileno": part3,
+                        "name": part2
+                    }
+
+                    var data = JSON.stringify(d)
+
+                    localStorage.setItem("signin_form_data", data)
+
+
+                    document.getElementById("Info_message").textContent = "LOGIN Successfully.";
+                    setTimeout(() => {
+                        // window.location.href = "../HTML/firstform.html";
+                        getdatafromgsheet();
+                    }, 1000);
+                } else if (finalRes === "P_not_match") {
+                    document.getElementById("Info_message").textContent = "Incorrect Password!";
+                    setTimeout(() => {
+                        document.getElementById("Info_message").textContent = "";
+                        // location.reload();
+                    }, 2000);
+                } else if (finalRes === "Email_not_found") {
+                    document.getElementById("Info_message").textContent = "Account not found!";
+                    setTimeout(() => {
+                        document.getElementById("Info_message").textContent = "";
+                        location.reload();
+                    }, 2000);
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+                spinner.style.display = "none"; // Hide spinner in case of error
+            });
+    });
+
+    function getdatafromgsheet() {
+        let formData = localStorage.getItem("signin_form_data");
+        formData = JSON.parse(formData);
+
+        let emailidfordisplay = formData["email"];
+
+        getData(emailidfordisplay);
+
+        
+    }
+
+    function getData(emailidfordisplay) {
+        var sheetName = emailidfordisplay;
+        console.log(sheetName)
+        var url = 'https://script.google.com/macros/s/AKfycbydRhtebpNlzCXSVjPoBsgVbThFUkdsQzplbB03Yc9HezHFK6Gx_loeRgN5pVVYUFH-/exec?sheetname=' + encodeURIComponent(sheetName);
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                // var output = document.getElementById('output');
+                // output.innerHTML = '<h3>Data from Sheet: ' + sheetName + '</h3>';
+                // output.innerHTML += '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                saveData(data)
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    function saveData(dataToSave) {
+        // const dataToSave = document.getElementById('localStorageDataInput').value;
+        localStorage.clear();
+
+        try {
+            const parsedData = JSON.parse(dataToSave);
+            for (const key in parsedData) {
+                localStorage.setItem(key, parsedData[key]);
+            }
+            alert('Data saved to local storage!');
+            setTimeout(() => {
+            window.location.href = "../home.html"
+        }, 5000);
+        } catch (error) {
+            alert('Invalid JSON data. Please check and try again.');
+        }
+    }
+</script>
+
+</html>
