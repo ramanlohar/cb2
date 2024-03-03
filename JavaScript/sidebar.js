@@ -73,5 +73,5 @@ document.body.addEventListener('click', function (event) {
 
 
 function redledger(){
-    window.location.href  = "HTML/ledger.html"
+    window.location.href  = "HTML/le.html"
 }

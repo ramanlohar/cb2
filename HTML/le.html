@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/sidebar.css">
+    <!-- <link rel="stylesheet" href="../CSS/ledgerh.css"> -->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        #ladger_box {
+            /* background-color: #b3242479; */
+            border-radius: 10px;
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
+            /* padding: 0px 10px 10px 10px; */
+            margin: 15px;
+            /* color: white; */
+        }
+
+        #ladger_box  {
+            background-color: #567fca79;
+            border-radius: 10px 10px 10px 10px;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+            padding: 10px 10px 10px 10px;
+            /* margin: 15px; */
+            /* color: white; */
+        }
+
+        p {
+            padding: 5px 10px 5px 10px;
+            padding-bottom: 4px;
+            font-size: 20px;
+            min-width: 120px;
+            font-weight: bold;
+            background-color: #567fca79;
+            width: max-content;
+            border-radius: 10px 10px 0px 0px;
+            z-index: 22;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            /* color: rgb(0, 0, 0); */
+            /* margin-top: 0px; */
+        }
+
+        th,
+        td {
+            /* border: 1px solid #ddd; */
+            padding: 4px;
+            text-align: left;
+            font-size: larger;
+            text-transform: capitalize;
+        }
+
+        th {
+            background-color: #f2f2f2a6;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        #content_box {
+            padding-top: 10px;
+            padding: 0px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <div id="menu-icon" onclick="backtohome();">&#9664;</div>
+        <div id="heading">Ledger</div>
+        <div>
+            <img id="logo" src="../images/logo.jpg" alt="Logo">
+        </div>
+    </header>
+    <section id="content_box">
+        <div id="display">
+            
+        </div>
+    </section>
+
+</body>
+<script>
+    function backtohome() {
+
+window.location.href = "../home.html"
+
+}
+</script>
+<script src="../JavaScript/ladger.js"></script>
+<!-- <script src="../JavaScript/ladger2.js"></script> -->
+<!-- <script src="../JavaScript/ladger222.js"></script> -->
+
+</html>

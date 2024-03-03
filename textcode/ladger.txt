@@ -1,0 +1,149 @@
+function madvalues() {
+  let madFormData = localStorage.getItem("madFormData");
+
+  if (madFormData && madFormData.length > 0) {
+    // Display the retrieved data
+    madFormData = JSON.parse(madFormData); // Parse the string into an array
+
+    madFormData.forEach((data, index) => {
+      var partiaay = data.textValue;
+      var aayN = data.numberValue;
+      var aayB = data.numberValue2;
+      var vyayN = 0;
+      var vyayB = 0;
+
+      console.log(partiaay, aayB, aayN);
+
+      combine(partiaay, aayB, aayN);
+
+      // Calculate something using vyayN and vyayB?
+      // Example: vyayN = aayN * someValue;
+      // Example: vyayB = aayB * someValue;
+    });
+  }
+}
+
+let array1 = [];
+let rbFormCount = localStorage.getItem("rbFormCount");
+function save() {
+  for (let index = 0; index <= rbFormCount; index++) {
+    let rbData = localStorage.getItem("rbData" + index);
+
+    if (rbData) {
+      let = rbDatavalue = JSON.parse(rbData);
+      if (rbDatavalue["r_Bajt LS"]) {
+      if (rbDatavalue["r_Bajt LS"] !== ' ') {
+        if (array1.length == 0) {
+          array1.push(rbDatavalue["r_Bajt LS"]);
+        } else {
+          let available;
+          let ar1lv = array1.length - 1;
+          for (j = 0; j < array1.length; j++) {
+            if (array1[j] == rbDatavalue["r_Bajt LS"]) {
+              available = true;
+            }
+          }
+          if (!available) {
+            array1.push(rbDatavalue["r_Bajt LS"]);
+          }
+        }
+      }
+      }
+
+       ///////////////////////////////
+
+       if (rbDatavalue["r_Bajt LS"]) {
+        if (rbDatavalue["r_Bajt LS"] !== ' ') {
+          if (array1.length == 0) {
+            array1.push(rbDatavalue["r_Bajt LS"]);
+          } else {
+            let available;
+            let ar1lv = array1.length - 1;
+            for (j = 0; j < array1.length; j++) {
+              if (array1[j] == rbDatavalue["r_Bajt LS"]) {
+                available = true;
+              }
+            }
+            if (!available) {
+              array1.push(rbDatavalue["r_Bajt LS"]);
+            }
+          }
+        }
+        }
+
+      //////////////////////////////
+
+      // console.log(rbDatavalue["r_Bajt LS"])
+      // console.log(rbDatavalue["b_Bajt LS"])
+      console.log(array1);
+      // if(){
+      // }
+    }
+  }
+}
+
+let array2 = [];
+function calculatevalues() {
+  for (i = 0; i < array1.length; i++) {
+    let Btotalvalue = 0;
+    let Ntotalvalue = 0;
+    let madname;
+    for (let index = 0; index <= rbFormCount; index++) {
+      let rbData = localStorage.getItem("rbData" + index);
+
+      //   console.log(rbDatavalue["r_Bajt LS"]);
+
+      if (rbData) {
+        let = rbDatavalue = JSON.parse(rbData);
+        if (array1[i] == rbDatavalue["r_Bajt LS"]) {
+          let Btv = rbDatavalue["r_Bank Rashi"];
+          let Ntv = rbDatavalue["r_Nagad Rashi"];
+          Btotalvalue = Btotalvalue + parseFloat(Btv);
+          Ntotalvalue = Ntotalvalue + parseFloat(Ntv);
+          madname = rbDatavalue["r_Bajt LS"];
+        }
+        // totalvalue
+      }
+    }
+    let data = {
+      r_Bajt: madname,
+      Btotalvalue: Btotalvalue,
+      Ntotalvalue: Ntotalvalue,
+    };
+    array2.push(data);
+  }
+}
+
+function combine(partiaay, aayB, aayN) {
+  let available = false; // Initialize available as false
+  let availableindexat = 0;
+  for (let index = 0; index < array2.length; index++) {
+    let arvalue = array2[index];
+    if (arvalue["r_Bajt"] === partiaay) {
+      available = true;
+      availableindexat = index;
+      break; // Exit the loop once a match is found
+    }
+  }
+  if (available) {
+    // Update the values in the found object
+    array2[availableindexat]["Btotalvalue"] += aayB;
+    array2[availableindexat]["Ntotalvalue"] += aayN;
+
+    console.log(availableindexat + " done");
+  } else {
+    let data = {
+      r_Bajt: partiaay,
+      Btotalvalue: aayB,
+      Ntotalvalue: aayN,
+    };
+    array2.push(data);
+  }
+}
+
+////////////////////////////////////////////////////////////////
+
+save();
+calculatevalues();
+madvalues();
+console.log(array2);
