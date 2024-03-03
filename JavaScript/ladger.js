@@ -99,8 +99,8 @@ function calculatevalues() {
       if (rbData) {
         let = rbDatavalue = JSON.parse(rbData);
         if (array1[i] == rbDatavalue["r_Bajt LS"]) {
-          let Btv = rbDatavalue["r_Bank Rashi"];
-          let Ntv = rbDatavalue["r_Nagad Rashi"];
+          let Btv = rbDatavalue["r_Bank Rashi"] || 0;
+          let Ntv = rbDatavalue["r_Nagad Rashi"] || 0;
           Btotalvalue = Btotalvalue + parseFloat(Btv);
           Ntotalvalue = Ntotalvalue + parseFloat(Ntv);
           madname = rbDatavalue["r_Bajt LS"];
@@ -130,8 +130,8 @@ function calculatevalues() {
       if (rbData) {
         let = rbDatavalue = JSON.parse(rbData);
         if (array3[i] == rbDatavalue["b_Bajt LS"]) {
-          let Btv = rbDatavalue["b_Bank Rashi"];
-          let Ntv = rbDatavalue["b_Nagad Rashi"];
+          let Btv = rbDatavalue["b_Bank Rashi"] || 0;
+          let Ntv = rbDatavalue["b_Nagad Rashi"] || 0;
           Btotalvalue = Btotalvalue + parseFloat(Btv);
           Ntotalvalue = Ntotalvalue + parseFloat(Ntv);
           madname = rbDatavalue["b_Bajt LS"];
@@ -189,39 +189,39 @@ let array6 = [];
 
 for (let a = 0; a < array2.length; a++) {
   let ar2value = array2[a];
-  let foundMatch = false; // Initialize a flag to track if a match is found
+  let foundMatch = false; 
 
   for (let b = 0; b < array4.length; b++) {
     let ar4value = array4[b];
 
     if (ar2value["r_Bajt"] === ar4value["r_Bajt"]) {
-      foundMatch = true; // Set the flag to true if a match is found
+      foundMatch = true; 
 
       var finaldata = {
         bjat: ar2value["r_Bajt"],
-        ABtotal: ar2value["Btotalvalue"],
-        ANtotal: ar2value["Ntotalvalue"],
-        VBtotal: ar4value["Btotalvalue"],
-        VNtotal: ar4value["Ntotalvalue"],
-        yBtotal: ar2value["Btotalvalue"] - ar4value["Btotalvalue"],
-        yNtotal: ar2value["Ntotalvalue"] - ar4value["Ntotalvalue"],
+        ABtotal: formatNumber(ar2value["Btotalvalue"]), // Format number
+        ANtotal: formatNumber(ar2value["Ntotalvalue"]), // Format number
+        VBtotal: formatNumber(ar4value["Btotalvalue"]), // Format number
+        VNtotal: formatNumber(ar4value["Ntotalvalue"]), // Format number
+        yBtotal: formatNumber(ar2value["Btotalvalue"] - ar4value["Btotalvalue"]), // Format number
+        yNtotal: formatNumber(ar2value["Ntotalvalue"] - ar4value["Ntotalvalue"]), // Format number
       };
 
       array6.push(finaldata);
 
-      break; // Exit the loop once a match is found
+      break; 
     }
   }
 
-  if (!foundMatch) { // If no match is found for ar2value, add default values
+  if (!foundMatch) { 
     var finaldata = {
       bjat: ar2value["r_Bajt"],
-      ABtotal: ar2value["Btotalvalue"],
-      ANtotal: ar2value["Ntotalvalue"],
-      VBtotal: 0, // Assuming default values
-      VNtotal: 0, // Assuming default values
-      yBtotal: ar2value["Btotalvalue"],
-      yNtotal: ar2value["Ntotalvalue"],
+      ABtotal: formatNumber(ar2value["Btotalvalue"]), // Format number
+      ANtotal: formatNumber(ar2value["Ntotalvalue"]), // Format number
+      VBtotal: "0", // Default value without decimal
+      VNtotal: "0", // Default value without decimal
+      yBtotal: formatNumber(ar2value["Btotalvalue"]), // Format number
+      yNtotal: formatNumber(ar2value["Ntotalvalue"]), // Format number
     };
 
     array6.push(finaldata);
@@ -229,6 +229,12 @@ for (let a = 0; a < array2.length; a++) {
 }
 
 console.log(array6);
+
+function formatNumber(value) {
+  let formattedValue = parseFloat(value).toFixed(2); // Fix to two decimal places
+  return formattedValue.endsWith('.00') ? parseInt(value) : formattedValue; // Remove decimal part if it's .00
+}
+
 
 
 for (let index = 0; index < array6.length; index++) {
@@ -255,13 +261,13 @@ for (let index = 0; index < array6.length; index++) {
                         <th>योग</th>
                     </tr>
                     <tr>
-                        <td>bank</td>
+                        <td>बैंक राशि</td>
                         <td>${ABtotal}</td>
                         <td>${VBtotal}</td>
                         <td>${yBtotal}</td>
                         </tr>
                         <tr>
-                        <td>nagad</td>
+                        <td>नगद राशि</td>
                         <td>${ANtotal}</td>
                         <td>${VNtotal}</td>
                         <td>${yNtotal}</td>
