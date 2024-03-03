@@ -25,6 +25,7 @@
     <script>
 
         var indexnumber = 0;
+        let madarr = []
 
         function splitmadvalues() {
             var totalData = {};
@@ -47,7 +48,7 @@
                         aayN: aayN
                     };
 
-                    console.log(partiaay, aayN, aayB);
+                    // console.log(partiaay, aayN, aayB);
                     localStorage.setItem(partiaay, JSON.stringify(data1));
 
 
@@ -88,6 +89,12 @@
                             var r_bankAmount = parseFloat(formData["r_Bank Rashi"]) || 0;
 
                             var madnamevalue = localStorage.getItem(currentDateR);
+                            // console.log(currentDateR + "raman")
+
+
+                            madarr.push(currentDateR)
+
+                            localStorage.setItem("displayed_ladger_forms", madarr);
 
                             if (madnamevalue) {
                                 madnamevalue = JSON.parse(madnamevalue);
@@ -139,6 +146,9 @@
         }
 
         function displayValues(totalData) {
+
+            // console.log(totalData)
+
             const contentBox = document.getElementById("content_box");
 
             Object.keys(totalData).forEach(currentDate => {
@@ -184,16 +194,71 @@
             });
         }
 
-        function backtohome(){
+        function backtohome() {
 
             window.location.href = "../home.html"
-            
+
         }
+
+
+        function getmadsfromlocalstorage() {
+            let smadarr = [];
+            let madFormData = localStorage.getItem("madFormData");
+
+            if (madFormData) {
+                madFormData = JSON.parse(madFormData); // Parse the JSON string into an array of objects
+
+                madFormData.forEach(item => {
+                    let valueof = item.selectValue;
+                    smadarr.push(valueof);
+                    // console.log(valueof);
+                });
+            } else {
+                // console.log("No data found in local storage.");
+            }
+            // console.log(smadarr);
+
+            let maxLength = Math.max(madarr.length, smadarr.length);
+            for (let i = 0; i < maxLength; i++) {
+                if (madarr[i] !== smadarr[i]) {
+                    // console.log(smadarr[i]);
+
+                    let findvalue = smadarr[i];
+
+                    // Retrieve additional data from local storage
+                    let notdmad = JSON.parse(localStorage.getItem(findvalue));
+
+                    if (notdmad) { // Check if notdmad is not null
+                        // Create totalData object with the additional data
+                        let totalData = {};
+                        totalData[smadarr[i]] = {
+                            r_nagadTotal: notdmad['aayN'],
+                            r_bankTotal: notdmad['aayB'],
+                            b_nagadTotal: 0,
+                            b_bankTotal: 0
+                        };
+
+                        // Display the additional data
+                        displayValues(totalData);
+                    } else {
+                        // console.log("Additional data not found for " + madarr[i]);
+                    }
+                }
+            }
+        }
+
+
+        // getmadsfromlocalstorage();
+
+
 
         splitmadvalues();
         calculateAndStoreTotal();
+        getmadsfromlocalstorage();
+        // console.log(madarr)
     </script>
-    <script src="../JavaScript/sidebar.js"></script>
+    <!-- <script src="../JavaScript/sidebar.js"></script> -->
+    <script src="../JavaScript/ladger.js"></script>
 
 </body>
 
