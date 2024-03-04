@@ -22,8 +22,8 @@
             margin: 7px;
             /* color: white; */
         }
-        
-        #ladger_box  {
+
+        #ladger_box {
             background-color: #567fca79;
             border-radius: 10px 10px 10px 10px;
             box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
@@ -33,7 +33,7 @@
             margin-bottom: 15px;
         }
 
-        #ladger_box:nth-child(1)  {
+        #ladger_box:nth-child(1) {
             margin-top: 20px;
         }
 
@@ -61,7 +61,7 @@
             border: 1px solid #ddd;
             padding: 5px;
             text-align: left;
-            font-size:15px;
+            font-size: 15px;
             text-transform: capitalize;
         }
 
@@ -77,6 +77,37 @@
             padding-top: 10px;
             padding: 0px;
         }
+
+        .fade-in {
+            animation: fadeInAnimation ease 0.5s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+        .fade-out {
+            animation: fadeoutAnimation ease 0.5s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes fadeoutAnimation {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
     </style>
 
 </head>
@@ -91,17 +122,57 @@
     </header>
     <section id="content_box">
         <div id="display">
-            
+
         </div>
     </section>
 
 </body>
 <script>
+
+var prevScrollPos = window.pageYOffset || document.documentElement.scrollTop;
+
+window.addEventListener("scroll", () => {
+    var currentScrollPos = window.pageYOffset || document.documentElement.scrollTop;
+    var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    var ladgerBoxes = document.querySelectorAll("#ladger_box");
+
+    ladgerBoxes.forEach((box) => {
+        var boxPosition = box.getBoundingClientRect().top;
+        var boxHeight = box.getBoundingClientRect().height;
+
+        if (!(boxPosition > 0 && boxPosition < (viewportHeight + 1))) {
+            box.classList.remove("fade-in");
+            box.classList.remove("fade-out");
+        }
+    });
+
+    if (currentScrollPos > prevScrollPos) {
+        ladgerBoxes.forEach((box) => {
+            var boxPosition = box.getBoundingClientRect().top;
+            if (boxPosition > 0 && boxPosition < viewportHeight) {
+                box.classList.add("fade-in");
+            }
+        });
+        
+        // console.log("Scrolling down");
+    } else if (currentScrollPos < prevScrollPos) {
+        ladgerBoxes.forEach((box) => {
+            var boxPosition = box.getBoundingClientRect().bottom;
+            if (boxPosition > 0 && boxPosition < viewportHeight) {
+                box.classList.add("fade-in");
+            }
+        });
+        // console.log("Scrolling up");
+    }
+    prevScrollPos = currentScrollPos;
+});
+
+
     function backtohome() {
 
-window.location.href = "../home.html"
+        window.location.href = "../home.html"
 
-}
+    }
 </script>
 <script src="../JavaScript/ladger.js"></script>
 <!-- <script src="../JavaScript/ladger2.js"></script> -->

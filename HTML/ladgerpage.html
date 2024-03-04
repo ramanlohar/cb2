@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table id="combinedTable">
+        <tr>
+            <th>Date</th>
+            <th>Particular</th>
+            <th>Credit</th>
+            <th>Debit</th>
+            <th>Balance</th>
+        </tr>
+        <tr>
+            <td>Date</td>
+            <td>Particular</td>
+            <td>Credit</td>
+            <td>Debit</td>
+            <td>Balance</td>
+        </tr>
+    </table>
+</body>
+<script>
+    display_mad()
+    function display_mad() {
+  const madFormData = JSON.parse(localStorage.getItem("madFormData"));
+
+  if (madFormData && madFormData.length > 0) {
+    // Display the retrieved data
+
+    madFormData.forEach((data, index) => {
+      var partiaay = data.textValue;
+      var aayN = data.numberValue;
+      var aayB = data.numberValue2;
+      var vyayN = 0;
+      var vyayB = 0;
+
+      purvrokadbahidisplayData(partiaay, aayN, aayB, vyayN, vyayB);
+    });
+  } else {
+  }
+}
+
+function purvrokadbahidisplayData(partiaay,
+    aayN,
+    aayB,
+    vyayN,
+    vyayB,
+) {
+    var table = document.getElementById("combinedTable");
+    var row = table.insertRow(-1);
+
+    // var changeddateformate =convertDateFormat(date)
+
+    var cell = row.insertCell(0);
+    cell.innerHTML = '';
+
+    var cell = row.insertCell(1);
+    cell.innerHTML = "";
+
+    var cell = row.insertCell(2);
+    cell.innerHTML = "";
+
+    var cell = row.insertCell(3);
+    cell.innerHTML = partiaay;
+
+    var cell = row.insertCell(4);
+    cell.innerHTML = aayN;
+
+    var cell = row.insertCell(5);
+    cell.innerHTML = aayB;
+
+    var cell = row.insertCell(6);
+    cell.innerHTML = "";
+
+    var cell = row.insertCell(7);
+    cell.innerHTML = "";
+
+    var cell = row.insertCell(8);
+    cell.innerHTML = "";
+
+    var cell = row.insertCell(9);
+    cell.innerHTML = "";
+
+    var cell = row.insertCell(10);
+    cell.innerHTML = "";
+
+    var cell = row.insertCell(11);
+    cell.innerHTML = "";
+
+    var cell = row.insertCell(12);
+    cell.innerHTML = "";
+
+    var cell = row.insertCell(13);
+    cell.innerHTML = vyayN;
+
+    var cell = row.insertCell(14);
+    cell.innerHTML = vyayB;
+
+    var cell = row.insertCell(15);
+    cell.innerHTML = "";
+
+    var cell = row.insertCell(16);
+    cell.innerHTML = "";
+
+    var cell = row.insertCell(17);
+    cell.innerHTML = `<button class="btn_edit_del" id="Edit_button" onclick="editpurvshesh()"><i class="fa-solid fa-pen"></i></button>`;
+
+}
+</script>
+</html>
