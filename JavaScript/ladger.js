@@ -11,6 +11,7 @@ function madvalues() {
       var aayB = data.numberValue2;
       var vyayN = 0;
       var vyayB = 0;
+      
 
       console.log(partiaay, aayB, aayN);
 
@@ -235,7 +236,8 @@ function formatNumber(value) {
   return formattedValue.endsWith('.00') ? parseInt(value) : formattedValue; // Remove decimal part if it's .00
 }
 
-
+let totalR = 0
+let totalB = 0
 
 for (let index = 0; index < array6.length; index++) {
   let a6value = array6[index];
@@ -247,11 +249,17 @@ for (let index = 0; index < array6.length; index++) {
   let yBtotal = a6value["yBtotal"];
   let yNtotal = a6value["yNtotal"];
 
+  totalR = totalR + parseFloat(a6value["yBtotal"]);
+  totalB = totalB + parseFloat(a6value["yNtotal"]);
+
   const display = document.getElementById("display");
   let ladger_box = document.createElement("div");
   ladger_box.id = "ladger_box";
   ladger_box.innerHTML = `
+  <div id="head_div">
             <p>${bjat}</p>
+            <p id="view" onclick="viewpage('${bjat}');">View</p>
+            </div>
             <div>
                 <table>
                     <tr>
@@ -275,6 +283,17 @@ for (let index = 0; index < array6.length; index++) {
                 </table>
             </div> `;
 
+            function viewpage(info){
+              localStorage.setItem("ladger_info", info)
+              window.location.href = "ladgerpage.html"
+            }
+
   display.appendChild(ladger_box);
 }
+
+
 console.log(array4);
+console.log(totalR)
+console.log(totalB)
+
+document.getElementById("t_amount").innerHTML = " बैंक राशि : " + totalR + "<br>" +  "नगद राशि : " + totalB;

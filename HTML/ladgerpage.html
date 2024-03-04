@@ -1,114 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../CSS/sidebar.css">
+    <style>
+        /* CSS styles for the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 580px;
+            font-size: 14px;
+            text-align: justify;
+        }
+
+        th,
+        td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        /* tr:nth-child(even td:nth-child(2)){
+            width: 100px;
+        } */
+
+        th:nth-child(2) {
+            width: 67px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        th {
+            background-color: #dddddd;
+        }
+        #heading{
+            font-size: medium;
+            max-width: 200px;
+        }
+    </style>
 </head>
+
 <body>
-    <table id="combinedTable">
-        <tr>
-            <th>Date</th>
-            <th>Particular</th>
-            <th>Credit</th>
-            <th>Debit</th>
-            <th>Balance</th>
-        </tr>
-        <tr>
-            <td>Date</td>
-            <td>Particular</td>
-            <td>Credit</td>
-            <td>Debit</td>
-            <td>Balance</td>
-        </tr>
-    </table>
+    <header>
+        <div id="menu-icon" onclick="backtohome();">&#9664;</div>
+        <div id="heading">Ledger</div>
+        <div>
+            <img id="logo" src="../images/logo.jpg" alt="Logo">
+        </div>
+    </header>
+    <section id="content_box">
+
+        <table id="combinedTable">
+            <tr>
+                <th>क्र.</th>
+                <th>दिनांक</th>
+                <th>ब्यौरे</th>
+                <th>आय</th>
+                <th>व्यय</th>
+                <th>योग</th>
+                <th>राशि</th>
+            </tr>
+            <!-- <tr>
+                <td rowspan="2">No.</td>
+                <td rowspan="2">Date</td>
+                <td rowspan="2">Particular</td>
+                <td>Credit</td>
+                <td>Debit</td>
+                <td>Balance</td>
+                <td>Bank</td>
+            </tr>
+            <tr>
+                <td>Credit</td>
+                <td>Debit</td>
+                <td>Balance</td>
+                <td>Nagad</td>
+            </tr> -->
+        </table>
+    </section>
 </body>
 <script>
-    display_mad()
-    function display_mad() {
-  const madFormData = JSON.parse(localStorage.getItem("madFormData"));
 
-  if (madFormData && madFormData.length > 0) {
-    // Display the retrieved data
+function backtohome() {
 
-    madFormData.forEach((data, index) => {
-      var partiaay = data.textValue;
-      var aayN = data.numberValue;
-      var aayB = data.numberValue2;
-      var vyayN = 0;
-      var vyayB = 0;
-
-      purvrokadbahidisplayData(partiaay, aayN, aayB, vyayN, vyayB);
-    });
-  } else {
-  }
-}
-
-function purvrokadbahidisplayData(partiaay,
-    aayN,
-    aayB,
-    vyayN,
-    vyayB,
-) {
-    var table = document.getElementById("combinedTable");
-    var row = table.insertRow(-1);
-
-    // var changeddateformate =convertDateFormat(date)
-
-    var cell = row.insertCell(0);
-    cell.innerHTML = '';
-
-    var cell = row.insertCell(1);
-    cell.innerHTML = "";
-
-    var cell = row.insertCell(2);
-    cell.innerHTML = "";
-
-    var cell = row.insertCell(3);
-    cell.innerHTML = partiaay;
-
-    var cell = row.insertCell(4);
-    cell.innerHTML = aayN;
-
-    var cell = row.insertCell(5);
-    cell.innerHTML = aayB;
-
-    var cell = row.insertCell(6);
-    cell.innerHTML = "";
-
-    var cell = row.insertCell(7);
-    cell.innerHTML = "";
-
-    var cell = row.insertCell(8);
-    cell.innerHTML = "";
-
-    var cell = row.insertCell(9);
-    cell.innerHTML = "";
-
-    var cell = row.insertCell(10);
-    cell.innerHTML = "";
-
-    var cell = row.insertCell(11);
-    cell.innerHTML = "";
-
-    var cell = row.insertCell(12);
-    cell.innerHTML = "";
-
-    var cell = row.insertCell(13);
-    cell.innerHTML = vyayN;
-
-    var cell = row.insertCell(14);
-    cell.innerHTML = vyayB;
-
-    var cell = row.insertCell(15);
-    cell.innerHTML = "";
-
-    var cell = row.insertCell(16);
-    cell.innerHTML = "";
-
-    var cell = row.insertCell(17);
-    cell.innerHTML = `<button class="btn_edit_del" id="Edit_button" onclick="editpurvshesh()"><i class="fa-solid fa-pen"></i></button>`;
+window.location.href = "le.html"
 
 }
+
+    let balence = 0;
+    let balence2 = 0;
+
+    let bjat_LSvalue = localStorage.getItem("ladger_info");
+    // let bjat_LSvalue = "15 वा वित्त"
+
+    document.getElementById("heading").innerText = bjat_LSvalue;
+
+    function madvalues() {
+        let madFormData = localStorage.getItem("madFormData");
+
+        if (madFormData && madFormData.length > 0) {
+            // Display the retrieved data
+            madFormData = JSON.parse(madFormData); // Parse the string into an array
+
+            madFormData.forEach((data, index) => {
+                var partiaay = data.textValue;
+                var aayN = data.numberValue;
+                var aayB = data.numberValue2;
+                var vyayN = 0;
+                var vyayB = 0;
+
+                if (partiaay == bjat_LSvalue) {
+                    aayB = parseFloat(aayB)
+
+                    dispay("", aayB, 0, "पूर्व शेष", "", 0, 0)
+
+                }
+
+                //   console.log(partiaay, aayB, aayN);
+
+                //   combine(partiaay, aayB, aayN);
+
+                // Calculate something using vyayN and vyayB?
+                // Example: vyayN = aayN * someValue;
+                // Example: vyayB = aayB * someValue;
+            });
+        }
+    }
+
+    madvalues()
+
+    let rbFormCount = localStorage.getItem("rbFormCount");
+
+    function save() {
+        let count = 0;
+        for (let index = 0; index <= rbFormCount; index++) {
+            let rbData = localStorage.getItem("rbData" + index);
+
+            if (rbData) {
+                let = rbDatavalue = JSON.parse(rbData);
+                if (rbDatavalue["r_Bajt LS"]) {
+                    if (rbDatavalue["r_Bajt LS"] == bjat_LSvalue) {
+                        count++
+                        let r_Bank = rbDatavalue["r_Bank Rashi"]
+                        let r_Nagad = rbDatavalue["r_Nagad Rashi"] || 0
+                        let r_Particular = rbDatavalue["r_Particular"] || 0
+                        let Date = rbDatavalue["Date"]
+                        dispay(count, r_Bank, 0, r_Particular, Date, r_Nagad, 0)
+                    }
+                }
+
+                ///////////////////////////////
+
+                if (rbDatavalue["b_Bajt LS"]) {
+                    if (rbDatavalue["b_Bajt LS"] == bjat_LSvalue) {
+                        if (rbDatavalue["b_Bajt LS"] !== " ") {
+                            let b_Bank = rbDatavalue["b_Bank Rashi"] || 0
+                            let b_Nagad = rbDatavalue["b_Nagad Rashi"] || 0
+                            let b_Particular = rbDatavalue["b_Particular"]
+                            let Date = rbDatavalue["Date"]
+                            count++
+                            dispay(count, 0, b_Bank, b_Particular, Date, 0, b_Nagad)
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    function dispay(count, Credit, Debit, Particular, Date, CreditN, DebitN) {
+        let combinedTable = document.getElementById("combinedTable")
+        let trow = document.createElement("tr")
+        balence = balence + parseFloat(Credit) - parseFloat(Debit)
+        trow.innerHTML = `
+        <td rowspan="2">${count}</td>
+            <td rowspan="2">${Date}</td>
+            <td rowspan="2">${Particular}</td>
+            <td>${Credit}</td>
+            <td>${Debit}</td>
+            <td>${balence}</td>
+            <td>bank</td>
+        `
+        combinedTable.appendChild(trow)
+
+        let trow2 = document.createElement("tr")
+        balence2 = balence2 + parseFloat(CreditN) - parseFloat(DebitN)
+        trow2.innerHTML = `
+            <td>${CreditN}</td>
+            <td>${DebitN}</td>
+            <td>${balence2}</td>
+            <td>Nagad</td>
+        `
+        combinedTable.appendChild(trow2)
+
+        // let tdata = document.createElement("td")
+        // trow.appendChild(tdata)
+    }
+
+    save();
 </script>
+
 </html>
