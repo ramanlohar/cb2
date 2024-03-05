@@ -15,7 +15,10 @@
     <script>
         var gsigndatas = localStorage.getItem("gsigndatas");
         if(gsigndatas != true || gsigndatas != "true"){
-            window.location.href = "GHTML/create.html";
+            setTimeout(() => {
+                
+                window.location.href = "GHTML/create.html";
+            }, 1000);
         }
     </script>
 </head>
