@@ -107,6 +107,7 @@ td:nth-child(8) {
 
 .rowblack {
     background-color: #538fff49;
+    
 }
 
 .highlight {
@@ -165,4 +166,12 @@ th span {
     #confirmation-box button.no {
       background-color: #4CAF50;
     color: #fff;
+  }
+  .colorRed{
+    color: red;
+    
+  }
+  .bolditalic{
+    font-weight: bold;
+    font-style: italic;
   }

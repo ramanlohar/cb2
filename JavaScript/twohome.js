@@ -3,32 +3,32 @@ const alltd = document.querySelectorAll("td");
 alltd.forEach((td) => {
   let tdValue = td.innerText.trim();
 
-  if (
-    tdValue === "योग" ||
-    tdValue === "आय" ||
-    tdValue === "पूर्व शेष" ||
-    tdValue === "व्यय" ||
-    tdValue === "शेष"
-  ) {
-    // Change the background color for the specific td with innerText "Aay"
-    // td.style.backgroundColor = "red";
-    td.style.color = "black";
-    td.style.fontStyle = "italic";
-    td.style.fontWeight = "bold";
+  // if (
+  //   tdValue === "योग" ||
+  //   tdValue === "आय" ||
+  //   tdValue === "पूर्व शेष" ||
+  //   tdValue === "व्यय" ||
+  //   tdValue === "शेष"
+  // ) {
+  //   // Change the background color for the specific td with innerText "Aay"
+  //   // td.style.backgroundColor = "red";
+  //   td.style.color = "black";
+  //   td.style.fontStyle = "italic";
+  //   td.style.fontWeight = "bold";
 
-    // Apply CSS class to the entire row
-    td.parentElement.classList.add("rowblack");
-  }
+  //   // Apply CSS class to the entire row
+  //   td.parentElement.classList.add("rowblack");
+  // }
 
-  if (
-    tdValue === "पूर्व शेष" ||
-    tdValue === "शेष"
-  ) {
+  // if (
+  //   tdValue === "पूर्व शेष" ||
+  //   tdValue === "शेष"
+  // ) {
   
-    td.style.color = "red";
-    // Apply CSS class to the entire row
-    td.parentElement.classList.add("colorred");
-  }
+  //   td.style.color = "red";
+  //   // Apply CSS class to the entire row
+  //   td.parentElement.classList.add("colorred");
+  // }
 
   var panchaya_name1 = localStorage.getItem("karyalayData");
 

@@ -362,8 +362,12 @@ function avrokadbahidisplayData(
 ) {
   var table = document.getElementById("combinedTable");
   var row = table.insertRow(-1);
+  row.classList.add("rowblack");
   var row2 = table.insertRow(-1);
+  row2.classList.add("rowblack");
+  row2.classList.add("colorRed");
   var row3 = table.insertRow(-1);
+  row3.classList.add("rowblack");
   if (firstid == 1) {
     var date = "first_1";
   } else {
@@ -382,6 +386,7 @@ function avrokadbahidisplayData(
   cell.innerHTML = "";
 
   var cell = row.insertCell(3);
+  cell.classList.add("bolditalic");
   cell.innerHTML = "आय";
 
   var cell = row.insertCell(4);
@@ -409,6 +414,7 @@ function avrokadbahidisplayData(
   cell.innerHTML = "";
 
   var cell = row.insertCell(12);
+  cell.classList.add("bolditalic");
   cell.innerHTML = "व्यय";
 
   var cell = row.insertCell(13);
@@ -444,6 +450,7 @@ function avrokadbahidisplayData(
   cell.innerHTML = "";
 
   var cell = row2.insertCell(3);
+  cell.classList.add("bolditalic");
   cell.innerHTML = "पूर्व शेष";
 
   var cell = row2.insertCell(4);
@@ -471,6 +478,7 @@ function avrokadbahidisplayData(
   cell.innerHTML = "";
 
   var cell = row2.insertCell(12);
+  cell.classList.add("bolditalic");
   cell.innerHTML = "शेष";
 
   var cell = row2.insertCell(13);
@@ -505,6 +513,7 @@ function avrokadbahidisplayData(
   cell.innerHTML = "";
 
   var cell = row3.insertCell(3);
+  cell.classList.add("bolditalic");
   cell.innerHTML = "योग";
 
   var cell = row3.insertCell(4);
@@ -532,6 +541,7 @@ function avrokadbahidisplayData(
   cell.innerHTML = "";
 
   var cell = row3.insertCell(12);
+  cell.classList.add("bolditalic");
   cell.innerHTML = "योग";
 
   var cell = row3.insertCell(13);
