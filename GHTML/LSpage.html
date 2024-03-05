@@ -122,6 +122,38 @@
                 /* End rotation at 360 degrees */
             }
         }
+
+        .range-container {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            display: none;
+        }
+
+        .range-container div {
+            /* Use flexbox to align items */
+            /* Center items vertically */
+            width: 80%;
+            height: 20px;
+            background-color: #aecbea;
+            /* margin: auto; */
+            border-radius: 20px;
+            z-index: 10;
+        }
+
+        /* #rangenum {
+            margin-right: -20%;
+            Add some spacing between rangenum and rangediv
+        } */
+
+        #rangediv {
+            /* width: 10%; */
+            height: 20px;
+            background-color: #007bff;
+            border-radius: 20px;
+            z-index: 9;
+        }
     </style>
 </head>
 
@@ -149,6 +181,14 @@
                 <button class="btn submit-btn" type="submit">Login <i id="spinner"></i></button>
             </div>
         </form>
+
+        <div class="range-container">
+            <div>
+                <div id="rangediv"></div>
+            </div>
+            <h5 id="rangenum">0%</h5>
+        </div>
+
 
         <div class="btn-div">
             <p>Don't have an account? <a href="create.html">Signin</a></p>
@@ -211,6 +251,7 @@
 
 
                     document.getElementById("Info_message").textContent = "LOGIN Successfully.";
+                    document.querySelector(".submit-btn").style.display = "none";
                     setTimeout(() => {
                         // window.location.href = "../HTML/firstform.html";
                         getdatafromgsheet();
@@ -243,7 +284,7 @@
 
         getData(emailidfordisplay);
 
-        
+
     }
 
     function getData(emailidfordisplay) {
@@ -272,13 +313,48 @@
                 localStorage.setItem(key, parsedData[key]);
             }
             alert('Data saved to local storage!');
+            updaterange(16);
             setTimeout(() => {
-            window.location.href = "../home.html"
-        }, 5000);
+                // updaterange(100);
+                window.location.href = "../home.html"
+            }, 5000);
         } catch (error) {
             alert('Invalid JSON data. Please check and try again.');
         }
     }
+    // let index = 0
+    // let rangediv = document.querySelector("#rangediv")
+    // let range_cantainer = document.querySelector(".range-container")
+
+    function updaterange(index) {
+        // let index = 0; // Initialize the index
+        const range_cantainer = document.querySelector(".range-container");
+        range_cantainer.style.display = "flex";
+        const rangenum = document.querySelector("#rangenum");
+        const rangediv = document.getElementById("rangediv"); // Get the rangediv element by its ID
+
+        function updateValue() {
+            if (index <= 100) {
+                rangediv.style.width = index + "%"; // Update the width of rangediv
+                rangenum.textContent = index + "%";
+                index++;
+                setTimeout(updateValue, 50); // Adjust the timing here
+            }
+        }
+
+        updateValue(index);
+    }
+    // function updaterange2(){
+    //     const rangenum = document.querySelector("#rangenum");
+    //     const rangediv = document.getElementById("rangediv");
+    //     rangediv.style.width = "100%";
+    //     rangenum.textContent = "100%";
+    // }
+
+
+
+
+
 </script>
 
 </html>
