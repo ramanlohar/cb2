@@ -13,13 +13,12 @@
     <link rel="stylesheet" href="CSS/popup.css">
     <link rel="stylesheet" href="CSS/infopopup.css">
     <script>
-        // var gsigndatas = localStorage.getItem("gsigndatas");
-        // if(gsigndatas != true || gsigndatas != "true"){
-        //     setTimeout(() => {
-                
-        //         window.location.href = "GHTML/create.html";
-        //     }, 1000);
-        // }
+        var gsigndata = localStorage.getItem("gsigndata");
+        if(gsigndata !== "true"){
+            // setTimeout(() => {                
+                window.location.href = "GHTML/create.html";
+            // }, 1000);
+        }
     </script>
 </head>
 
