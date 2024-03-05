@@ -184,25 +184,25 @@ window.location.href = "le.html"
         let combinedTable = document.getElementById("combinedTable")
         let trow = document.createElement("tr")
         balence = balence + parseFloat(Credit) - parseFloat(Debit)
-        balence = formatNumber(balence);
+        let = vbalence = formatNumber(balence);
         trow.innerHTML = `
         <td rowspan="2">${count}</td>
         <td rowspan="2">${Date}</td>
         <td rowspan="2">${Particular}</td>
         <td>${Credit}</td>
         <td>${Debit}</td>
-        <td>${balence}</td>
+        <td>${vbalence}</td>
         <td>बैंक</td>
         `
         combinedTable.appendChild(trow)
         
         let trow2 = document.createElement("tr")
         balence2 = balence2 + parseFloat(CreditN) - parseFloat(DebitN)
-        balence2 = formatNumber(balence2);
+        let vbalence2 = formatNumber(balence2);
         trow2.innerHTML = `
             <td>${CreditN}</td>
             <td>${DebitN}</td>
-            <td>${balence2}</td>
+            <td>${vbalence2}</td>
             <td>नगद</td>
         `
         combinedTable.appendChild(trow2)
