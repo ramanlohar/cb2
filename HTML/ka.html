@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/sidebar.css">
+    <script src="https://kit.fontawesome.com/8d4098fe32.js" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="../CSS/ledgerh.css"> -->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            z-index: 20;
+        }
+
+
+
+        #ladger_box {
+            /* background-color: #b3242479; */
+            border-radius: 10px;
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
+            /* padding: 0px 10px 10px 10px; */
+            margin: 7px;
+            /* color: white; */
+        }
+
+        #ladger_box {
+            background-color: #567fca79;
+            border-radius: 10px 10px 10px 10px;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+            padding: 5px 5px 5px 5px;
+            /* margin: 15px; */
+            /* color: white; */
+            margin-bottom: 15px;
+            /* max-width: 300px;
+            min-width: 300px; */
+        }
+
+        #ladger_box:nth-child(1) {
+            margin-top: 20px;
+        }
+
+        #head_div {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        p {
+            padding: 5px 10px 5px 10px;
+            padding-bottom: 4px;
+            font-size: medium;
+            min-width: 120px;
+            font-weight: bold;
+            background-color: #567fca79;
+            width: max-content;
+            border-radius: 10px 10px 0px 0px;
+            z-index: 2;
+        }
+
+        #view {
+            padding: 5px 10px 5px 10px;
+            padding-bottom: 4px;
+            font-size: medium;
+            min-width: auto;
+            /* font-weight: bold; */
+            background-color: #ffffff00;
+            color: rgb(5, 0, 40);
+            z-index: 2;
+        }
+
+        #view:hover {
+            background-color: rgb(255, 255, 255);
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            /* color: rgb(0, 0, 0); */
+            /* margin-top: 0px; */
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 5px;
+            text-align: left;
+            font-size: 15px;
+            text-transform: capitalize;
+        }
+
+        th {
+            background-color: #f2f2f2a6;
+        }
+
+        th:nth-child(1) {
+            width: 150px;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        #content_box {
+            padding-top: 10px;
+            padding: 0px;
+            padding-bottom: 50px;
+        }
+
+        .fade-in {
+            animation: fadeInAnimation ease 0.5s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .fade-out {
+            animation: fadeoutAnimation ease 0.5s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes fadeoutAnimation {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        #info_div {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: #567fca;
+            /* Changed background color */
+            width: 40px;
+            height: 40px;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            padding: 1px;
+            box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            /* Added transition for smooth animation */
+            cursor: pointer;
+            /* Added cursor pointer for indicating it's clickable */
+        }
+
+        #info_icon {
+            margin: 0;
+            /* Remove default margin */
+            font-size: 20px;
+            /* Increased font size */
+            color: #fff;
+            /* Changed font color */
+            transition: all 0.3s ease;
+            /* Added transition for smooth animation */
+        }
+
+        #info_div_more {
+            font-size: larger;
+            display: none;
+            /* position: absolute; */
+            /* Changed position to absolute for better control */
+            /* bottom: 0px; */
+            /* Adjusted bottom position */
+            /* right: 50%; */
+            /* Center horizontally */
+            /* transform: translateX(50%); */
+            /* Center horizontally */
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            /* Hidden by default */
+            transition: opacity 1s ease;
+            transition: all 1s ease;
+            /* Added transition for smooth animation */
+        }
+
+        #info_div:hover {
+            background-color: #345eab;
+            /* Change background color on hover */
+        }
+
+        #info_div:hover #info_icon {
+            font-size: 24px;
+            /* Increase font size on hover */
+        }
+
+        #info_div:hover #info_div_more {
+            display: block;
+            opacity: 1;
+            /* Show on hover */
+        }
+
+        .colorred {
+            color: red;
+        }
+
+        #heading {
+            font-size: 18px;
+        }
+
+        #logo {
+
+            margin-right: 0px;
+
+
+        }
+
+        @media only screen and (min-width: 400px) {
+
+            #display {
+
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            #ladger_box {
+                background-color: #567fca79;
+                border-radius: 10px 10px 10px 10px;
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+                padding: 5px 5px 5px 5px;
+                /* margin: 15px; */
+                /* color: white; */
+                margin-bottom: 15px;
+                max-width: 300px;
+                min-width: 300px;
+            }
+
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <div id="menu-icon" onclick="backtohome();"><i class="fa-solid fa-arrow-left"></i></div>
+        <div id="heading">विक्रेतावार भुगतान</div>
+        <div>
+            <img id="logo" src="../images/logo.jpg" alt="Logo">
+        </div>
+    </header>
+    <div id="info_div">
+        <h4 id="info_icon">I</h4>
+        <div id="info_div_more">
+            <h5>कुल राशि</h5>
+            <h6 id="t_amount"></h6>
+        </div>
+    </div>
+    <section id="content_box">
+        <div id="display">
+
+        </div>
+    </section>
+
+</body>
+<script>
+
+    let info_icon = document.getElementById("info_div");
+    let info_ico = document.getElementById("info_icon");
+    let info_div_more = document.getElementById("info_div_more");
+
+    info_icon.addEventListener("mouseover", () => {
+        // setTimeout(() => {
+
+        info_div_more.style.display = "block";
+        // }, 1000);
+        info_icon.style.width = "170px"
+        info_icon.style.height = "120px"
+        info_icon.style.borderRadius = "20px"
+        info_ico.style.display = "none"
+    });
+
+    info_icon.addEventListener("mouseout", () => {
+        info_div_more.style.display = "none";
+        info_icon.style.width = "40px"
+        info_icon.style.height = "40px"
+        info_icon.style.borderRadius = "50%"
+        info_ico.style.display = "block"
+    });
+
+
+    var prevScrollPos = window.pageYOffset || document.documentElement.scrollTop;
+
+    window.addEventListener("scroll", () => {
+        var currentScrollPos = window.pageYOffset || document.documentElement.scrollTop;
+        var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        var ladgerBoxes = document.querySelectorAll("#ladger_box");
+
+        ladgerBoxes.forEach((box) => {
+            var boxPosition = box.getBoundingClientRect().top;
+            var boxHeight = box.getBoundingClientRect().height;
+
+            if (!(boxPosition > 0 && boxPosition < (viewportHeight + 1))) {
+                box.classList.remove("fade-in");
+                box.classList.remove("fade-out");
+            }
+        });
+
+        if (currentScrollPos > prevScrollPos) {
+            ladgerBoxes.forEach((box) => {
+                var boxPosition = box.getBoundingClientRect().top;
+                if (boxPosition > 0 && boxPosition < viewportHeight) {
+                    box.classList.add("fade-in");
+                }
+            });
+
+            // console.log("Scrolling down");
+        } else if (currentScrollPos < prevScrollPos) {
+            ladgerBoxes.forEach((box) => {
+                var boxPosition = box.getBoundingClientRect().bottom;
+                if (boxPosition > 0 && boxPosition < viewportHeight) {
+                    box.classList.add("fade-in");
+                }
+            });
+            // console.log("Scrolling up");
+        }
+        prevScrollPos = currentScrollPos;
+    });
+
+
+    function backtohome() {
+
+        window.location.href = "../home.html"
+
+    }
+</script>
+<script src="../JavaScript/ka.js"></script>
+<!-- <script src="../JavaScript/ladger2.js"></script> -->
+<!-- <script src="../JavaScript/ladger222.js"></script> -->
+
+</html>
