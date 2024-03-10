@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../CSS/sidebar.css">
+    <script src="https://kit.fontawesome.com/8d4098fe32.js" crossorigin="anonymous"></script>
     <style>
         /* CSS styles for the table */
         table {
@@ -48,7 +49,7 @@
 
 <body>
     <header>
-        <div id="menu-icon" onclick="backtohome();">&#9664;</div>
+        <div id="menu-icon" onclick="backtohome();"><i class="fa-solid fa-arrow-left"></i></div>
         <div id="heading">Ledger</div>
         <div>
             <img id="logo" src="../images/logo.jpg" alt="Logo">
@@ -103,10 +104,16 @@
     let balence2 = 0;
 
     let bjat_LSvalue = localStorage.getItem("ladger_info");
-    // let bjat_LSvalue = "15 वा वित्त"
-    // let bjat_LSvalue = "कार्यालय व्यय"
 
     document.getElementById("heading").innerText = bjat_LSvalue;
+
+    if(bjat_LSvalue == "अन्य"){
+        bjat_LSvalue = " "
+    }
+    // let bjat_LSvalue = "15 वा वित्त"
+    // let bjat_LSvalue = "कार्यालय व्यय"
+    // let bjat_LSvalue = " "
+
 
     function madvalues() {
         let madFormData = localStorage.getItem("madFormData");
@@ -236,7 +243,7 @@
 
                 if (rbDatavalue["b_so"]) {
                     if (rbDatavalue["b_so"] == bjat_LSvalue) {
-                        if (rbDatavalue["b_so"] !== " ") {
+                        if (rbDatavalue["b_Particular"] !== "") {
                             let b_Bank = rbDatavalue["b_Bank Rashi"] || 0
                             let b_Nagad = rbDatavalue["b_Nagad Rashi"] || 0
                             let b_Particular = rbDatavalue["b_Particular"]
