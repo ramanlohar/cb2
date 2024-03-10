@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/sidebar.css">
+    <style>
+        /* CSS styles for the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 580px;
+            font-size: 14px;
+            text-align: justify;
+        }
+
+        th,
+        td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        /* tr:nth-child(even td:nth-child(2)){
+            width: 100px;
+        } */
+
+        th:nth-child(2) {
+            width: 67px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        th {
+            background-color: #dddddd;
+        }
+
+        #heading {
+            font-size: medium;
+            max-width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="menu-icon" onclick="backtohome();">&#9664;</div>
+        <div id="heading">Ledger</div>
+        <div>
+            <img id="logo" src="../images/logo.jpg" alt="Logo">
+        </div>
+    </header>
+    <section id="content_box">
+
+        <table id="combinedTable">
+            <tr>
+                <th>क्र.</th>
+                <th>दिनांक</th>
+                <th>ब्यौरे</th>
+                <th>mad</th>
+                <th>व्यय</th>
+                <th>योग</th>
+                <th>राशि</th>
+            </tr>
+            <!-- <tr>
+                <td rowspan="2">No.</td>
+                <td rowspan="2">Date</td>
+                <td rowspan="2">Particular</td>
+                <td>Credit</td>
+                <td>Debit</td>
+                <td>Balance</td>
+                <td>Bank</td>
+            </tr>
+            <tr>
+                <td>Credit</td>
+                <td>Debit</td>
+                <td>Balance</td>
+                <td>Nagad</td>
+            </tr> -->
+        </table>
+        <table id="combinedTable2">
+            <tr>
+                <th>mad name</th>
+                <th>bank</th>
+                <th>nagad</th>
+            </tr>
+        </table>
+    </section>
+</body>
+<script>
+
+    function backtohome() {
+
+        window.location.href = "ka.html"
+
+    }
+
+    let balence = 0;
+    let balence2 = 0;
+
+    let bjat_LSvalue = localStorage.getItem("ladger_info");
+    // let bjat_LSvalue = "15 वा वित्त"
+    // let bjat_LSvalue = "कार्यालय व्यय"
+
+    document.getElementById("heading").innerText = bjat_LSvalue;
+
+    function madvalues() {
+        let madFormData = localStorage.getItem("madFormData");
+
+        if (madFormData && madFormData.length > 0) {
+            // Display the retrieved data
+            madFormData = JSON.parse(madFormData); // Parse the string into an array
+
+            madFormData.forEach((data, index) => {
+                var partiaay = data.textValue;
+                var aayN = data.numberValue;
+                var aayB = data.numberValue2;
+                var vyayN = 0;
+                var vyayB = 0;
+
+                if (partiaay == bjat_LSvalue) {
+                    aayB = parseFloat(aayB)
+
+                    dispay("", aayB, 0, "पूर्व शेष", "", 0, 0)
+
+                }
+
+                //   console.log(partiaay, aayB, aayN);
+
+                //   combine(partiaay, aayB, aayN);
+
+                // Calculate something using vyayN and vyayB?
+                // Example: vyayN = aayN * someValue;
+                // Example: vyayB = aayB * someValue;
+            });
+        }
+    }
+
+    // madvalues()
+
+    let array1 = [];
+    let rbFormCount = localStorage.getItem("rbFormCount");
+
+    function save1() {
+        for (let index = 0; index <= rbFormCount; index++) {
+            let rbData = localStorage.getItem("rbData" + index);
+
+            if (rbData) {
+                let = rbDatavalue = JSON.parse(rbData);
+                if (rbDatavalue["b_so"] == bjat_LSvalue) {
+                    if (rbDatavalue["b_so"]) {
+                        if (array1.length == 0) {
+                            array1.push(rbDatavalue["b_Bajt LS"]);
+                        } else {
+                            let available;
+                            // let ar1lv = array1.length - 1;
+                            for (j = 0; j < array1.length; j++) {
+                                if (array1[j] == rbDatavalue["b_Bajt LS"]) {
+                                    available = true;
+                                }
+                            }
+                            if (!available) {
+                                array1.push(rbDatavalue["b_Bajt LS"]);
+                            }
+                        }
+                    }
+                }
+
+                // console.log(array1);
+            }
+        }
+    }
+
+    console.log(array1)
+    // let rbFormCount = localStorage.getItem("rbFormCount");
+
+    // let arr1 = [];
+
+    function save2() {
+        let count = 0;
+        for(let k = 0; k<array1.length;k++){
+            let b_Bank = 0
+            let b_Nagad = 0
+            let madname;
+        for (let index = 0; index <= rbFormCount; index++) {
+            let rbData = localStorage.getItem("rbData" + index);
+
+            if (rbData) {
+                let = rbDatavalue = JSON.parse(rbData);
+                if (rbDatavalue["b_so"]) {
+                        
+                        if (rbDatavalue["b_so"] == bjat_LSvalue) {
+                            if (rbDatavalue["b_Bajt LS"] == array1[k]) {
+                                b_Bank = parseFloat(b_Bank) + parseFloat(rbDatavalue["b_Bank Rashi"] || 0)
+                                b_Nagad = parseFloat(b_Nagad) + parseFloat(rbDatavalue["b_Nagad Rashi"] || 0)
+                                let b_Particular = rbDatavalue["b_Particular"]
+                                madname = rbDatavalue["b_Bajt LS"]
+                                // console.log(madname);
+                                let Date = rbDatavalue["Date"]
+                                count++
+                                
+                                // dispay(count, madname, b_Bank, b_Particular, Date, madname, b_Nagad)
+                            }
+                        }
+                    }
+                }
+            }
+            // console.log(b_Bank +" "+array1[k])
+            dispay2(madname,b_Bank,b_Nagad)
+        }
+    }
+
+    function save() {
+        let count = 0;
+        for (let index = 0; index <= rbFormCount; index++) {
+            let rbData = localStorage.getItem("rbData" + index);
+
+            if (rbData) {
+                let = rbDatavalue = JSON.parse(rbData);
+                // if (rbDatavalue["r_Bajt LS"]) {
+                //     if (rbDatavalue["r_Bajt LS"] == bjat_LSvalue) {
+                //         count++
+                //         let r_Bank = rbDatavalue["r_Bank Rashi"]
+                //         let r_Nagad = rbDatavalue["r_Nagad Rashi"] || 0
+                //         let r_Particular = rbDatavalue["r_Particular"] || 0
+                //         let Date = rbDatavalue["Date"]
+                //         dispay(count, r_Bank, 0, r_Particular, Date, r_Nagad, 0)
+                //     }
+                // }
+
+                ///////////////////////////////
+
+                if (rbDatavalue["b_so"]) {
+                    if (rbDatavalue["b_so"] == bjat_LSvalue) {
+                        if (rbDatavalue["b_so"] !== " ") {
+                            let b_Bank = rbDatavalue["b_Bank Rashi"] || 0
+                            let b_Nagad = rbDatavalue["b_Nagad Rashi"] || 0
+                            let b_Particular = rbDatavalue["b_Particular"]
+                            let madname = rbDatavalue["b_Bajt LS"]
+                            console.log(madname);
+                            let Date = rbDatavalue["Date"]
+                            count++
+                            
+                            dispay(count, madname, b_Bank, b_Particular, Date, madname, b_Nagad)
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    function dispay(count, Credit, Debit, Particular, Date, CreditN, DebitN) {
+        // Credit = formatNumber(Credit)
+        // Debit = formatNumber(Debit)
+        // CreditN = formatNumber(Credit)
+        // DebitN = formatNumber(Debit)
+
+        let combinedTable = document.getElementById("combinedTable")
+        let trow = document.createElement("tr")
+        balence = balence + parseFloat(Debit)
+        let = vbalence = formatNumber(balence);
+        trow.innerHTML = `
+        <td rowspan="2">${count}</td>
+        <td rowspan="2">${Date}</td>
+        <td rowspan="2">${Particular}</td>
+        <td rowspan="2">${Credit}</td>
+        <td>${Debit}</td>
+        <td>${vbalence}</td>
+        <td>बैंक</td>
+        `
+        combinedTable.appendChild(trow)
+
+        let trow2 = document.createElement("tr")
+        balence2 = balence2 + parseFloat(DebitN)
+        let vbalence2 = formatNumber(balence2);
+        trow2.innerHTML = `
+            <td>${DebitN}</td>
+            <td>${vbalence2}</td>
+            <td>नगद</td>
+        `
+        combinedTable.appendChild(trow2)
+
+        // let tdata = document.createElement("td")
+        // trow.appendChild(tdata)
+    }
+
+    function dispay2(madname,bank,nagad) {
+        // Credit = formatNumber(Credit)
+        // Debit = formatNumber(Debit)
+        // CreditN = formatNumber(Credit)
+        // DebitN = formatNumber(Debit)
+
+        let combinedTable = document.getElementById("combinedTable2")
+        let trow = document.createElement("tr")
+        // balence = balence + parseFloat(Debit)
+        // let = vbalence = formatNumber(balence);
+        trow.innerHTML = `
+        <td>${madname}</td>
+        <td>${bank}</td>
+        <td>${nagad}</td>
+        `
+        combinedTable.appendChild(trow)
+
+        // let trow2 = document.createElement("tr")
+        // balence2 = balence2 + parseFloat(DebitN)
+        // let vbalence2 = formatNumber(balence2);
+        // trow2.innerHTML = `
+        //     <td>${DebitN}</td>
+        //     <td>${vbalence2}</td>
+        //     <td>नगद</td>
+        // `
+        // combinedTable.appendChild(trow2)
+
+        // let tdata = document.createElement("td")
+        // trow.appendChild(tdata)
+    }
+
+
+    save1();
+    save2();
+    save();
+    function formatNumber(value) {
+        let formattedValue = parseFloat(value).toFixed(2); // Fix to two decimal places
+        return formattedValue.endsWith('.00') ? parseInt(value) : formattedValue; // Remove decimal part if it's .00
+    }
+</script>
+
+</html>

@@ -52,3 +52,8 @@ function redvender(){
     
     window.location.href  = "HTML/ve.html"
 }
+function redkary(){
+    
+    window.location.href  = "HTML/ka.html"
+
+}
