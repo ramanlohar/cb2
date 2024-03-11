@@ -55,5 +55,9 @@ function redvender(){
 function redkary(){
     
     window.location.href  = "HTML/ka.html"
-
+    
+}
+function redaayvyay(){
+    
+    window.location.href  = "HTML/aayvyay.html"
 }
