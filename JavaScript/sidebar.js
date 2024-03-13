@@ -70,6 +70,6 @@ document.getElementById("logout").addEventListener("click",()=>{
 })
 
 confirmlogout.addEventListener("click",()=>{
-    localStorage.clear();
+    // localStorage.clear();
     window.location.reload();
 })
