@@ -21,7 +21,12 @@ function backup() {
     body: d,
   })
     .then((res) => res.text())
-    .then((finalRes) => console.log(finalRes));
+    // .then((finalRes) => console.log(finalRes));
+
+    .then((finalRes) => {console.log(finalRes)
+      let date = new Date()
+      localStorage.setItem("backuptime",date);    
+  });
 }
 
 

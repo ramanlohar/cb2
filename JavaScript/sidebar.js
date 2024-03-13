@@ -70,6 +70,66 @@ document.getElementById("logout").addEventListener("click",()=>{
 })
 
 confirmlogout.addEventListener("click",()=>{
-    // localStorage.clear();
-    window.location.reload();
+    backup1();
+    document.querySelector("section").innerHTML = `Working On It`;
+
+    // setTimeout(() => {
+        // localStorage.clear();        
+        // window.location.reload();
+    // }, 5000);
+    // document.sec.innerHTML = "Working On It"
 })
+
+
+var url =
+  "https://script.google.com/macros/s/AKfycbxlXFxWQtUit7kTSeT8FtgPbcvZppXJJ8HoiqdwD2Bu3QArgfT3eoVL_NvaOCHlhJvfGg/exec";
+
+function backup1() {
+  let d = new FormData();
+
+  let date = new Date();
+  localStorage.setItem("backuptime",date)    
+  
+  let formData = localStorage.getItem("signin_form_data");
+
+  formData = JSON.parse(formData);
+
+  const localStorageData = { ...localStorage };
+  var datavalue = JSON.stringify(localStorageData, null, 2);
+  
+  let mobileNumber = formData["email"];
+
+  d.append("mobileno", mobileNumber);
+  d.append("textvalue", datavalue);
+
+  fetch(url, {
+    method: "POST",
+    body: d,
+  })
+    .then((res) => res.text())
+    .then((finalRes) => {
+        clearstorage(finalRes);    
+        // console.log(finalRes)
+    });
+
+
+}
+
+// let date = new Date()
+// console.log(date);
+
+function clearstorage(finalRes){
+    console.log(finalRes)
+    let date = new Date()
+    localStorage.setItem("backuptime",date);
+    localStorage.clear();        
+    window.location.reload();
+}
+
+
+function backupvalue(){
+    let backtimevalue = localStorage.getItem("backuptime");
+    document.getElementById("backtimevalue").innerHTML = backtimevalue;
+}
+
+backupvalue();
