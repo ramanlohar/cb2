@@ -61,3 +61,15 @@ function redaayvyay(){
     
     window.location.href  = "HTML/aayvyay.html"
 }
+
+
+let confirmlogout = document.getElementById("confirmlogout");
+document.getElementById("logout").addEventListener("click",()=>{
+    confirmlogout.style.display = "block";
+
+})
+
+confirmlogout.addEventListener("click",()=>{
+    localStorage.clear();
+    window.location.reload();
+})
