@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Theme Detection</title>
+    <style>
+        div {
+            border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div id="colorDiv" style="width: 100px; height: 100px;"></div>
+    <button><a href="../home.html">back</a></button>
+
+    <script>
+        const colorDiv = document.getElementById("colorDiv");
+        const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+        function updateColorTheme() {
+            if (darkModeQuery.matches) {
+                colorDiv.style.backgroundColor = "black";
+            } else {
+                colorDiv.style.backgroundColor = "white";
+            }
+        }
+
+        // Initial update
+        updateColorTheme();
+
+        // Listen for changes in system theme
+        darkModeQuery.addListener(updateColorTheme);
+    </script>
+</body>
+</html>
