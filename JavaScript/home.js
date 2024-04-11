@@ -271,8 +271,13 @@ function rokadbahidisplayData(formType) {
     var cell = row.insertCell(11);
     cell.innerHTML = formDataArray[i]["b_AKMMKP"];
 
-    var cell = row.insertCell(12);
-    cell.innerHTML = formDataArray[i]["b_Particular"] || "";
+    if(formDataArray[i]["b_fo"] == "बैंक व्यय"){
+      var cell = row.insertCell(12);
+      cell.innerHTML = formDataArray[i]["b_fo"] || "";
+    }else {      
+      var cell = row.insertCell(12);
+      cell.innerHTML = formDataArray[i]["b_Particular"] || "";
+    }
 
     var cell = row.insertCell(13);
     cell.innerHTML = formDataArray[i]["b_Nagad Rashi"] || "";

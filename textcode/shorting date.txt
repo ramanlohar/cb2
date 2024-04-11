@@ -19,7 +19,7 @@
 
         th,
         td {
-            border: 1px solid #000000;
+            border: 1px solid #dddddd;
             padding: 8px;
             text-align: left;
         }
@@ -29,7 +29,7 @@
         } */
 
         th:nth-child(2) {
-            width: 72px;
+            width: 67px;
         }
 
         tr:nth-child(even) {
@@ -37,16 +37,11 @@
         }
 
         th {
-            background-color: #5e76ff93;
+            background-color: #dddddd;
         }
-
-        #heading {
+        #heading{
             font-size: medium;
             max-width: 200px;
-        }
-
-        .h_l {
-            background-color: yellowgreen;
         }
     </style>
 </head>
@@ -90,13 +85,12 @@
     </section>
 </body>
 <script>
-    let DataArray = [];
 
-    function backtohome() {
+function backtohome() {
 
-        window.location.href = "le.html"
+window.location.href = "le.html"
 
-    }
+}
 
     let balence = 0;
     let balence2 = 0;
@@ -170,7 +164,7 @@
                             let b_Particular = rbDatavalue["b_Particular"]
                             let Date = rbDatavalue["Date"]
                             count++
-
+                            
                             dispay(count, 0, b_Bank, b_Particular, Date, 0, b_Nagad)
                         }
 
@@ -181,114 +175,96 @@
     }
 
 
+
     function dispay(count, Credit, Debit, Particular, Date, CreditN, DebitN) {
-
-        let data = {
-            count: count,
-            Credit: Credit,
-            Debit: Debit,
-            Particular: Particular,
-            Date: Date,
-            CreditN: CreditN,
-            DebitN: DebitN
-
-        }
-
-        DataArray.push(data);
         // Credit = formatNumber(Credit)
         // Debit = formatNumber(Debit)
         // CreditN = formatNumber(Credit)
         // DebitN = formatNumber(Debit)
-
-
-    }
-
-    function dispay_array_values() {
-        balence = 0;
-        balence2 = 0;
-        DataArray.forEach(element => {
-
-            let combinedTable = document.getElementById("combinedTable")
-            let trow = document.createElement("tr")
-            balence = balence + parseFloat(element.Credit) - parseFloat(element.Debit)
-            let = vbalence = formatNumber(balence);
-            trow.innerHTML = `
-        <td rowspan="2">${element.count}</td>
-        <td rowspan="2">${changeDateFormat(element.Date)}</td>
-        <td rowspan="2">${element.Particular}</td>
-        <td>${element.Credit}</td>
-        <td>${element.Debit}</td>
+        
+        let combinedTable = document.getElementById("combinedTable")
+        let trow = document.createElement("tr")
+        balence = balence + parseFloat(Credit) - parseFloat(Debit)
+        let = vbalence = formatNumber(balence);
+        trow.innerHTML = `
+        <td rowspan="2">${count}</td>
+        <td rowspan="2">${changeDateFormat(Date)}</td>
+        <td rowspan="2">${Particular}</td>
+        <td>${Credit}</td>
+        <td>${Debit}</td>
         <td>${vbalence}</td>
         <td>बैंक</td>
         `
-            combinedTable.appendChild(trow)
-
-            let trow2 = document.createElement("tr")
-            balence2 = balence2 + parseFloat(element.CreditN) - parseFloat(element.DebitN)
-            let vbalence2 = formatNumber(balence2);
-            trow2.innerHTML = `
-        <td>${element.CreditN}</td>
-        <td>${element.DebitN}</td>
-        <td>${vbalence2}</td>
-        <td>नगद</td>
+        combinedTable.appendChild(trow)
+        
+        let trow2 = document.createElement("tr")
+        balence2 = balence2 + parseFloat(CreditN) - parseFloat(DebitN)
+        let vbalence2 = formatNumber(balence2);
+        trow2.innerHTML = `
+            <td>${CreditN}</td>
+            <td>${DebitN}</td>
+            <td>${vbalence2}</td>
+            <td>नगद</td>
         `
-            combinedTable.appendChild(trow2)
+        combinedTable.appendChild(trow2)
 
-            // let tdata = document.createElement("td")
-            // trow.appendChild(tdata)
-        });
+        // let tdata = document.createElement("td")
+        // trow.appendChild(tdata)
     }
-
-
-
-    function formatNumber(value) {
-        let formattedValue = parseFloat(value).toFixed(2); // Fix to two decimal places
-        return formattedValue.endsWith('.00') ? parseInt(value) : formattedValue; // Remove decimal part if it's .00
-    }
-
-    function changeDateFormat(inputDate) {
-        if (inputDate === "") {
-            return "";
-        }
-
-        // Split the date string into year, month, and day
-        var parts = inputDate.split('-');
-
-        // Rearrange the parts to form the new date string in dd-mm-yyyy format
-        var newDate = parts[2] + '-' + parts[1] + '-' + parts[0];
-
-        return newDate;
-    }
-
 
     save();
-    DataArray.sort((a, b) => new Date(a.Date) - new Date(b.Date));
-    dispay_array_values();
-
-    function heig_light() {
-    let alltd = document.querySelectorAll("td");
-    alltd.forEach(element => {
-        element.addEventListener("click", () => {
-            let parentRow = element.parentNode; // Get the parent <tr> element
-            if (parentRow.classList.contains("h_l")) {
-                parentRow.classList.remove("h_l");
-            } else {
-                // Check if any row is already highlighted
-                let highlightedRow = document.querySelector(".h_l");
-                if (highlightedRow) {
-                    // If another row is highlighted, remove its highlight
-                    highlightedRow.classList.remove("h_l");
-                }
-                // Add highlight to the clicked row
-                parentRow.classList.add("h_l");
-            }
-        });
-    });
+    function formatNumber(value) {
+  let formattedValue = parseFloat(value).toFixed(2); // Fix to two decimal places
+  return formattedValue.endsWith('.00') ? parseInt(value) : formattedValue; // Remove decimal part if it's .00
 }
 
+function changeDateFormat(inputDate) {
 
-    heig_light();
+    if(inputDate == ""){
+        return "";
+    }
+    // Split the date string into year, month, and day
+    var parts = inputDate.split('-');
+    
+    // Rearrange the parts to form the new date string in dd-mm-yyyy format
+    var newDate = parts[2] + '-' + parts[1] + '-' + parts[0];
+    
+    return newDate;
+}
 
+document.addEventListener("DOMContentLoaded", function() {
+        // Call the sorting function
+        sortTableByDate();
+    });
+
+    function sortTableByDate() {
+        var table = document.getElementById("combinedTable");
+        if (table) {
+            var rows = Array.from(table.rows).slice(1); // Exclude the header row
+            var dateFormat = /[0-9]{2}-[0-9]{2}-[0-9]{4}/; // Regular expression to match the date format dd-mm-yyyy
+
+            // Sort the rows based on the date values
+            rows.sort(function(rowA, rowB) {
+                var dateA = rowA.cells[1].innerText.match(dateFormat)[0]; // Extract the date string from the second cell
+                var dateB = rowB.cells[1].innerText.match(dateFormat)[0];
+
+                // Convert the date strings to a format that can be compared (e.g., yyyy-mm-dd)
+                var datePartsA = dateA.split('-');
+                var datePartsB = dateB.split('-');
+                var dateComparableA = datePartsA[2] + '-' + datePartsA[1] + '-' + datePartsA[0];
+                var dateComparableB = datePartsB[2] + '-' + datePartsB[1] + '-' + datePartsB[0];
+
+                return new Date(dateComparableA) - new Date(dateComparableB);
+            });
+
+            // Reorder the rows in the table
+            rows.forEach(function(row) {
+                table.appendChild(row);
+            });
+        } else {
+            console.error("Table with ID 'combinedTable' not found.");
+        }
+    }
 </script>
 
 </html>
