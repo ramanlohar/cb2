@@ -28,36 +28,69 @@
         <button type="button" id="submit-btn" onclick="saveData()"><i class="fa-solid fa-check"></i></button>
 
     </header>
-    <form id="rokadForm">
+    <div id="forms_div">
+
+    </div>
+    <button id="Add_F_Btn">Add Form</button>
+</body>
+<script>
+
+    let form_count = 0;
+    let form_arr = [];
+
+    let Add_F_Btn = document.getElementById("Add_F_Btn");
+
+
+    Add_F_Btn.addEventListener("click", () => {
+        let cform = document.createElement("form");
+        form_count++;
+        cform.id = "Form_id_" + form_count;
+        form_arr.push(form_count);
+        cform.classList.add("rokadForm");
+
+        let d_value;
+
+        if (form_count < 2) {
+            d_value = "dnon";
+        } else {
+            d_value = "d";
+        }
+
+        cform.innerHTML = `
         <div class="r-form">
+            <div class="h_div_info">
+            <p class="${d_value}" id="Form_no_d">Form : ${form_count}</p>
+            <button class="" id="delete_form_btn" onclick="delete_form(${form_count})">remove</button>
+            </div>
+
             <h2>आय पक्ष</h2>
             <div class="rashi-cantainer">
 
                 <div class="f-div flexc">
                     <label for="rokadDate">दिनांक</label>
-                    <input type="date" id="rokadDate">
+                    <input type="date" id="rokadDate${form_count}">
                 </div>
                 <div class="f-div flexc">
                     <label for="AKMMKP">खाता पन्ना</label>
-                    <input type="number" id="AKMMKP">
+                    <input type="number" id="AKMMKP${form_count}">
                 </div>
             </div>
 
             <div class="select-byore">
                 <hr>
                 <label for="" class="_17px">आय के ब्योरे</label>
-
+                
                 <div class="f-div flexc">
                     <label for="selectOptions1">किससे राशि प्राप्त</label>
-                    <select id="selectOptions1" class="selectbyore">
+                    <select id="selectOptions1${form_count}" class="selectbyore">
                         <option value=" ">विकल्प चुनें</option>
 
                         <option value="श्रीमान् मुख्य कार्यपालन अधिकारी महोदय">श्रीमान् मुख्य कार्यपालन अधिकारी महोदय
-                        </option>
+                            </option>
                         <option value="श्रम विभाग">श्रम विभाग</option>
 
                         <option value="पंचायतराज संचालनालय">पंचायतराज संचालनालय</option>
-
+                        
                         <option value="ग्राम पंचायत">ग्राम पंचायत</option>
 
                         <option value="other" id="other">अन्य</option>
@@ -65,7 +98,7 @@
                 </div>
                 <div class="f-div flexc">
                     <label for="selectOptions2">किस मद से</label>
-                    <select id="selectOptions2" class="selectbyore">
+                    <select id="selectOptions2${form_count}" class="selectbyore">
                         <option value=" ">विकल्प चुनें</option>
                         <option value="15 वा वित्त">15 वा वित्त</option>
                         <option value="14 वा वित्त">14 वा वित्त</option>
@@ -75,9 +108,9 @@
                         <option value="बैंक ब्याज">बैंक ब्याज</option>
                         <option value="ग्राम पंचायत निधि">ग्राम पंचायत निधि</option>
 
-
+                        
                         <option value="जिला पंचायत निधि">जिला पंचायत निधि</option>
-
+                        
                         <option value="जनपद पंचायत निधि">जनपद पंचायत निधि</option>
                         <option value="एस.बी.एम">एस.बी.एम</option>
                         <option value="जल कर">जल कर</option>
@@ -90,17 +123,17 @@
                         <option value="other">अन्य मद</option>
                     </select>
                 </div>
-
+                
                 <!-- <div class="f-div flexc byore">
             <label for="rokadParticular">आय के ब्यौरे</label>
-            <input type="text" id="rokadParticular">
-        </div> -->
-                <div class="f-div flexc">
+            <input type="text" id="rokadParticular${form_count}">
+            </div> -->
+            <div class="f-div flexc">
                     <label for="selectOptions3">किस प्रयोजन हेतु</label>
-                    <select id="selectOptions3" class="selectbyore">
+                    <select id="selectOptions3${form_count}" class="selectbyore">
                         <option value=" ">विकल्प चुनें</option>
                         <option value="other">अन्य</option>
-                    </select>
+                        </select>
                 </div>
                 <hr>
             </div>
@@ -108,94 +141,94 @@
 
                 <div class="f-div">
                     <label for="rokadNagadRashi">नगद राशि</label>
-                    <input type="text" id="rokadNagadRashi">
+                    <input type="text" id="rokadNagadRashi${form_count}">
                 </div>
                 <div class="f-div">
                     <label for="rokadBankRashi">बैंक राशि</label>
-                    <input type="text" id="rokadBankRashi">
-                </div>
-            </div>
-            <div class="f-div flexc byore">
+                    <input type="text" id="rokadBankRashi${form_count}">
+                    </div>
+                    </div>
+                    <div class="f-div flexc byore dnone">
                 <label for="rokadBajtLs">बजट लेखा शीर्ष</label>
-                <input type="text" id="rokadBajtLs">
+                <input type="text" id="rokadBajtLs${form_count}">
             </div>
             <div class="f-div flexc byore">
                 <label for="rokadSignature">हस्ताक्षर या टिप्पणी</label>
-                <input type="text" id="rokadSignature">
+                <input type="text" id="rokadSignature${form_count}">
             </div>
-
+            
         </div>
         <div class="b-form">
 
             <h2>भुगतान पक्ष</h2>
             <!-- <div class="f-div">
             <label for="bahiSNo">S.no</label>
-            <input type="number" id="bahiSNo">
+            <input type="number" id="bahiSNo${form_count}">
         </div> -->
             <div class="rashi-cantainer">
-
+                
                 <div class="f-div">
                     <label for="bahiAKMMKP">खाता पन्ना</label>
-                    <input type="number" id="bahiAKMMKP">
+                    <input type="number" id="bahiAKMMKP${form_count}">
+                    </div>
+                    <div class="f-div">
+                        <label for="epono">E.P.O No.</label>
+                        <input type="number" id="epono${form_count}">
                 </div>
-                <div class="f-div">
-                    <label for="epono">E.P.O No.</label>
-                    <input type="number" id="epono">
                 </div>
-            </div>
-
-            <div class="select-byore">
-
-                <label for="" class="_17px">व्यय के ब्योरे</label>
-
-                <div class="f-div">
+                
+                <div class="select-byore">
+                    
+                    <label for="" class="_17px">व्यय के ब्योरे</label>
+                    
+                    <div class="f-div">
                     <label for="bselectOptions1">वेंडर का नाम</label>
-                    <select id="bselectOptions1">
+                    <select id="bselectOptions1${form_count}">
+                        <option value=" ">विकल्प चुनें</option>
+                        <option value="other">अन्य</option>
+                        </select>
+                        </div>
+                        <div class="f-div flexc byore">
+                            <label for="bahibillno">बिल क्रमांक</label>
+                            <input type="text" id="bahibillno${form_count}">
+                            </div>
+                            <div class="f-div">
+                                <label for="bselectOptions2">कार्य का नाम</label>
+                    <select id="bselectOptions2${form_count}">
                         <option value=" ">विकल्प चुनें</option>
                         <option value="other">अन्य</option>
                     </select>
-                </div>
-                <div class="f-div flexc byore">
-                    <label for="bahibillno">बिल क्रमांक</label>
-                    <input type="text" id="bahibillno">
-                </div>
-                <div class="f-div">
-                    <label for="bselectOptions2">कार्य का नाम</label>
-                    <select id="bselectOptions2">
-                        <option value=" ">विकल्प चुनें</option>
-                        <option value="other">अन्य</option>
-                    </select>
-                </div>
+                    </div>
 
                 <div class="f-div">
                     <label for="bselectOptions3">भुगतान प्रकार</label>
-                    <select id="bselectOptions3">
+                    <select id="bselectOptions3${form_count}">
                         <option value="पीआरडी पोर्टल">पीआरडी पोर्टल</option>
                         <option value="ई ग्रामस्वराज पोर्टल">ई ग्रामस्वराज पोर्टल</option>
                         <option value="नगद">नगद राशि</option>
-                    </select>
+                        </select>
                 </div>
-            </div>
+                </div>
 
             <div class="rashi-cantainer">
 
                 <div class="f-div">
                     <label for="bahiNagadRashi">नगद राशि</label>
-                    <input type="text" id="bahiNagadRashi">
+                    <input type="text" id="bahiNagadRashi${form_count}">
                 </div>
                 <div class="f-div">
                     <label for="bahiBankRashi">बैंक राशि</label>
-                    <input type="text" id="bahiBankRashi">
-                </div>
-            </div>
-            <!-- <div class="f-div flexc byore">
+                    <input type="text" id="bahiBankRashi${form_count}">
+                    </div>
+                    </div>
+                    <!-- <div class="f-div flexc byore">
                 <label for="bahiBajtLs">बजट लेखा शीर्ष</label>
-                <input type="text" id="bahiBajtLs">
+                <input type="text" id="bahiBajtLs${form_count}">
             </div> -->
 
             <div class="f-div">
                 <label for="bahiBajtLs">बजट लेखा शीर्ष</label>
-                <select id="bahiBajtLs">
+                <select id="bahiBajtLs${form_count}">
                     <option value="">विकल्प चुनें</option>
                     <option value="15 वा वित्त">15 वा वित्त</option>
                     <option value="14 वा वित्त">14 वा वित्त</option>
@@ -205,7 +238,7 @@
                     <option value="बैंक ब्याज">बैंक ब्याज</option>
                     <option value="ग्राम पंचायत निधि">ग्राम पंचायत निधि</option>
 
-
+                    
                     <option value="जिला पंचायत निधि">जिला पंचायत निधि</option>
 
                     <option value="जनपद पंचायत निधि">जनपद पंचायत निधि</option>
@@ -220,138 +253,143 @@
                 </select>
             </div>
 
-        </div>
+            </div>
+
+        `;
+
+        document.getElementById("forms_div").appendChild(cform);
+        loaddatavalues();
+        loadoptions();
+        console.log(form_arr);
+    })
+
+    Add_F_Btn.click();
 
 
-    </form>
+    function delete_form(id) {
+        let item_for_delete = document.getElementById("Form_id_" + id);
+        item_for_delete.parentNode.removeChild(item_for_delete);
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            loadoptions();
-        });
+        let indexToRemove = form_arr.indexOf(id);
 
-        function addChangeListener(selectElementId, id) {
-            var selectElement = document.getElementById(selectElementId);
-            selectElement.addEventListener("change", function () {
-                var inputId = id + "input";
-                var inputElement = document.getElementById(inputId);
-                if (selectElement.value === "other") {
-                    var parentDiv = selectElement.parentElement;
-                    if (!inputElement) {
-                        inputElement = document.createElement('input');
-                        inputElement.id = inputId;
-                        parentDiv.appendChild(inputElement);
-                    }
-                } else {
-                    if (inputElement) {
-                        inputElement.parentElement.removeChild(inputElement);
-                    }
-                }
-            });
+        // Check if the value exists in the array
+        if (indexToRemove !== -1) {
+            // Remove the value at the found index
+            form_arr.splice(indexToRemove, 1);
         }
 
-        // Call the function for each select element
-        addChangeListener("selectOptions1", "AF");
-        addChangeListener("selectOptions2", "AS");
-        addChangeListener("selectOptions3", "AT");
-
-        //bahi
-
-        addChangeListener("bselectOptions1", "VF");
-        addChangeListener("bselectOptions2", "VS");
-        addChangeListener("bselectOptions3", "VT");
+        console.log(form_arr);
+    }
 
 
+    document.addEventListener("DOMContentLoaded", function () {
+        loadoptions();
+    });
+
+    function addChangeListener(selectElementId, id) {
+        var selectElement = document.getElementById(selectElementId);
+        selectElement.addEventListener("change", function () {
+            var inputId = id + "input";
+            var inputElement = document.getElementById(inputId);
+            if (selectElement.value === "other") {
+                var parentDiv = selectElement.parentElement;
+                if (!inputElement) {
+                    inputElement = document.createElement('input');
+                    inputElement.id = inputId;
+                    parentDiv.appendChild(inputElement);
+                }
+            } else {
+                if (inputElement) {
+                    inputElement.parentElement.removeChild(inputElement);
+                }
+            }
+        });
+    }
+
+    function loaddatavalues() {
+        console.log(form_count);
+
+        for (let i = 0; i < form_arr.length; i++) {
+            let av = form_arr[i];
+            
+            // Call the function for each select element
+            addChangeListener("selectOptions1" + av, "AF" + av);
+            addChangeListener("selectOptions2" + av, "AS" + av);
+            addChangeListener("selectOptions3" + av, "AT" + av);
+
+            //bahi
+
+            addChangeListener("bselectOptions1" + av, "VF" + av);
+            addChangeListener("bselectOptions2" + av, "VS" + av);
+            addChangeListener("bselectOptions3" + av, "VT" + av);
+
+        }
+
+    }
 
 
-        function loadoptions() {
+    function loadoptions() {
+        for (let ja = 0; ja < form_arr.length; ja++) {
+            let j = form_arr[ja];
+
             var formCount1 = localStorage.getItem("AFCount");
             var formCount2 = localStorage.getItem("ASCount");
             var formCount3 = localStorage.getItem("ATCount");
 
-            loadOptionsForSelect("selectOptions1", "AF", formCount1);
-            loadOptionsForSelect("selectOptions2", "AS", formCount2);
-            loadOptionsForSelect("selectOptions3", "AT", formCount3);
+            loadOptionsForSelect("selectOptions1" + j, "AF", formCount1);
+            loadOptionsForSelect("selectOptions2" + j, "AS", formCount2);
+            loadOptionsForSelect("selectOptions3" + j, "AT", formCount3);
 
             var VformCount1 = localStorage.getItem("VFCount");
             var VformCount2 = localStorage.getItem("VSCount");
             var VformCount3 = localStorage.getItem("VTCount");
 
-            loadOptionsForSelect("bselectOptions1", "VF", VformCount1);
-            loadOptionsForSelect("bselectOptions2", "VS", VformCount2);
-            loadOptionsForSelect("bselectOptions3", "VT", VformCount3);
+            loadOptionsForSelect("bselectOptions1" + j, "VF", VformCount1);
+            loadOptionsForSelect("bselectOptions2" + j, "VS", VformCount2);
+            loadOptionsForSelect("bselectOptions3" + j, "VT", VformCount3);
 
-            loadOptionsForSelect("bahiBajtLs", "AS", formCount2);
-
+            loadOptionsForSelect("bahiBajtLs" + j, "AS", formCount2);
         }
 
-        function loadOptionsForSelect(selectId, optionPrefix, formCount) {
-            var selectElement = document.getElementById(selectId);
+    }
 
-            var lastChild = selectElement.lastElementChild;
+    function loadOptionsForSelect(selectId, optionPrefix, formCount) {
+        var selectElement = document.getElementById(selectId);
 
-            for (var i = 1; i <= formCount; i++) {
-                var formData = localStorage.getItem(optionPrefix + i);
+        var lastChild = selectElement.lastElementChild;
 
-                if (formData !== null && formData !== "") {
-                    // Check if the option value is not already present in the select element
-                    if (!selectElement.querySelector('option[value="' + formData + '"]')) {
-                        var option = document.createElement("option");
-                        option.value = formData;
-                        option.textContent = formData;
-                        selectElement.insertBefore(option, lastChild);
-                    }
+        for (var i = 1; i <= formCount; i++) {
+            var formData = localStorage.getItem(optionPrefix + i);
+
+            if (formData !== null && formData !== "") {
+                // Check if the option value is not already present in the select element
+                if (!selectElement.querySelector('option[value="' + formData + '"]')) {
+                    var option = document.createElement("option");
+                    option.value = formData;
+                    option.textContent = formData;
+                    selectElement.insertBefore(option, lastChild);
                 }
             }
         }
+    }
 
+    function saveData() {
 
-        // Rest of your script here
+        let all_true = false;
 
+        if(form_arr.length < 1){
+            Add_F_Btn.click();
+            alert("Please Add A Form!");
+        }
 
+        for (let ka = 0; ka < form_arr.length; ka++) {
+            let k = form_arr[ka];
 
+            var formDate = document.getElementById('rokadDate' + k);
 
+            var formselectElement1 = document.getElementById('selectOptions1' + k);
 
-        // function createoption(){
-
-        //     if (selectElement1.value === "other"){
-        //         var AFCount = localStorage.getItem("AFCount");
-        //         if(AFCount === ""|| AFCount === null){
-        //             localStorage.setItem("AFCount", 11);
-        //             var AFinput = document.getElementById("AFinput").value
-        //             localStorage.setItem("AFO11",AFinput);
-        //         }
-        //         else{
-        //             var AFCount = localStorage.getItem("AFCount");
-
-        //             AFCount++;
-
-        //             localStorage.setItem("AFCount", AFCount);
-        //             var AFinput = document.getElementById("AFinput").value
-        //             localStorage.setItem("AFO"+AFCount,AFinput);
-        //         }
-
-        //     }else{
-
-        //     }
-
-
-
-        // }
-
-
-
-
-
-
-
-        function saveData() {
-
-            var formDate = document.getElementById('rokadDate');
-
-            var formselectElement1 = document.getElementById('selectOptions1');
-
-            var formbselectElement1 = document.getElementById('bselectOptions1');
+            var formbselectElement1 = document.getElementById('bselectOptions1' + k);
 
             popupmsg = document.getElementById("popupmsg");
 
@@ -361,227 +399,244 @@
 
                 popupmsg.innerText = "कृपया दिनांक चुनें!"
                 openPopup();
+                all_true = false;
+                break;
 
                 // alert("please choose Date");
             }
             else if (formselectElement1.value === " " && formbselectElement1.value === " ") {
+                // formselectElement1.style.background = "rgba(86, 127, 202, 0.271)";
+                formselectElement1.focus();
                 openPopup();
 
                 popupmsg.innerText = "कृपया आय या व्याय के ब्योरे चुनें!"
                 // alert("please choose aay ke byore ya vyay ke brore");
 
+                all_true = false;
+                break;
 
             } else {
                 alert(" you choose options");
-                saveData1();
+                // saveData1(k);
+                all_true = true;
+
             }
 
             setInterval(() => {
                 formDate.style.background = "white";
 
             }, 1000);
+        }
 
+        if (all_true) {
+            for (let la = 0; la < form_arr.length; la++) {
+                l = form_arr[la];
+                saveData1(l);
+            }
+            back();
         }
 
 
+    }
 
-        function saveData1() {
+    function saveData1(form_count_n) {
 
-            var valueselectElement1, valueselectElement2, valueselectElement3;
+        var valueselectElement1, valueselectElement2, valueselectElement3;
 
-            var bvalueselectElement1, bvalueselectElement2, bvalueselectElement3;
+        var bvalueselectElement1, bvalueselectElement2, bvalueselectElement3;
 
-            function handleSelectValue(selectElement, prefix) {
-                if (selectElement.value === "other") {
-                    var count = localStorage.getItem(prefix + "Count");
-                    if (count === "" || count === null) {
-                        count = 11;
-                        localStorage.setItem(prefix + "Count", count);
-                    } else {
-                        count++;
-                        localStorage.setItem(prefix + "Count", count);
-                    }
-
-                    var input = document.getElementById(prefix + "input").value;
-                    localStorage.setItem(prefix + count, input);
-
-                    if (prefix === "AF") {
-                        valueselectElement1 = input;
-                    }
-                    else if (prefix === "AS") {
-
-                        valueselectElement2 = input;
-                    }
-                    else if (prefix === "AT") {
-
-                        valueselectElement3 = input;
-                    }
-
-                    if (prefix === "VF") {
-                        bvalueselectElement1 = input;
-                    }
-                    else if (prefix === "VS") {
-
-                        bvalueselectElement2 = input;
-                    }
-                    else if (prefix === "VT") {
-
-                        bvalueselectElement3 = input;
-                    }
-
-                    alert("if");
-
+        function handleSelectValue(selectElement, prefix) {
+            if (selectElement.value === "other") {
+                var count = localStorage.getItem(prefix + "Count");
+                if (count === "" || count === null) {
+                    count = 11;
+                    localStorage.setItem(prefix + "Count", count);
                 } else {
-                    var valueOf = selectElement.value;
-                    // var valueOf = selectElement.innerText;
-                    alert("else");
-
-                    if (prefix === "AF") {
-                        valueselectElement1 = valueOf;
-                        console.log(valueselectElement1);
-                    }
-                    else if (prefix === "AS") {
-                        valueselectElement2 = valueOf;
-                        console.log(valueselectElement2);
-                    }
-                    else if (prefix === "AT") {
-                        valueselectElement3 = valueOf;
-                        console.log(valueselectElement3);
-                    }
-
-                    if (prefix === "VF") {
-                        bvalueselectElement1 = valueOf;
-                        console.log(bvalueselectElement1);
-                    }
-                    else if (prefix === "VS") {
-                        bvalueselectElement2 = valueOf;
-                        console.log(bvalueselectElement2);
-                    }
-                    else if (prefix === "VT") {
-                        bvalueselectElement3 = valueOf;
-                        console.log(bvalueselectElement3);
-                    }
-
+                    count++;
+                    localStorage.setItem(prefix + "Count", count);
                 }
-            }
 
-            var selectElement1 = document.getElementById('selectOptions1');
-            handleSelectValue(selectElement1, "AF");
+                var input = document.getElementById(prefix + "input").value;
+                localStorage.setItem(prefix + count, input);
 
-            var selectElement2 = document.getElementById('selectOptions2');
-            handleSelectValue(selectElement2, "AS");
+                if (prefix === "AF") {
+                    valueselectElement1 = input;
+                }
+                else if (prefix === "AS") {
 
-            var selectElement3 = document.getElementById('selectOptions3');
-            handleSelectValue(selectElement3, "AT");
+                    valueselectElement2 = input;
+                }
+                else if (prefix === "AT") {
 
+                    valueselectElement3 = input;
+                }
 
-            var bselectElement1 = document.getElementById('bselectOptions1');
-            handleSelectValue(bselectElement1, "VF");
+                if (prefix === "VF") {
+                    bvalueselectElement1 = input;
+                }
+                else if (prefix === "VS") {
 
-            var bselectElement2 = document.getElementById('bselectOptions2');
-            handleSelectValue(bselectElement2, "VS");
+                    bvalueselectElement2 = input;
+                }
+                else if (prefix === "VT") {
 
-            var bselectElement3 = document.getElementById('bselectOptions3');
-            handleSelectValue(bselectElement3, "VT");
+                    bvalueselectElement3 = input;
+                }
 
+                alert("if");
 
-
-
-            // Get Rokad form values
-            var rokadDate = document.getElementById('rokadDate').value;
-            // var rokadSNo = document.getElementById('rokadSNo').value;
-            var AKMMKP = document.getElementById("AKMMKP").value;
-            // var rokadParticular = document.getElementById('rokadParticular').value;
-            var rokadNagadRashi = document.getElementById('rokadNagadRashi').value;
-            var rokadBankRashi = document.getElementById('rokadBankRashi').value;
-            var rokadBajtLs = document.getElementById('rokadBajtLs').value;
-            var rokadSignature = document.getElementById('rokadSignature').value;
-
-            var selectElement2 = document.getElementById('selectOptions2').value;
-            var selectElement3 = document.getElementById('selectOptions3').value;
-
-            // Get Bahi form values
-            // var bahiSNo = document.getElementById('bahiSNo').value;
-            var bahiAKMMKP = document.getElementById("bahiAKMMKP").value;
-            var epono = document.getElementById("epono").value;
-            // var bahiParticular = document.getElementById('bahiParticular').value;
-            var bahiNagadRashi = document.getElementById('bahiNagadRashi').value;
-            var bahiBankRashi = document.getElementById('bahiBankRashi').value;
-            var bahiBajtLs = document.getElementById('bahiBajtLs').value;
-
-            var bahibillno = document.getElementById('bahibillno').value;
-            // var bselectElement1 = document.getElementById('bselectOptions1').value;
-            // var bselectElement2 = document.getElementById('bselectOptions2').value;
-            // var bahiSignature = document.getElementById('bahiSignature').value;
-
-            // Get value from local storage for both forms
-            var rbFormCount = localStorage.getItem("rbFormCount") || 0;
-            rbFormCount = ++rbFormCount;
-
-
-            if (valueselectElement1 === " ") {
-                var rokadParticular = "";
             } else {
-                var rokadParticular = valueselectElement1 + " से " + valueselectElement2 + " मद " + valueselectElement3 + " की राशि प्राप्त"
+                var valueOf = selectElement.value;
+                // var valueOf = selectElement.innerText;
+                alert("else");
+
+                if (prefix === "AF") {
+                    valueselectElement1 = valueOf;
+                    console.log(valueselectElement1);
+                }
+                else if (prefix === "AS") {
+                    valueselectElement2 = valueOf;
+                    console.log(valueselectElement2);
+                }
+                else if (prefix === "AT") {
+                    valueselectElement3 = valueOf;
+                    console.log(valueselectElement3);
+                }
+
+                if (prefix === "VF") {
+                    bvalueselectElement1 = valueOf;
+                    console.log(bvalueselectElement1);
+                }
+                else if (prefix === "VS") {
+                    bvalueselectElement2 = valueOf;
+                    console.log(bvalueselectElement2);
+                }
+                else if (prefix === "VT") {
+                    bvalueselectElement3 = valueOf;
+                    console.log(bvalueselectElement3);
+                }
+
             }
-
-            if (bvalueselectElement1 === " ") {
-                var bahiParticular = "";
-            } else {
-                var bahiParticular = bvalueselectElement1 + " से बिल क्रमांक " + bahibillno + " के अनुसार " + bvalueselectElement2 + " हेतु बिल अनुसार " + bvalueselectElement3 + " से राशि का भुगतान किया गया";
-            }
-
-
-
-            // Create objects to store the form data
-            var rbFormData = {
-                'Date': rokadDate,
-                // 'r_S.no': rokadSNo,
-                'r_AKMMKP': AKMMKP,
-                'r_Particular': rokadParticular,
-                'r_Nagad Rashi': rokadNagadRashi,
-                'r_Bank Rashi': rokadBankRashi,
-                // 'r_Bajt LS': rokadBajtLs,
-                'r_Bajt LS': valueselectElement2,
-                'r_Signature': rokadSignature,
-                'r_AFO': valueselectElement1,
-                'r_ASO': valueselectElement2,
-                'r_ATO': valueselectElement3,
-                // 'b_S.no': bahiSNo,
-                'b_AKMMKP': bahiAKMMKP,
-                'b_E.P.N No.': epono,
-                'b_Particular': bahiParticular,
-                'b_Nagad Rashi': bahiNagadRashi,
-                'b_Bank Rashi': bahiBankRashi,
-                'b_Bajt LS': bahiBajtLs,
-                'bahibillno': bahibillno,
-                'b_fo': bvalueselectElement1,
-                'b_so': bvalueselectElement2,
-                'b_to': bvalueselectElement3,
-                // 'b_Signature': bahiSignature
-                'Form_Id': 'rbData' + rbFormCount,
-            };
-
-            // Convert the objects to JSON strings
-            var rbFormDataJSON = JSON.stringify(rbFormData);
-
-            // Store the JSON strings and form counts in local storage
-            localStorage.setItem('rbFormCount', rbFormCount);
-
-            var rbDataKey = "rbData" + rbFormCount;
-
-            localStorage.setItem(rbDataKey, rbFormDataJSON);
-            localStorage.setItem("reloadhome3", 0);
-
-            alert('Data saved to local storage!');
-            back()
         }
 
-        function back() {
-            window.location.href = "../home.html";
+        var selectElement1 = document.getElementById('selectOptions1' + form_count_n);
+        handleSelectValue(selectElement1, "AF");
+
+        var selectElement2 = document.getElementById('selectOptions2' + form_count_n);
+        handleSelectValue(selectElement2, "AS");
+
+        var selectElement3 = document.getElementById('selectOptions3' + form_count_n);
+        handleSelectValue(selectElement3, "AT");
+
+
+        var bselectElement1 = document.getElementById('bselectOptions1' + form_count_n);
+        handleSelectValue(bselectElement1, "VF");
+
+        var bselectElement2 = document.getElementById('bselectOptions2' + form_count_n);
+        handleSelectValue(bselectElement2, "VS");
+
+        var bselectElement3 = document.getElementById('bselectOptions3' + form_count_n);
+        handleSelectValue(bselectElement3, "VT");
+
+
+
+
+        // Get Rokad form values
+        var rokadDate = document.getElementById('rokadDate' + form_count_n).value;
+        // var rokadSNo = document.getElementById('rokadSNo').value;
+        var AKMMKP = document.getElementById("AKMMKP" + form_count_n).value;
+        // var rokadParticular = document.getElementById('rokadParticular').value;
+        var rokadNagadRashi = document.getElementById('rokadNagadRashi' + form_count_n).value;
+        var rokadBankRashi = document.getElementById('rokadBankRashi' + form_count_n).value;
+        var rokadBajtLs = document.getElementById('rokadBajtLs' + form_count_n).value;
+        var rokadSignature = document.getElementById('rokadSignature' + form_count_n).value;
+
+        var selectElement2 = document.getElementById('selectOptions2' + form_count_n).value;
+        var selectElement3 = document.getElementById('selectOptions3' + form_count_n).value;
+
+        // Get Bahi form values
+        // var bahiSNo = document.getElementById('bahiSNo').value;
+        var bahiAKMMKP = document.getElementById("bahiAKMMKP" + form_count_n).value;
+        var epono = document.getElementById("epono" + form_count_n).value;
+        // var bahiParticular = document.getElementById('bahiParticular').value;
+        var bahiNagadRashi = document.getElementById('bahiNagadRashi' + form_count_n).value;
+        var bahiBankRashi = document.getElementById('bahiBankRashi' + form_count_n).value;
+        var bahiBajtLs = document.getElementById('bahiBajtLs' + form_count_n).value;
+
+        var bahibillno = document.getElementById('bahibillno' + form_count_n).value;
+        // var bselectElement1 = document.getElementById('bselectOptions1').value;
+        // var bselectElement2 = document.getElementById('bselectOptions2').value;
+        // var bahiSignature = document.getElementById('bahiSignature').value;
+
+        // Get value from local storage for both forms
+        var rbFormCount = parseInt(localStorage.getItem("rbFormCount")) || 0;
+        rbFormCount = ++rbFormCount;
+
+        let rbDatarbFormCount = 'rbData' + rbFormCount
+
+
+        if (valueselectElement1 === " ") {
+            var rokadParticular = "";
+        } else {
+            var rokadParticular = valueselectElement1 + " से " + valueselectElement2 + " मद " + valueselectElement3 + " की राशि प्राप्त"
         }
-    </script>
-</body>
+
+        if (bvalueselectElement1 === " ") {
+            var bahiParticular = "";
+        } else {
+            var bahiParticular = bvalueselectElement1 + " से बिल क्रमांक " + bahibillno + " के अनुसार " + bvalueselectElement2 + " हेतु बिल अनुसार " + bvalueselectElement3 + " से राशि का भुगतान किया गया";
+        }
+
+
+
+        // Create objects to store the form data
+        var rbFormData = {
+            'Date': rokadDate,
+            // 'r_S.no': rokadSNo,
+            'r_AKMMKP': AKMMKP,
+            'r_Particular': rokadParticular,
+            'r_Nagad Rashi': rokadNagadRashi,
+            'r_Bank Rashi': rokadBankRashi,
+            // 'r_Bajt LS': rokadBajtLs,
+            'r_Bajt LS': valueselectElement2,
+            'r_Signature': rokadSignature,
+            'r_AFO': valueselectElement1,
+            'r_ASO': valueselectElement2,
+            'r_ATO': valueselectElement3,
+            // 'b_S.no': bahiSNo,
+            'b_AKMMKP': bahiAKMMKP,
+            'b_E.P.N No.': epono,
+            'b_Particular': bahiParticular,
+            'b_Nagad Rashi': bahiNagadRashi,
+            'b_Bank Rashi': bahiBankRashi,
+            'b_Bajt LS': bahiBajtLs,
+            'bahibillno': bahibillno,
+            'b_fo': bvalueselectElement1,
+            'b_so': bvalueselectElement2,
+            'b_to': bvalueselectElement3,
+            // 'b_Signature': bahiSignature
+            'Form_Id': rbDatarbFormCount,
+        };
+
+        // Convert the objects to JSON strings
+        var rbFormDataJSON = JSON.stringify(rbFormData);
+
+        // Store the JSON strings and form counts in local storage
+        localStorage.setItem('rbFormCount', rbFormCount);
+
+        var rbDataKey = "rbData" + rbFormCount;
+
+        localStorage.setItem(rbDataKey, rbFormDataJSON);
+        localStorage.setItem("reloadhome3", 0);
+
+        alert('Data saved to local storage!');
+    }
+
+    function back() {
+        window.location.href = "../home.html";
+    }
+
+</script>
 <script src="../JavaScript/popup.js">
 </script>
 

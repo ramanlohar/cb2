@@ -50,7 +50,7 @@ form {
   padding: 20px;
   padding-top: 1px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 input {
   border: 1px solid #535353;
@@ -146,4 +146,28 @@ select{
     padding: 5px;
   }
 
-  
+#Add_F_Btn{
+  width: auto;
+  background-color: #3498db;
+  padding: 10px;
+  margin: 5px 50px;
+  /* max-width: 50%; */
+  position: relative;
+  width: calc(100% - 100px);
+  border-radius: 10px;
+}  
+
+.dnone{
+  display: none;
+}
+
+#delete_form_btn{
+  color: red;
+  height: 30px;
+  width: 70px;
+}
+.h_div_info{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
