@@ -30,88 +30,51 @@ function display_mad() {
   }
 }
 
-function purvrokadbahidisplayData(partiaay,
-    aayN,
-    aayB,
-    vyayN,
-    vyayB,
-) {
-    var table = document.getElementById("combinedTable");
-    var row = table.insertRow(-1);
+function purvrokadbahidisplayData(partiaay, aayN, aayB, vyayN, vyayB) {
+  var table = document.getElementById("combinedTable");
+  var row = table.insertRow(-1);
 
-    // var changeddateformate =convertDateFormat(date)
-
-    var cell = row.insertCell(0);
-    cell.innerHTML = '';
-
-    var cell = row.insertCell(1);
+  for (var i = 0; i < 3; i++) {
+    var cell = row.insertCell(i);
     cell.innerHTML = "";
+  }
 
-    var cell = row.insertCell(2);
+  for (var i = 3; i < 6; i++) {
+    var cell = row.insertCell(i);
+    cell.innerHTML = i == 3 ? partiaay : i == 4 ? aayN : aayB;
+  }
+
+  for (var i = 6; i < 12; i++) {
+    var cell = row.insertCell(i);
     cell.innerHTML = "";
+  }
 
-    var cell = row.insertCell(3);
-    cell.innerHTML = partiaay;
+  for (var i = 12; i < 15; i++) {
+    var cell = row.insertCell(i);
+    cell.innerHTML = i == 12 ? vyayN : vyayB;
+  }
 
-    var cell = row.insertCell(4);
-    cell.innerHTML = aayN;
-
-    var cell = row.insertCell(5);
-    cell.innerHTML = aayB;
-
-    var cell = row.insertCell(6);
+  for (var i = 15; i < 18; i++) {
+    var cell = row.insertCell(i);
     cell.innerHTML = "";
+  }
 
-    var cell = row.insertCell(7);
-    cell.innerHTML = "";
-
-    var cell = row.insertCell(8);
-    cell.innerHTML = "";
-
-    var cell = row.insertCell(9);
-    cell.innerHTML = "";
-
-    var cell = row.insertCell(10);
-    cell.innerHTML = "";
-
-    var cell = row.insertCell(11);
-    cell.innerHTML = "";
-
-    var cell = row.insertCell(12);
-    cell.innerHTML = "";
-
-    var cell = row.insertCell(13);
-    cell.innerHTML = vyayN;
-
-    var cell = row.insertCell(14);
-    cell.innerHTML = vyayB;
-
-    var cell = row.insertCell(15);
-    cell.innerHTML = "";
-
-    var cell = row.insertCell(16);
-    cell.innerHTML = "";
-
-    var cell = row.insertCell(17);
-    cell.innerHTML = `<button class="btn_edit_del" id="Edit_button" onclick="editpurvshesh()"><i class="fa-solid fa-pen"></i></button>`;
-
+  var cell = row.insertCell(17);
+  cell.innerHTML = `<button class="btn_edit_del" id="Edit_button" onclick="editpurvshesh()"><i class="fa-solid fa-pen"></i></button>`;
 }
 
-function editpurvshesh(){
-    window.location.href = "HTML/editfirstform.html"
+function editpurvshesh() {
+  window.location.href = "HTML/editfirstform.html";
 }
 
 function editrowdata(form_id) {
   localStorage.setItem("Edit_Form_Id", form_id);
-  // localStorage.setItem("Edit_Form_Id");
   window.location.href = "HTML/editinput.html";
 }
 
 function deletefromrow(form_id) {
   const bodyElement = document.querySelector("body");
-  alert("hello");
 
-  // Create confirmation box
   var confirmationBox = document.createElement("div");
   confirmationBox.id = "confirmation-box";
   confirmationBox.innerHTML = `
@@ -120,7 +83,6 @@ function deletefromrow(form_id) {
     <button class="no" onclick="confirmAction(false)">No</button>
   `;
 
-  // Append the confirmation box as the first child of the body
   bodyElement.insertBefore(confirmationBox, bodyElement.firstChild);
 }
 
@@ -271,10 +233,10 @@ function rokadbahidisplayData(formType) {
     var cell = row.insertCell(11);
     cell.innerHTML = formDataArray[i]["b_AKMMKP"];
 
-    if(formDataArray[i]["b_fo"] == "बैंक व्यय"){
+    if (formDataArray[i]["b_fo"] == "बैंक व्यय") {
       var cell = row.insertCell(12);
       cell.innerHTML = formDataArray[i]["b_fo"] || "";
-    }else {      
+    } else {
       var cell = row.insertCell(12);
       cell.innerHTML = formDataArray[i]["b_Particular"] || "";
     }
@@ -291,17 +253,15 @@ function rokadbahidisplayData(formType) {
     var cell = row.insertCell(16);
     cell.innerHTML = formDataArray[i]["Signature"] || "";
 
-    if (Formid === "rbData1" || Formid == "rbData1"){
-
-        var cell = row.insertCell(17);
-        cell.innerHTML = "";
-
-    }else{        
-        var cell = row.insertCell(17);
-        cell.innerHTML = `<button class="btn_edit_del" id="Edit_button" onclick="editrowdata('${Formid}')"><i class="fa-solid fa-pen"></i></button> <button class="btn_edit_del" id="delete_button" onclick="deletefromrow('${Formid}');"><i class="fa-solid fa-trash-can" for="Edit_button"></i></button>`;
+    if (Formid === "rbData1" || Formid == "rbData1") {
+      var cell = row.insertCell(17);
+      cell.innerHTML = "";
+    } else {
+      var cell = row.insertCell(17);
+      cell.innerHTML = `<button class="btn_edit_del" id="Edit_button" onclick="editrowdata('${Formid}')"><i class="fa-solid fa-pen"></i></button> <button class="btn_edit_del" id="delete_button" onclick="deletefromrow('${Formid}');"><i class="fa-solid fa-trash-can" for="Edit_button"></i></button>`;
     }
-        
-        prevDate = currentDate;
+
+    prevDate = currentDate;
   }
 }
 
@@ -697,8 +657,10 @@ function avrokadbahidisplayData(
 // }
 
 function caluculatingvalues(date, Formid, R_BANK_RASHI) {
-  var nagadpurve_Shesh = parseFloat(localStorage.getItem("nagadpurve_Shesh")) || 0;
-  var bankpurve_Shesh = parseFloat(localStorage.getItem("bankpurve_Shesh")) || 0;
+  var nagadpurve_Shesh =
+    parseFloat(localStorage.getItem("nagadpurve_Shesh")) || 0;
+  var bankpurve_Shesh =
+    parseFloat(localStorage.getItem("bankpurve_Shesh")) || 0;
 
   var rbTotalData_date = "rbTotalData_" + date;
   var rbTotalData = localStorage.getItem(rbTotalData_date);
@@ -708,117 +670,116 @@ function caluculatingvalues(date, Formid, R_BANK_RASHI) {
 
   // Check if rbTotalData is not null or undefined before accessing its properties
   if (rbTotalData) {
-      var r_nagadAmount = parseFloat(rbTotalData.r_nagadTotal) || 0;
-      var r_bankAmount = parseFloat(rbTotalData.r_bankTotal) || 0;
-      var b_nagadAmount = parseFloat(rbTotalData.b_nagadTotal) || 0;
-      var b_bankAmount = parseFloat(rbTotalData.b_bankTotal) || 0;
+    var r_nagadAmount = parseFloat(rbTotalData.r_nagadTotal) || 0;
+    var r_bankAmount = parseFloat(rbTotalData.r_bankTotal) || 0;
+    var b_nagadAmount = parseFloat(rbTotalData.b_nagadTotal) || 0;
+    var b_bankAmount = parseFloat(rbTotalData.b_bankTotal) || 0;
 
-      aayN = r_nagadAmount;
-      aayB = r_bankAmount;
+    aayN = r_nagadAmount;
+    aayB = r_bankAmount;
 
-      aayNPurvShesh = nagadpurve_Shesh;
-      aayBPurvShesh = bankpurve_Shesh;
+    aayNPurvShesh = nagadpurve_Shesh;
+    aayBPurvShesh = bankpurve_Shesh;
 
-      nagadpurve_Shesh += r_nagadAmount;
-      bankpurve_Shesh += r_bankAmount;
+    nagadpurve_Shesh += r_nagadAmount;
+    bankpurve_Shesh += r_bankAmount;
 
-      localStorage.setItem("nagadpurve_Shesh", nagadpurve_Shesh);
-      localStorage.setItem("bankpurve_Shesh", bankpurve_Shesh);
+    localStorage.setItem("nagadpurve_Shesh", nagadpurve_Shesh);
+    localStorage.setItem("bankpurve_Shesh", bankpurve_Shesh);
 
-      aayNyog = nagadpurve_Shesh;
-      aayByog = bankpurve_Shesh;
+    aayNyog = nagadpurve_Shesh;
+    aayByog = bankpurve_Shesh;
 
-      vyayN = b_nagadAmount;
-      vyayB = b_bankAmount;
+    vyayN = b_nagadAmount;
+    vyayB = b_bankAmount;
 
-      vyayNyog = nagadpurve_Shesh;
-      vyayByog = bankpurve_Shesh;
+    vyayNyog = nagadpurve_Shesh;
+    vyayByog = bankpurve_Shesh;
 
-      nagadpurve_Shesh -= b_nagadAmount;
-      bankpurve_Shesh -= b_bankAmount;
+    nagadpurve_Shesh -= b_nagadAmount;
+    bankpurve_Shesh -= b_bankAmount;
 
-      localStorage.setItem("nagadpurve_Shesh", nagadpurve_Shesh);
-      localStorage.setItem("bankpurve_Shesh", bankpurve_Shesh);
+    localStorage.setItem("nagadpurve_Shesh", nagadpurve_Shesh);
+    localStorage.setItem("bankpurve_Shesh", bankpurve_Shesh);
 
-      vyayNPurvShesh = nagadpurve_Shesh;
-      vyayBPurvShesh = bankpurve_Shesh;
+    vyayNPurvShesh = nagadpurve_Shesh;
+    vyayBPurvShesh = bankpurve_Shesh;
 
-      var changeddateformate = convertDateFormat(date);
+    var changeddateformate = convertDateFormat(date);
 
-      // Retrieve the data stored in localStorage with the key "rbData1"
-      var panchaya_name1 = localStorage.getItem("karyalayData");
+    // Retrieve the data stored in localStorage with the key "rbData1"
+    var panchaya_name1 = localStorage.getItem("karyalayData");
 
-      // Parse the retrieved data as JSON
-      var panchaya_data2 = JSON.parse(panchaya_name1);
+    // Parse the retrieved data as JSON
+    var panchaya_data2 = JSON.parse(panchaya_name1);
 
-      // Access the value associated with the property 'b_Bank Rashi' in the parsed object
-      var panchaya_data23 = panchaya_data2["Purv_Rashi"];
-      var Npanchaya_data23 = panchaya_data2["NPurv_Rashi"];
+    // Access the value associated with the property 'b_Bank Rashi' in the parsed object
+    var panchaya_data23 = panchaya_data2["Purv_Rashi"];
+    var Npanchaya_data23 = panchaya_data2["NPurv_Rashi"];
 
-      // console.log(panchaya_data23 + "panchaya_data203");
+    // console.log(panchaya_data23 + "panchaya_data203");
 
-      var treecounttwo = localStorage.getItem("treecounttwo");
-      var firstid = 0;
+    var treecounttwo = localStorage.getItem("treecounttwo");
+    var firstid = 0;
 
-      if (treecounttwo == 0) {
-          localStorage.setItem("aayn", aayN);
-          localStorage.setItem("aayb", aayB);
-          firstid = 1;
-          localStorage.setItem("treecounttwo", 1);
-      }
+    if (treecounttwo == 0) {
+      localStorage.setItem("aayn", aayN);
+      localStorage.setItem("aayb", aayB);
+      firstid = 1;
+      localStorage.setItem("treecounttwo", 1);
+    }
 
-      aayNPurvShesh = parseFloat(aayNPurvShesh.toFixed(2));
-      aayBPurvShesh = parseFloat(aayBPurvShesh.toFixed(2));
-      aayN = parseFloat(aayN.toFixed(2));
-      aayB = parseFloat(aayB.toFixed(2));
-      aayNyog = parseFloat(aayNyog.toFixed(2));
-      aayByog = parseFloat(aayByog.toFixed(2));
-      vyayN = parseFloat(vyayN.toFixed(2));
-      vyayB = parseFloat(vyayB.toFixed(2));
-      vyayNPurvShesh = parseFloat(vyayNPurvShesh.toFixed(2));
-      vyayBPurvShesh = parseFloat(vyayBPurvShesh.toFixed(2));
-      vyayNyog = parseFloat(vyayNyog.toFixed(2));
-      vyayByog = parseFloat(vyayByog.toFixed(2));
+    aayNPurvShesh = parseFloat(aayNPurvShesh.toFixed(2));
+    aayBPurvShesh = parseFloat(aayBPurvShesh.toFixed(2));
+    aayN = parseFloat(aayN.toFixed(2));
+    aayB = parseFloat(aayB.toFixed(2));
+    aayNyog = parseFloat(aayNyog.toFixed(2));
+    aayByog = parseFloat(aayByog.toFixed(2));
+    vyayN = parseFloat(vyayN.toFixed(2));
+    vyayB = parseFloat(vyayB.toFixed(2));
+    vyayNPurvShesh = parseFloat(vyayNPurvShesh.toFixed(2));
+    vyayBPurvShesh = parseFloat(vyayBPurvShesh.toFixed(2));
+    vyayNyog = parseFloat(vyayNyog.toFixed(2));
+    vyayByog = parseFloat(vyayByog.toFixed(2));
 
-      var treecount = localStorage.getItem("treecount", 0);
+    var treecount = localStorage.getItem("treecount", 0);
 
-      if (treecount == 0) {
-          avrokadbahidisplayData(
-              aayNPurvShesh,
-              aayBPurvShesh,
-              aayN,
-              aayB,
-              aayNyog,
-              aayByog,
-              vyayN,
-              vyayB,
-              vyayNPurvShesh,
-              vyayBPurvShesh,
-              vyayNyog,
-              vyayByog,
-              firstid
-          );
-          localStorage.setItem("treecount", 1);
-      } else {
-          avrokadbahidisplayData(
-              aayN,
-              aayB,
-              aayNPurvShesh,
-              aayBPurvShesh,
-              aayNyog,
-              aayByog,
-              vyayN,
-              vyayB,
-              vyayNPurvShesh,
-              vyayBPurvShesh,
-              vyayNyog,
-              vyayByog,
-              firstid
-          );
-      }
+    if (treecount == 0) {
+      avrokadbahidisplayData(
+        aayNPurvShesh,
+        aayBPurvShesh,
+        aayN,
+        aayB,
+        aayNyog,
+        aayByog,
+        vyayN,
+        vyayB,
+        vyayNPurvShesh,
+        vyayBPurvShesh,
+        vyayNyog,
+        vyayByog,
+        firstid
+      );
+      localStorage.setItem("treecount", 1);
+    } else {
+      avrokadbahidisplayData(
+        aayN,
+        aayB,
+        aayNPurvShesh,
+        aayBPurvShesh,
+        aayNyog,
+        aayByog,
+        vyayN,
+        vyayB,
+        vyayNPurvShesh,
+        vyayBPurvShesh,
+        vyayNyog,
+        vyayByog,
+        firstid
+      );
+    }
   }
 }
-
 
 function convertDateFormat(inputDate) {
   // Split the input date into year, month, and day
@@ -866,5 +827,5 @@ localStorage.setItem("treecount", 0);
 localStorage.setItem("treecounttwo", 0);
 
 // setTimeout(() => {
-//   localStorage.removeItem("Edit_Form_Id");  
+//   localStorage.removeItem("Edit_Form_Id");
 // }, 10000);
